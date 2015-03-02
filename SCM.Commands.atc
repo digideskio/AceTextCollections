@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <act:acetext xmlns:act="http://www.acetext.com/acetext20.xsd" version="2.0">
 	<collection label="SCM.Commands" sort="none">
+		<clip kind="text" date="2015-03-02T16:45:19">
+			<text>what.is.upstream</text>
+		</clip>
 		<folder label="Maven">
 			<clip kind="text" label="create project" date="2013-04-30T15:42:48">
 				<text>mvn archetype:generate -DgroupId=%package% -DartifactId=%myapp% -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false</text>
@@ -24,14 +27,26 @@
 			</clip>
 		</folder>
 		<folder label="Git.Setup">
+			<clip kind="text" label="where.isAceTextCollections" date="2015-03-02T16:30:59">
+				<text>https://github.com/imoutsatsos/AceTextCollections.git</text>
+			</clip>
+			<clip kind="text" label="what.is.upstream" date="2015-03-02T16:44:25">
+				<text>See: remote.add.origin&#13;&#10;&#13;&#10;git remote add origin https://github.com/imoutsatsos/AceTextCollections.git&#13;&#10;git push -u origin master&#13;&#10;&#13;&#10;"Upstream" would refer to the main repo that other people will be pulling from, e.g. your GitHub repo. The -u option automatically sets that upstream for you, linking your repo to a central one. That way, in the future, Git "knows" where you want to push to and where you want to pull from, so you can use git pull or git push without arguments. A little bit down, this article explains and demonstrates this concept.&#13;&#10;&#13;&#10;</text>
+			</clip>
 			<clip kind="text" label="init" date="2015-03-02T11:21:08">
 				<text>git init</text>
+			</clip>
+			<clip kind="text" label="link.to.central" date="2015-03-02T16:43:32">
+				<text>git remote add origin https://github.com/imoutsatsos/%gitHubRepo%.git&#13;&#10;git push -u origin master</text>
 			</clip>
 			<clip kind="text" label="clone" date="2015-03-02T11:21:29">
 				<text>#Clone the repository located at &lt;repo> into the folder called &lt;directory> on the local machine.&#13;&#10;git clone %repo% %directory%</text>
 			</clip>
 			<clip kind="text" label="config.user" date="2015-03-02T11:22:59">
 				<text>git config --global user.name %name%&#13;&#10;git config --global user.email %email%</text>
+			</clip>
+			<clip kind="text" label="config.http.proxy" date="2015-03-02T15:43:57">
+				<text>git config --global http.proxy http://%proxy.server:%port%</text>
 			</clip>
 		</folder>
 		<folder label="Git.Save.Changes">
@@ -42,7 +57,7 @@
 				<text>git commit -m %message%</text>
 			</clip>
 		</folder>
-		<folder label="Git.Inspect.Repo">
+		<folder label="Git.Inspect.Repo" sort="old-new">
 			<clip kind="text" label="status" date="2015-03-02T11:27:55">
 				<text>#List which files are staged, unstaged, and untracked.&#13;&#10;git status</text>
 			</clip>
@@ -55,7 +70,7 @@
 			<clip kind="text" label="log.search" date="2015-03-02T11:31:04">
 				<text>#Search for commits with a commit message that matches &lt;pattern>&#13;&#10;git log --grep="%pattern%"</text>
 			</clip>
-			<clip kind="text" label="log.OfFile" date="2015-03-02T11:32:10">
+			<clip kind="text" label="log.of.file" date="2015-03-02T11:32:10">
 				<text>#see the commit history of a particular file&#13;&#10;git log %file%</text>
 			</clip>
 			<clip kind="text" label="log.browse" date="2015-03-02T11:34:05">
@@ -64,6 +79,84 @@
 			<clip kind="text" label="log.compare.branches" date="2015-03-02T11:35:40">
 				<text>#The .. syntax is a very useful tool for comparing branches&#13;&#10;git log --oneline master..%some-feature%</text>
 			</clip>
+		</folder>
+		<folder label="Git.Sync" sort="old-new">
+			<clip kind="text" label="remote.list" date="2015-03-02T13:12:28">
+				<text>#create, view, and delete connections to other repositories&#13;&#10;# git remote&#13;&#10;#include the URL of each connection&#13;&#10;git remote -v</text>
+			</clip>
+			<clip kind="text" label="remote.add" date="2015-03-02T13:15:15">
+				<text>#Create a new connection to a remote repository &#13;&#10;#You’ll be able to use &lt;name> as a convenient shortcut for &lt;url> in other Git commands&#13;&#10;git remote add %name% %url%</text>
+			</clip>
+			<clip kind="text" label="fetch" date="2015-03-02T13:19:54">
+				<text># imports commits from a remote repository into your local repo&#13;&#10;git fetch %remote%</text>
+			</clip>
+			<clip kind="text" label="fetch.branch" date="2015-03-02T13:20:57">
+				<text>#only fetch the specified branch&#13;&#10;git fetch %remote% %branch%</text>
+			</clip>
+			<clip kind="text" label="pull" date="2015-03-02T13:26:02">
+				<text>#Fetch the remote’s copy of the current branch and immediately merge it into the local copy&#13;&#10;git pull &lt;remote></text>
+			</clip>
+			<clip kind="text" label="push.a.branch" date="2015-03-02T16:29:27">
+				<text>#Push the specified branch to &lt;remote>&#13;&#10;git push %remote% %branch%</text>
+			</clip>
+			<clip kind="text" label="force.push" date="2015-03-02T16:38:49">
+				<text># force the push even if it results in a non-fast-forward merge. Do not use the --force flag unless you’re absolutely sure you know what you’re doing.&#13;&#10;git push %remote% --force</text>
+			</clip>
+		</folder>
+		<folder label="Git.Branch">
+			<folder label="branch.usage">
+				<clip kind="text" label="what.is.branch" date="2015-03-02T15:39:14">
+					<text>Refernce: https://www.atlassian.com/git/tutorials/using-branches/git-branch&#13;&#10;&#13;&#10;A branch represents an independent line of development.&#13;&#10;&#13;&#10;You can think of them as a way to request a brand new working directory, staging area, and project history. &#13;&#10;&#13;&#10;New commits are recorded in the history for the current branch, which results in a fork in the history of the project&#13;&#10;A branch represents the tip of a series of commits—it's not a container for commits. &#13;&#10;The history for a branch is extrapolated through the commit relationships.</text>
+				</clip>
+				<clip kind="text" label="branch.list.all" date="2015-03-02T15:33:07">
+					<text>#List all of the branches in your repository&#13;&#10;git branch</text>
+				</clip>
+				<clip kind="text" label="branch.view.remote" date="2015-03-02T15:30:19">
+					<text>#view your remote branches&#13;&#10;git branch -r</text>
+				</clip>
+				<clip kind="text" label="branch.delete" date="2015-03-02T15:36:21">
+					<text>#Delete the specified branch. This is a “safe” operation. To force use -D&#13;&#10;git branch -d %branch%</text>
+				</clip>
+				<clip kind="text" label="branch.rename" date="2015-03-02T15:35:19">
+					<text>#Rename the current branch to &lt;branch>&#13;&#10;git branch -m %branch%</text>
+				</clip>
+				<clip kind="text" label="branch.new" date="2015-03-02T15:33:55">
+					<text>#Create a new branch called &lt;branch>&#13;&#10;git branch %branch%</text>
+				</clip>
+			</folder>
+			<folder label="checkout.usage">
+				<clip kind="text" label="what.is.checkout" date="2015-03-02T15:41:48">
+					<text>Reference: https://www.atlassian.com/git/tutorials/using-branches/git-checkout&#13;&#10;&#13;&#10;The git checkout command lets you navigate between the branches created by git branch. &#13;&#10;&#13;&#10;Checking out a branch updates the files in the working directory to match the version stored in that branch, and it tells Git to record all new commits on that branch. &#13;&#10;&#13;&#10;Think of it as a way to select which line of development you’re working on.&#13;&#10;&#13;&#10;git checkout works hand-in-hand with git branch. &#13;&#10;When you want to start a new feature, you create a branch with git branch, then check it out with git checkout. You can work on multiple features in a single repository by switching between them with git checkout.</text>
+				</clip>
+				<clip kind="text" label="create.new" date="2015-03-02T15:50:02">
+					<text>#Create and check out &lt;new-branch>&#13;&#10;git checkout -b %newBranch%</text>
+				</clip>
+				<clip kind="text" label="create.new.from.branch" date="2015-03-02T15:53:18">
+					<text>#base the new branch off of &lt;existing-branch> instead of the current branch&#13;&#10;git checkout -b %newBranch% %existingBranch%</text>
+				</clip>
+				<clip kind="text" label="checkout.existing" date="2015-03-02T15:48:34">
+					<text>#Check out the specified branch&#13;&#10;git checkout %existingBranch%</text>
+				</clip>
+			</folder>
+			<folder label="merge.usage">
+				<folder label="merge.FAQ">
+					<clip kind="text" label="what.is.merge" date="2015-03-02T16:06:26">
+						<text>Reference: https://www.atlassian.com/git/tutorials/using-branches/git-merge&#13;&#10;&#13;&#10;Merging is Git's way of putting a forked history back together again. &#13;&#10;The git merge command lets you take the independent lines of development created by git branch and integrate them into a single branch.&#13;&#10;&#13;&#10;Note that all of the commands presented below merge into the current branch. &#13;&#10;&#13;&#10;The current branch will be updated to reflect the merge, but the target branch will be completely unaffected. Again, this means that git merge is often used in conjunction with git checkout for selecting the current branch and git branch -d for deleting the obsolete target branch.</text>
+					</clip>
+					<clip kind="text" label="what.is.fast.forward.merge" date="2015-03-02T16:16:11">
+						<text>A fast-forward merge can occur when there is a linear path from the current branch tip to the target branch. &#13;&#10;&#13;&#10;Instead of “actually” merging the branches, all Git has to do to integrate the histories is move (i.e., “fast forward”) the current branch tip up to the target branch tip. &#13;&#10;&#13;&#10;This effectively combines the histories, since all of the commits reachable from the target branch are now available through the current one.</text>
+					</clip>
+					<clip kind="text" label="what.is.3-way.merge" date="2015-03-02T16:17:34">
+						<text>When there is not a linear path to the target branch, Git has no choice but to combine them via a 3-way merge. &#13;&#10;&#13;&#10;3-way merges use a dedicated commit to tie together the two histories. &#13;&#10;&#13;&#10;The nomenclature comes from the fact that Git uses three commits to generate the merge commit: the two branch tips and their common ancestor.</text>
+					</clip>
+					<clip kind="text" label="what.is.rebasing" date="2015-03-02T16:27:17">
+						<text>https://www.atlassian.com/git/tutorials/merging-vs-rebasing</text>
+					</clip>
+				</folder>
+				<clip kind="text" label="merge.branch" date="2015-03-02T16:11:04">
+					<text>#Merge the specified branch into the current branch&#13;&#10;git merge %branch%</text>
+				</clip>
+			</folder>
 		</folder>
 	</collection>
 </act:acetext>
