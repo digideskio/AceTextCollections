@@ -16,14 +16,11 @@
 			<clip kind="text" label="Review Utilization" acetype="sg" date="2012-08-13T09:23:01">
 				<text>qstat -g c</text>
 			</clip>
-			<clip kind="text" label="Ganglia Monitoring (USCA)" acetype="sg" date="2013-02-13T13:56:37">
-				<text>http://apollo.na.novartis.net/ganglia/</text>
-			</clip>
 			<clip kind="text" label="View jobs from all users" acetype="sg" date="2012-08-13T09:32:00">
 				<text>qstat -u \*</text>
 			</clip>
 			<clip kind="text" label="View jobs from this user" acetype="sg" date="2012-08-13T09:37:15">
-				<text>qstat -u moutsio1</text>
+				<text>qstat -u %username%</text>
 			</clip>
 		</folder>
 		<folder label="Linux Commands">
@@ -55,12 +52,6 @@
 			</clip>
 			<clip kind="text" label="Find files (current dir no recurse)" acetype="ln" date="2012-12-12T09:12:40">
 				<text>find . -iname '%NameToFind%' -prune</text>
-			</clip>
-			<clip kind="text" label="Secure Copy (\\PHUSCA-S1602\Moutsio1$\DATA to Linux)" acetype="ln" date="2012-08-06T09:49:39">
-				<text>scp moutsio1@phusca-l42495.na.novartis.net:~/DATA/WORKSPACE/sts-2.9.0.RELEASE/GroovyHCS/src/* moutsio1@boomer.na.novartis.net:~/%yourLinuxpath%</text>
-			</clip>
-			<clip kind="text" label="Secure Copy (Linux to \\PHUSCA-S1602\Moutsio1$\DATA)" acetype="ln" date="2012-08-06T09:49:39">
-				<text>scp  ~/yourLinuxPath/yourfile moutsio1@phusca-l42495.na.novartis.net:~/DATA/WORKSPACE/yourWinPath/</text>
 			</clip>
 		</folder>
 		<folder label="Windows.cmd">

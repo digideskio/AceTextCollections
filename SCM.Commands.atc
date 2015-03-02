@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <act:acetext xmlns:act="http://www.acetext.com/acetext20.xsd" version="2.0">
 	<collection label="SCM.Commands" sort="none">
+		<folder label="Maven">
+			<clip kind="text" label="create project" date="2013-04-30T15:42:48">
+				<text>mvn archetype:generate -DgroupId=%package% -DartifactId=%myapp% -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false</text>
+			</clip>
+		</folder>
 		<folder label="SVN.commands">
 			<clip kind="webtext" label="svn commit all pending" date="2012-08-10T14:46:53">
 				<text>svn commit -m "Commit Message"</text>

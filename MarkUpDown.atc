@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <act:acetext xmlns:act="http://www.acetext.com/acetext20.xsd" version="2.0">
-	<collection label="EditPad ClipCollection" sort="none">
+	<collection label="MarkUpDown" sort="none">
 		<folder label="JIRA-Markup">
 			<clip kind="text" label="JIRA-Bulleted List" date="2014-04-17T09:01:44">
 				<text>*%item1%&#13;&#10;*%item2%&#13;&#10;**%indentedItem3%</text>
@@ -144,6 +144,7 @@
 				<history>5787743</history>
 			</parameter>
 			<parameter name="%linkURL%">
+				<history>http://www.acetext.com/</history>
 				<history>http://www.urbandictionary.com/define.php?term=iirc</history>
 				<history>https://wiki.jenkins-ci.org/display/JENKINS/Extended+Choice+Parameter+plugin</history>
 			</parameter>
@@ -178,6 +179,7 @@
 				<history>Text</history>
 			</parameter>
 			<parameter name="%text%">
+				<history>AceText</history>
 				<history>IIRC</history>
 				<history>extended choise plugin</history>
 			</parameter>
