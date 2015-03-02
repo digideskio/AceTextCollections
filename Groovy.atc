@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<act:acetext xmlns:act="http://www.acetext.com/acetext20.xsd" version="2.0">
+	<collection label="Groovy" sort="none">
+		<folder label="CustomMethods">
+			<clip kind="text" label="Progress bar" date="2013-04-25T14:37:52">
+				<text>/* creates a simple progress bar */&#13;&#10;def progressBar = { max, closure ->&#13;&#10;    def template = "\r[%s] %s"&#13;&#10;    def progress = 0&#13;&#10;    def percent = 0&#13;&#10;    def barLength = 100&#13;&#10;    def progressRatio = barLength / 100&#13;&#10;&#13;&#10;    while (progress &lt; max) {&#13;&#10;        def progressBuffer = new StringBuilder();&#13;&#10;        def step = closure()&#13;&#10;//        print "Step is: $step Progress: $progress"&#13;&#10;        if (!step) step = 0    // default to stepping 1&#13;&#10;        if (step == 0) continue // no progress&#13;&#10;        // else step is the amount of progress&#13;&#10;        progress = Math.min(max, progress + step)&#13;&#10;        percent        = (int) ((progress / max) * 100)&#13;&#10;        progressLength = (int) ((progress / max) * (100 * progressRatio))&#13;&#10;&#13;&#10;        progressBuffer.append('=' * progressLength)&#13;&#10;        progressBuffer.append(' ' * (barLength - progressLength))&#13;&#10;&#13;&#10;        print String.format(template, progressBuffer, "${percent}%")&#13;&#10;        println "\t ${new Date()} (+$step)"&#13;&#10;    }&#13;&#10;    println ''&#13;&#10;}&#13;&#10;&#13;&#10;progressBar expectCount,{&#13;&#10;/* closure should return a 'step' against which progress is measured */&#13;&#10;/* if that's not possible (as when the closure is itself a loop) then the progress bar code can be  inserted directly into the loop */&#13;&#10;}</text>
+			</clip>
+			<clip kind="text" label="DateTime Stamp" date="2012-10-11T09:54:23">
+				<text>import java.util.Calendar&#13;&#10;import java.text.SimpleDateFormat&#13;&#10;&#13;&#10;/*&#13;&#10; * Return the current time as a string.&#13;&#10; * This format is compatible with use in filenames on windows and is used as a part to the name of the CSV files&#13;&#10; */&#13;&#10; def getTnow(){&#13;&#10;	 def DATE_FORMAT_NOW = "yyyy-MM-dd HH_mm_ss"&#13;&#10;	 def cal = Calendar.getInstance()&#13;&#10;	 def sdf = new SimpleDateFormat(DATE_FORMAT_NOW);&#13;&#10;	 sdf.format(cal.getTime())&#13;&#10; &#13;&#10; }  </text>
+			</clip>
+		</folder>
+		<folder label="Strings">
+			<clip kind="text" label="replace a with b" date="2015-01-05T10:04:47">
+				<text>%target%.replace('%a%','%b%')</text>
+			</clip>
+			<clip kind="text" label="replace case insensitive a ( a or A) with b" date="2015-01-05T10:04:47">
+				<text>%target%.replace('(?i)%a%','%b%')</text>
+			</clip>
+		</folder>
+		<folder label="Grooviness">
+			<clip kind="text" label="Operators" date="2014-08-01T12:17:37">
+				<text>http://groovy.codehaus.org/Operators&#13;&#10;&#13;&#10;In general all operators supported in Java are identical in Groovy. Groovy goes a step further by allowing you to customize behavior of operators on Groovy types.&#13;&#10;&#13;&#10;Arithmetic and Conditional Operators&#13;&#10;Collection-based Operators&#13;&#10;Spread Operator (*.)&#13;&#10;Object-Related Operators&#13;&#10;Java field (.@)&#13;&#10;Other Operators&#13;&#10;Elvis Operator (?: )&#13;&#10;Safe Navigation Operator (?.)&#13;&#10;Regular Expression Operators&#13;&#10;Table of Operators</text>
+			</clip>
+		</folder>
+		<folder label="Math">
+			<clip kind="text" label="envVar as Int" date="2013-03-28T11:43:30">
+				<text>%groovyInt%=env['%envVar%']   as int&#13;&#10;//Example: expectCount=env['IMAGELIST_SIZE']   as int</text>
+			</clip>
+			<clip kind="text" label="Round a BigDecimal" date="2013-02-21T13:37:30">
+				<text>//scale is an integer like 2,4, etc&#13;&#10;def round_%numToRound%= %sourceBigDecimal%.setScale(%scale%, BigDecimal.ROUND_HALF_UP)&#13;&#10;</text>
+			</clip>
+		</folder>
+		<folder label="Jenkins">
+			<clip kind="text" label="Jenkins URL" date="2014-05-14T16:13:43">
+				<text>//get the Jenkins URL&#13;&#10;import hudson.model.*&#13;&#10;jenkinsURL=jenkins.model.Jenkins.instance.getRootUrl()</text>
+			</clip>
+			<clip kind="text" label="Choice List from Static Properties" date="2014-05-15T13:57:32">
+				<text>/* &#13;&#10; Generates a dynamic choice list from a static property file in userContent/properties&#13;&#10;  Assumes a property file with propertyFileName and given propertyKey exists in Jenkins properties folder&#13;&#10;*/&#13;&#10;import hudson.model.*&#13;&#10;def jenkinsURL=jenkins.model.Jenkins.instance.getRootUrl()&#13;&#10;def propAddress="$jenkinsURL/userContent/properties/%propertyFileName%.properties"&#13;&#10;def propKey= '%propertyKey%'&#13;&#10;&#13;&#10;def props= new Properties()&#13;&#10;props.load(new URL(propAddress).openStream())&#13;&#10;def choices=[]&#13;&#10;if (props.get(propKey)!=null){&#13;&#10; props.get(propKey).split(",").each{&#13;&#10;      choices.add(it) }&#13;&#10;}else{&#13;&#10;choices.add('NOT SET')&#13;&#10;}&#13;&#10;return choices</text>
+			</clip>
+			<clip kind="text" label="Choice List from Build Properties" date="2014-05-15T13:44:10">
+				<text>/* &#13;&#10; Generates a dynamic choice list from a property file generated by a specific build number&#13;&#10; Requires a DATA_RUN reference parameter in the format BUILD_NUM: BUILD_ID&#13;&#10;  Assumes a property file with propertyFileName and given propertyKey has been archived by the build&#13;&#10;*/&#13;&#10;import hudson.model.*&#13;&#10;if (!binding.variables.containsKey("DATA_RUN"))&#13;&#10;   return []&#13;&#10;def jenkinsURL=jenkins.model.Jenkins.instance.getRootUrl()&#13;&#10;def buildNum=DATA_RUN.split(':')[0]&#13;&#10;def propAddress="${jenkinsURL}job/%jobName%/$buildNum/artifact/%propertyFileName%.properties"&#13;&#10;def propKey= '%propertyKey%'&#13;&#10;&#13;&#10;def props= new Properties()&#13;&#10;props.load(new URL(propAddress).openStream())&#13;&#10;def choices=[]&#13;&#10;if (props.get(propKey)!=null){&#13;&#10; props.get(propKey).split(",").each{&#13;&#10;      	choices.add(it) }&#13;&#10;	}else{&#13;&#10;	choices.add('NOT SET')&#13;&#10;	}&#13;&#10;return choices</text>
+			</clip>
+			<clip kind="text" label="Last Build Environment Vars" date="2014-05-14T15:23:50">
+				<text>import hudson.model.*&#13;&#10;def job = hudson.model.Hudson.instance.getItem('%j_project%') &#13;&#10;def build=job.getLastBuild()&#13;&#10;def env=[:]&#13;&#10;env=build.getEnvironment(TaskListener.NULL)&#13;&#10;jenkinsURL=env['JENKINS_URL']&#13;&#10;</text>
+			</clip>
+			<clip kind="text" label="Copy local file from RunParameter" date="2014-01-21T12:20:27">
+				<text>/*&#13;&#10;Script requires parameters: buildURL, artifactFilter, buildFolder&#13;&#10;buildFolder: archive or fileParameters&#13;&#10;*/&#13;&#10;import hudson.model.*&#13;&#10;&#13;&#10;// get current thread / Executor&#13;&#10;def thr = Thread.currentThread()&#13;&#10;// get current build&#13;&#10;def build = thr?.executable&#13;&#10;def options =new HashMap()&#13;&#10;  &#13;&#10;// store build/environmental variables into options&#13;&#10;def envVarsMap = build.parent.builds[0].properties.get("envVars")&#13;&#10;options.putAll(envVarsMap)&#13;&#10;  &#13;&#10;println "JENKINS_HOME: ${options.JENKINS_HOME}"&#13;&#10;  def jHome=options.JENKINS_HOME&#13;&#10;  def apiCall="${buildURL}api/xml?"&#13;&#10;  println apiCall&#13;&#10; //Setup a connection to pull data in with REST&#13;&#10;  def url=new URL("$apiCall")&#13;&#10;  def connection = url.openConnection()&#13;&#10;  	connection.setRequestMethod("GET")&#13;&#10;  	connection.connect()&#13;&#10;  def returnMessage = ""&#13;&#10;&#13;&#10;  if (connection.responseCode == 200 || connection.responseCode == 201){&#13;&#10;    returnMessage = connection.content.text&#13;&#10;//print out the full response &#13;&#10;	//println returnMessage&#13;&#10;//parse the xml response&#13;&#10;    def freeStyleBuild = new XmlSlurper().parseText(returnMessage)&#13;&#10;    def buildID=freeStyleBuild.id&#13;&#10;    def fileParam="user_pipeline.cp"&#13;&#10;    urlParts=freeStyleBuild.url.toString().split('/')&#13;&#10;/*Job name extraction from URL */&#13;&#10;    jobName=urlParts[4].replace('%20',' ') //replace URL spaces&#13;&#10;    &#13;&#10;    jPath="$jHome\\jobs\\$jobName\\builds\\$buildID\\$buildFolder"&#13;&#10;&#13;&#10;/* Can get and print key-values for used parameters */ &#13;&#10;println "Here are your build parameters:"   &#13;&#10;	    freeStyleBuild.action.parameter.each{&#13;&#10;	    println "${it.name} : ${it.value}${it.originalFileName}"&#13;&#10;	    }&#13;&#10;&#13;&#10;	println "Copying Files from Path:\n\t $jPath"&#13;&#10;          &#13;&#10;//selective copy using ant&#13;&#10;          def ant=new AntBuilder()&#13;&#10;          fileFilter=artifactFilter.split(',')&#13;&#10;          fileFilter.each{it->&#13;&#10;            filter=it.trim()&#13;&#10;          ant.copy(todir:"${options.WORKSPACE}", overwrite:true){&#13;&#10;             fileset(dir:jPath){&#13;&#10;             include(name:"$filter") &#13;&#10;               }&#13;&#10;            }&#13;&#10;            &#13;&#10;          }//end each&#13;&#10;          &#13;&#10;  } else {&#13;&#10;    println "Error Connecting to " + url&#13;&#10;  }</text>
+			</clip>
+			<clip kind="text" label="Copy artifact from another project" date="2013-12-04T11:46:50">
+				<text>/*&#13;&#10; copies an archived artifacts given a named RunParameter (URL of a previous build)&#13;&#10;*/&#13;&#10;import hudson.model.*&#13;&#10;def fileName='%fileName%'&#13;&#10;def runParameter='%refRunParameter%'&#13;&#10;&#13;&#10;// get current thread / Executor&#13;&#10;def thr = Thread.currentThread()&#13;&#10;// get current build&#13;&#10;def build = thr?.executable&#13;&#10;def options =new HashMap()&#13;&#10;&#13;&#10;// get build/environmental variables of current build&#13;&#10;def envVarsMap = build.parent.builds[0].properties.get("envVars")&#13;&#10;options.putAll(envVarsMap)&#13;&#10;&#13;&#10;def address="${options."$runParameter"}artifact/plateList.properties"&#13;&#10;println "Copy to current WORKSPACE File at URL: $address"&#13;&#10;download(address, options.WORKSPACE,fileName)&#13;&#10;&#13;&#10;/* a simple method to download a file */&#13;&#10;def download(address, destination, fileName)&#13;&#10;{&#13;&#10;    def file = new FileOutputStream("$destination/$fileName")&#13;&#10;    def out = new BufferedOutputStream(file)&#13;&#10;    out &lt;&lt; new URL(address).openStream()&#13;&#10;    out.close()&#13;&#10;}</text>
+			</clip>
+			<clip kind="text" label="Copy log file" date="2012-12-12T15:44:21">
+				<text>import hudson.model.*&#13;&#10;&#13;&#10;// get current thread / Executor&#13;&#10;def thr = Thread.currentThread()&#13;&#10;// get current build&#13;&#10;def build = thr?.executable&#13;&#10;def options =new HashMap()&#13;&#10;&#13;&#10;// get parameters&#13;&#10;def parameters = build?.actions.find{ it instanceof ParametersAction }?.parameters&#13;&#10;//options.putAll(parameters)&#13;&#10;parameters.each {&#13;&#10;   options."${it.name}"=it.value&#13;&#10;}&#13;&#10;&#13;&#10;// build/environmental variables&#13;&#10;def envVarsMap = build.parent.builds[0].properties.get("envVars")&#13;&#10;options.putAll(envVarsMap)&#13;&#10;def src=new File("${options.JENKINS_HOME}/jobs/${options.JOB_NAME}/builds/${options.BUILD_ID}/log")&#13;&#10;new File ("${options.WORKSPACE}/%LogName%_${options.BUILD_ID}.txt").write(src.text)</text>
+			</clip>
+			<clip kind="text" label="System.Groovy (get options)" date="2012-12-12T15:24:41">
+				<text>import hudson.model.*&#13;&#10;&#13;&#10;// get current thread / Executor&#13;&#10;def thr = Thread.currentThread()&#13;&#10;// get current build&#13;&#10;def build = thr?.executable&#13;&#10;def options =new HashMap()&#13;&#10;&#13;&#10;// get parameters&#13;&#10;def parameters = build?.actions.find{ it instanceof ParametersAction }?.parameters&#13;&#10;//options.putAll(parameters)&#13;&#10;parameters.each {&#13;&#10;   options."${it.name}"=it.value&#13;&#10;}&#13;&#10;&#13;&#10;// build/environmental variables&#13;&#10;def envVarsMap = build.parent.builds[0].properties.get("envVars")&#13;&#10;options.putAll(envVarsMap)</text>
+			</clip>
+			<clip kind="text" label="External.Groovy" date="2012-12-12T15:26:16">
+				<text>def env = System.getenv()&#13;&#10;//by mapping environment vars to options allow easy mapping with CLI script arguments &#13;&#10;def options= new HashMap()&#13;&#10;	options.d=env['WORKSPACE']&#13;&#10;	options.i=env['SOURCE_FOLDER']</text>
+			</clip>
+		</folder>
+		<folder label="FileActions">
+			<clip kind="text" label="Copy File with Ant" date="2014-06-11T09:23:03">
+				<text>//Using AntBuilder to Copy a file&#13;&#10;def ant=new AntBuilder()&#13;&#10;ant.copy(file:"%sourceFile%", toFile:"%destinationFile", overwrite:%overWriteBoolean%)</text>
+			</clip>
+			<clip kind="text" label="Copy Directory with Ant" date="2014-06-11T09:25:16">
+				<text>//Using AntBuilder to Copy a file&#13;&#10;def ant=new AntBuilder()&#13;&#10;ant.copy(toDir:"%destinationDir"){&#13;&#10;	fileset(dir:"%sourceDir%")&#13;&#10;	}</text>
+			</clip>
+			<clip kind="text" label="Create Nested Directory" date="2013-01-02T12:17:06">
+				<text>new File("%dir%/%sub%").mkdirs()</text>
+			</clip>
+			<clip kind="text" label="Create Directory" date="2013-01-02T12:16:05">
+				<text>//mkdir-s method returns boolean NOT a directory!&#13;&#10;&#13;&#10;new File("%new%").mkdir()&#13;&#10;&#13;&#10;//for nested directories must use plural form&#13;&#10;new File("%new%").mkdirs() </text>
+			</clip>
+			<clip kind="text" label="Download File from URL" date="2013-12-04T10:55:05">
+				<text>def download(%address%)&#13;&#10;{&#13;&#10;    def file = new FileOutputStream(address.tokenize("/")[-1])&#13;&#10;    def out = new BufferedOutputStream(file)&#13;&#10;    out &lt;&lt; new URL(address).openStream()&#13;&#10;    out.close()&#13;&#10;}</text>
+			</clip>
+			<clip kind="text" label="File or Dir?" date="2013-01-23T16:34:32">
+				<text>//Check if io is file&#13;&#10;%file%.isFile()&#13;&#10;//Check if io is directory&#13;&#10;%file%.isDirectory()</text>
+			</clip>
+			<clip kind="text" label="Get File Metadata" date="2012-10-11T09:50:16">
+				<text>file.parent  //(gives the directory of the file)&#13;&#10;file.name&#13;&#10;file.absolutePath&#13;&#10;file.canonicalPath&#13;&#10;file.directory</text>
+			</clip>
+			<clip kind="text" label="Get Filename (no extension)" date="2012-10-11T09:49:37">
+				<text>//file must be a file object not string&#13;&#10;def %noExtensionName%=%file%.name.lastIndexOf('.'). with { it != -1 ? %file%.name[0 ..&lt;it] : %file%.name}</text>
+			</clip>
+			<clip kind="text" label="Get File extension" date="2015-02-20T10:18:49">
+				<text>//get file extension from the file name string&#13;&#10;theExt=%fileName%.lastIndexOf('.').with {it != -1 ? %fileName%[(it+1)..(%fileName%.length()-1)] : 'undefined'}</text>
+			</clip>
+			<clip kind="text" label="htmlFile(create)" date="2013-02-18T09:33:15">
+				<text>generatedHTML=_outputFolder+"/"+"%fileName%.html"&#13;&#10;def htmlFile=new File(generatedHTML)&#13;&#10;def writer= new FileWriter(htmlFile)&#13;&#10;def html= new groovy.xml.MarkupBuilder(writer)&#13;&#10;</text>
+			</clip>
+			<clip kind="text" label="Write append" date="2013-10-15T14:42:30">
+				<text>/* overwrite append via newWriter(append boolean flag)&#13;&#10; define a new writer on the file, write then flush&#13;&#10;*/&#13;&#10;fileWriter=%file%.newWriter(true)&#13;&#10;fileWriter&lt;&lt;%WriteWhat%&#13;&#10;fileWriter.flush()&#13;&#10;</text>
+			</clip>
+			<clip kind="text" label="Write overwrite" date="2013-10-15T14:42:30">
+				<text>/* overwrite append via newWriter(append boolean flag)&#13;&#10; define a new writer on the file, write then flush&#13;&#10;*/&#13;&#10;fileWriter=%file%.newWriter(false)&#13;&#10;fileWriter&lt;&lt;%WriteWhat%&#13;&#10;fileWriter.flush()&#13;&#10;</text>
+			</clip>
+			<clip kind="text" label="Path Win to Linux-Working example" date="2013-09-04T17:07:33">
+				<text>println 'Hello From Jenkins'&#13;&#10;def winInCellBase='//isiusca02/incell\$,//nibr.novartis.net/usca-dfs/LABDATA/LABS/INCELL'&#13;&#10;def inCellPaths=winInCellBase.split(/,/)&#13;&#10;  inCellPaths.each{&#13;&#10;   println  it &#13;&#10;  }&#13;&#10;def winPath=/\\isiusca02\incell$\_Assay Tech\Limagito\FH 2013\2013_04_26 SNU878 IC50\FH_HOECHST_FITC_20X\FH_HOECHST_FITC_20X_VB00010844_1/&#13;&#10;  def winNice=winPath.replace('\\','/')&#13;&#10;  println "----Path to split----"&#13;&#10;  println winNice&#13;&#10;  println "----"&#13;&#10;  &#13;&#10;  inCellPaths.each{c->&#13;&#10;    def winList=winNice.split(/${c.replace('\$','\\\$')}/)&#13;&#10;winList.each{r->&#13;&#10;  println "\tSplitting with :$c"&#13;&#10;println r&#13;&#10;}&#13;&#10;  } //end inCellPaths each</text>
+			</clip>
+			<clip kind="text" label="PropertiesFile (create)" date="2013-02-14T14:45:56">
+				<text>def props = new Properties() //property file for metadata&#13;&#10;propName='%propertiesCanonicalFileName%.properties'&#13;&#10;propertiesFile = new File(propName)&#13;&#10;&#13;&#10;//set some properties&#13;&#10;props.setProperty('Prop1Key', 'Prop1Value')&#13;&#10;&#13;&#10;//Write properties file to destination folder&#13;&#10;props.store(propertiesFile.newWriter(), null)</text>
+			</clip>
+			<clip kind="text" label="Properties.LoadFromFile" date="2013-05-20T14:26:57">
+				<text>%props%.load(%propsFile%.newDataInputStream())</text>
+			</clip>
+			<clip kind="text" label="Replace if it exists" date="2013-07-19T12:51:59">
+				<text>if (%file%.exists()) {&#10;    assert %file%.delete()&#10;    assert %file%.createNew%file%()&#10;}&#13;&#10;</text>
+			</clip>
+			<clip kind="text" label="Read File line n v1" date="2013-04-02T14:33:42">
+				<text>//ref: http://pleac.sourceforge.net/pleac_groovy/filecontents.html&#13;&#10;// streaming solution&#13;&#10;desiredLine = %lineNo%&#13;&#10;reader = %testfile%.newReader()&#13;&#10;count = 0&#13;&#10;def line&#13;&#10;while ((line = reader.readLine())!= null) {&#13;&#10;    if (++count == desiredLine) break&#13;&#10;}&#13;&#10;println "Line $desiredLine: $line"</text>
+			</clip>
+			<clip kind="text" label="Read File line n v2" date="2013-08-21T16:36:10">
+				<text>// http://stackoverflow.com/questions/7640002/return-result-from-groovy-readline&#13;&#10;//using times&#13;&#10;&#13;&#10;desiredLine = %line%&#13;&#10;line_n=readLineN( %testfile%, desiredLine)&#13;&#10;&#13;&#10;String readLineN( File f, int lineNo ) {&#13;&#10;  f.withReader { r ->&#13;&#10;    ret = ''&#13;&#10;    lineNo.times {&#13;&#10;      ret = r.readLine()&#13;&#10;    }&#13;&#10;    ret&#13;&#10;  }&#13;&#10;}</text>
+			</clip>
+			<clip kind="text" label="Read file lines into a list" date="2012-10-11T10:02:06">
+				<text>def example = new File('data/example.txt')&#13;&#10;lines=example.readLines()</text>
+			</clip>
+			<clip kind="text" label="Iterate line by line" date="2012-10-11T09:52:00">
+				<text>def %fileObject% = new File(%String_FileURI%)&#13;&#10;%fileObject%.eachLine{it->&#13;&#10;  println it&#13;&#10;}&#13;&#10;</text>
+			</clip>
+			<clip kind="text" label="Search Folder for File types" date="2013-04-25T14:32:19">
+				<text>import groovy.io.FileType&#13;&#10;/* &#13;&#10;Search a folder and count files with specific extension &#13;&#10;The closure can do anything else required with the file&#13;&#10;*/&#13;&#10;def expectCount=0&#13;&#10;%folder%.traverse(&#13;&#10;        type:FileType.FILES,&#13;&#10;        nameFilter:~/.*\.%type%/,&#13;&#10;        maxDepth:0&#13;&#10;    ){f-> expectCount++}</text>
+			</clip>
+		</folder>
+		<folder label="CliBuilder">
+			<clip kind="text" label="Optional Cli Argument" date="2014-01-14T16:15:27">
+				<text>%singleLetterName% longOpt: '%longName%', args:%argNumber%, argName: '%argName%', '%argDescription%'</text>
+			</clip>
+			<clip kind="text" label="Required Cli Argument" date="2014-01-14T16:12:51">
+				<text>%singleLetterName% longOpt: '%longName%', args:%argNumber%, argName: '%argName%', '%argDescription%', required:true</text>
+			</clip>
+			<clip kind="text" label="New cli" date="2014-01-14T16:10:55">
+				<text>def cli = new CliBuilder(usage:'%scriptUsage%')&#13;&#10; cli.with{&#13;&#10;     h longOpt: 'help', 'Show usage information'&#13;&#10;     }&#13;&#10; def options = cli.parse(args)&#13;&#10;&#13;&#10; if (!options) {&#13;&#10;        cli.usage()&#13;&#10;        return&#13;&#10;        }&#13;&#10;if(options.h){&#13;&#10;    cli.usage()&#13;&#10;    return&#13;&#10;    } </text>
+			</clip>
+		</folder>
+		<folder label="Logic">
+			<clip kind="text" label="If-ternary" date="2013-11-06T15:13:53">
+				<text>def %varForLogic%=(%theLogic%)? "%trueValue%" : "%elseValue%"</text>
+			</clip>
+			<clip kind="text" label="switch on case" date="2013-08-28T16:01:58">
+				<text>switch(%caseVar%){&#13;&#10; case"%caseVAL1%":&#13;&#10;	//do case 1 tasks&#13;&#10; break&#13;&#10;case"%caseVAL2%":&#13;&#10;	//do case 2 tasks&#13;&#10;break&#13;&#10;default:&#13;&#10;//do default actions&#13;&#10;}</text>
+			</clip>
+			<clip kind="text" label="While Curlies,break,continue" date="2013-04-10T13:00:03">
+				<text>/* http://groovy.codeplex.com/wikipage?title=Control%20Structures&#13;&#10; * jump to the next iteration of a while-loop using coninue&#13;&#10;*/&#13;&#10;def x= 0, y= 0&#13;&#10;while( x &lt; 5 ){&#13;&#10;  x++&#13;&#10;  y += x&#13;&#10;}&#13;&#10;assert x == 5 &amp;&amp; y == 15&#13;&#10;&#13;&#10;while( x &lt; 10 ) x++ //curlies optional if only one statement&#13;&#10;assert x == 10&#13;&#10;&#13;&#10;while( x &lt; 15 ){ //we can break out of a while-loop using 'break'&#13;&#10;  x++&#13;&#10;  if( x == 12 ) break&#13;&#10;}&#13;&#10;assert x == 12&#13;&#10;&#13;&#10;while( x != 15 &amp;&amp; x != 18 ){ //we can jump to the next iteration of a while-loop using 'continue'&#13;&#10;  x++&#13;&#10;  if( x == 15 ){&#13;&#10;    x++&#13;&#10;    continue&#13;&#10;  }&#13;&#10;}&#13;&#10;assert x == 18&#13;&#10;</text>
+			</clip>
+		</folder>
+		<folder label="Assertions">
+			<clip kind="text" label="Catch Error" date="2013-04-02T14:27:40">
+				<text>try {&#13;&#10;	assert %one% == %two% : "one != two"&#13;&#10;} catch(AssertionError e) {&#13;&#10;	println e.getMessage()&#13;&#10;}</text>
+			</clip>
+		</folder>
+		<folder label="System">
+			<clip kind="text" label="Exit with errorCode" date="2013-04-26T11:41:41">
+				<text>System.exit(%errorCode%)</text>
+			</clip>
+			<clip kind="text" label="Command Output as list" date="2014-01-13T14:58:48">
+				<text>def command = """/bin/ls -1 /tmp/"""                                                                                                                                   &#13;&#10;def proc = command.execute()&#13;&#10;proc.waitFor()&#13;&#10;def list = proc.in.text.readLines()</text>
+			</clip>
+		</folder>
+		<folder label="Collections">
+			<clip kind="text" label="Get list at Range" date="2014-09-16T14:28:56">
+				<text>//return list avalues at the specified range&#13;&#10;%listName%.getAt(%rangeStart%..%rangeEnd%)</text>
+			</clip>
+			<clip kind="text" label="Join-to create csv rows" date="2014-08-05T16:02:14">
+				<text>//join elements in a list or array with the join() method to a String. We can set the separator&#13;&#10;%list%.join('%separator%')</text>
+			</clip>
+			<clip kind="text" label="Check existence in KeySet" date="2013-02-04T12:23:57">
+				<text>%map%.containsKey(%GSTRING%.toString())&#13;&#10;//the toString is required</text>
+			</clip>
+			<clip kind="text" label="Check existence in list" date="2013-01-21T15:24:10">
+				<text>%element% in %list%</text>
+			</clip>
+			<clip kind="text" label="Unique List" date="2013-03-11T16:29:55">
+				<text>%list%.unique() //a list devoid of duplicates</text>
+			</clip>
+			<clip kind="text" label="Get Map Keys" date="2013-01-21T15:23:32">
+				<text>%map%.keySet()</text>
+			</clip>
+			<clip kind="text" label="Check for last LIST element" date="2012-11-09T14:27:13">
+				<text>//code appends a comma to a list element UNLESS the element is the last on the list&#13;&#10;//Useful replacement for previous tag and replace strategy&#13;&#10;%headerList%.each{%it%-> print it&#13;&#10; 	if(%it%!=%headerList%.last()){print ','}&#13;&#10; 		}</text>
+			</clip>
+			<clip kind="text" label="GroupBy" date="2013-10-03T15:28:05">
+				<text>// group a collection using one or more closures&#13;&#10;//--copy to clipboard the collection name to group--&#13;&#10;def %CLIPBOARD%Group=%CLIPBOARD%.groupBy({%groupByClosure%})</text>
+			</clip>
+		</folder>
+		<folder label="Parsing">
+			<clip kind="text" label="Split on Comma ignoring quotes" date="2014-08-14T10:39:42">
+				<text># split on the comma only if that comma has zero, or an even number of quotes ahead of it.&#13;&#10;separator=",(?=([^\"]*\"[^\"]*\")*[^\"]*$)"</text>
+			</clip>
+			<clip kind="text" label="Robust Comma Separator" date="2014-10-08T17:15:10">
+				<text>/* separator is defined as a regular expression so that we can catch rogue commas inside quotation marks&#13;&#10;*  http://stackoverflow.com/questions/1757065/splitting-a-comma-separated-string-but-ignoring-commas-in-quotes&#13;&#10;* */&#13;&#10;def separator = ",(?=([^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*\$)"</text>
+			</clip>
+			<clip kind="text" label="Well Location Matchers">
+				<text>//create a WELL.LOCATION and Row Column coordinates&#13;&#10;&#13;&#10;	def locationMatcher = line=~/(?&lt;=,)[A-Z]+(?:\d{0,2})/&#13;&#10;	def locations=[]&#13;&#10;	locationMatcher.each{ locations&lt;&lt;it}&#13;&#10;	location= locations[0]&#13;&#10;&#13;&#10;	def wellrowMatcher = location=~/[A-Z]+/&#13;&#10;	def wellrows=[]&#13;&#10;	wellrowMatcher.each{ wellrows&lt;&lt;it}&#13;&#10;	wellrow= wellrows[0]&#13;&#10;&#13;&#10;	def wellcolMatcher = location=~/\d+/&#13;&#10;	def wellcols=[]&#13;&#10;	wellcolMatcher.each{ wellcols&lt;&lt;it}&#13;&#10;	wellcol= wellcols[0]&#13;&#10;&#13;&#10;//	println 'Location: '+location&#13;&#10;//	println 'wellrow: '+wellrow&#13;&#10;//	println 'wellcol: '+wellcol</text>
+			</clip>
+		</folder>
+		<folder label="Xml">
+			<clip kind="text" label="Import XmlUtil" date="2013-04-02T14:01:55">
+				<text>import groovy.xml.*&#13;&#10;</text>
+			</clip>
+			<clip kind="text" label="Read an XML file" date="2013-04-02T14:11:21">
+				<text>/* Read XML from a file URI */&#13;&#10;def %GpathResult_Xml%=new XmlSlurper().parse(%String_FileURI%)</text>
+			</clip>
+			<clip kind="text" label="Write an XML" date="2013-04-02T14:12:20">
+				<text>def %writer%= new FileWriter(%fileName%)&#13;&#10;XmlUtil.serialize(%GpathResult_Xml%,%writer%)</text>
+			</clip>
+		</folder>
+		<folder label="Database">
+			<clip kind="text" label="Connection using properties file">
+				<text>//Properties file with connection properties&#13;&#10;final _CONNECTFILE="C:/WORKSPACE/Groovy.Gant/COMMON/DatMoverConnection.properties"&#13;&#10; &#13;&#10;//Define and load from the properties file the connection properties&#13;&#10;def con= new Properties()&#13;&#10;con.load(new FileInputStream(_CONNECTFILE))&#13;&#10;&#13;&#10;def server=con.getProperty("db.server")&#13;&#10;def port=con.getProperty("db.port")&#13;&#10;def user=con.getProperty("db.userid")&#13;&#10;def pswd=con.getProperty("db.password")&#13;&#10;def driver=con.getProperty("db.driver")&#13;&#10;def sid=con.getProperty("db.sid")&#13;&#10;&#13;&#10;//sql: make the Oracle connection&#13;&#10;def sql=Sql.newInstance("jdbc:oracle:thin:@"+server+":"+port+":"+sid, user, pswd, driver)</text>
+			</clip>
+			<clip kind="text" label="DataSet from DBTable">
+				<text>//probeReadout: This is the Oracle table that we will be populating&#13;&#10;def probeReadout=sql.dataSet("LMFMEASUREMENT")&#13;&#10;//LMFMEASUREMENT-Insert New Record, requires variables&#13;&#10;			probeReadout.add(BARCODE:barcode, WELLROW: wellrow, WELLCOLUMN:wellcol, LOCATION:location, WELLSTATE:'used', LMFANALYTEID:it, DATATYPE:_TYPE, VALUE:numval, MEASUREMENTSTATE:'imported')</text>
+			</clip>
+		</folder>
+		<parameters>
+			<parameter name="%address%">
+				<history>http://localhost:8080/userContent/properties/cpMeasure.properties</history>
+				<history>http://nrusca-sd189.nibr.novartis.net:8080/job/CellProfiler_JClustSelect/31/api/json?pretty=true</history>
+			</parameter>
+			<parameter name="%argDescription%">
+				<history>path to output file</history>
+				<history>comma separated plate list</history>
+				<history>column to pivot</history>
+				<history>cs list of groupby</history>
+				<history>input delimited file</history>
+				<history>Jenkins build number</history>
+				<history>Jenkins job name</history>
+				<history>Jenkins server</history>
+			</parameter>
+			<parameter name="%argName%">
+				<history>output file</history>
+				<history>plate list</history>
+				<history>pivot column</history>
+				<history>group by</history>
+				<history>input file</history>
+				<history>buildNumber</history>
+				<history>jobName</history>
+				<history>server</history>
+			</parameter>
+			<parameter name="%argNumber%">
+				<history>1</history>
+			</parameter>
+			<parameter name="%caseVAL1%">
+				<history>IMAGE</history>
+				<history>JANUARY</history>
+				<history>Sweetwine</history>
+				<history>Champagne</history>
+				<history>NOT_SET</history>
+				<history>path</history>
+				<history>apples</history>
+				<history>UPDATE</history>
+				<history>tab</history>
+				<history>TEST_R_BOXPLOTS</history>
+			</parameter>
+			<parameter name="%caseVAL2%">
+				<history>BINARY</history>
+				<history>FEBRUARY</history>
+				<history>Sauvingon Blanc</history>
+				<history>DELETE</history>
+				<history>upload</history>
+				<history>oranges</history>
+				<history>CREATE</history>
+				<history>table</history>
+				<history>TEST_R_FEATURE_FILTERING</history>
+				<history>3</history>
+			</parameter>
+			<parameter name="%caseVar%">
+				<history>ext</history>
+				<history>MONTH</history>
+				<history>WINE_MENU</history>
+				<history>CONTROL_LAYOUT_DEFINITION</history>
+				<history>SELECTION</history>
+				<history>FRUIT</history>
+				<history>ACTIONS</history>
+				<history>$reportStyle</history>
+				<history>$ANALYSIS_TYPE</history>
+				<history>cpPipelineVersion</history>
+			</parameter>
+			<parameter name="%dir%">
+				<history>${RELAUNCH_BUILD_ID}</history>
+			</parameter>
+			<parameter name="%element%">
+				<history>lineKey</history>
+			</parameter>
+			<parameter name="%errorCode%">
+				<history>1</history>
+			</parameter>
+			<parameter name="%file%">
+				<history>f</history>
+				<history>outFile</history>
+				<history>cpPipeline</history>
+				<history>_inputSqlTemplate</history>
+			</parameter>
+			<parameter name="%fileName%">
+				<history>fileUrl</history>
+				<history>plateList.properties</history>
+				<history>cpReport</history>
+			</parameter>
+			<parameter name="%fileObject%">
+				<history>inputFile</history>
+			</parameter>
+			<parameter name="%folder%">
+				<history>"$metaFolder"</history>
+			</parameter>
+			<parameter name="%groupByClosure%">
+				<history>it.plateRow</history>
+			</parameter>
+			<parameter name="%GSTRING%">
+				<history>README</history>
+			</parameter>
+			<parameter name="%headerList%">
+				<history>whereMap</history>
+			</parameter>
+			<parameter name="%it%">
+				<history>k</history>
+			</parameter>
+			<parameter name="%jobName%">
+				<history>PP_UPLOAD_DATA</history>
+			</parameter>
+			<parameter name="%list%">
+				<history>launchEnv</history>
+			</parameter>
+			<parameter name="%LogName%">
+				<history>CP_Jobs_Status</history>
+			</parameter>
+			<parameter name="%longName%">
+				<history>output</history>
+				<history>plates</history>
+				<history>pivot</history>
+				<history>groupby</history>
+				<history>input</history>
+				<history>build</history>
+				<history>job</history>
+				<history>jciServer</history>
+			</parameter>
+			<parameter name="%map%">
+				<history>options</history>
+			</parameter>
+			<parameter name="%new%">
+				<history>mergeFolderName</history>
+			</parameter>
+			<parameter name="%noExtensionName%">
+				<history>autoLabel</history>
+				<history>valName</history>
+				<history>suffixFromTemplate</history>
+			</parameter>
+			<parameter name="%numToRound%">
+				<history>roundEstimate</history>
+			</parameter>
+			<parameter name="%ObjectName%">
+				<history>logFile</history>
+			</parameter>
+			<parameter name="%one%">
+				<history>1</history>
+			</parameter>
+			<parameter name="%propertiesCanonicalFileName%">
+				<history>./imagelist.properties</history>
+			</parameter>
+			<parameter name="%propertiesFileName%">
+				<history>readmeProps</history>
+			</parameter>
+			<parameter name="%propertyFileName%">
+				<history>JData</history>
+			</parameter>
+			<parameter name="%propertyKey%">
+				<history>PP_DATASET_QC.LAST.barcodes</history>
+			</parameter>
+			<parameter name="%props%">
+				<history>props</history>
+			</parameter>
+			<parameter name="%propsFile%">
+				<history>propertiesFile</history>
+			</parameter>
+			<parameter name="%refRunParameter%">
+				<history>GENERATED_IMAGE_LIST</history>
+			</parameter>
+			<parameter name="%scale%">
+				<history>3</history>
+			</parameter>
+			<parameter name="%scriptUsage%">
+				<history>operTempInFile -p -o</history>
+				<history>groupByPivot -f -g -p</history>
+				<history>JsonBuild.groovy -s -j -b</history>
+			</parameter>
+			<parameter name="%singleLetterName%">
+				<history>o</history>
+				<history>p</history>
+				<history>g</history>
+				<history>f</history>
+				<history>b</history>
+				<history>j</history>
+				<history>s</history>
+			</parameter>
+			<parameter name="%String_FileURI%">
+				<history>options.f</history>
+			</parameter>
+			<parameter name="%sub%">
+				<history>ALL</history>
+			</parameter>
+			<parameter name="%two%">
+				<history>2</history>
+			</parameter>
+			<parameter name="%type%">
+				<history>wellPlateInfo</history>
+			</parameter>
+		</parameters>
+	</collection>
+</act:acetext>

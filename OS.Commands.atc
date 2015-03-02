@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<act:acetext xmlns:act="http://www.acetext.com/acetext20.xsd" version="2.0">
+	<collection label="OS.Commands" sort="none">
+		<folder label="SGE.qsub">
+			<clip kind="text" label="Join Output/Error files" date="2012-08-13T09:30:00">
+				<text>qsub -j y   /path_to_script/myFirstTest.sh</text>
+			</clip>
+			<clip kind="text" label="Place the output  in current directory " date="2012-08-13T09:28:27">
+				<text>qsub -cwd  /path_to_script/myFirstTest.sh</text>
+			</clip>
+		</folder>
+		<folder label="SGE.commands">
+			<clip kind="text" label="Delete JobID" acetype="sg" date="2012-10-10T11:54:36">
+				<text>qdel %JOBID%</text>
+			</clip>
+			<clip kind="text" label="Review Utilization" acetype="sg" date="2012-08-13T09:23:01">
+				<text>qstat -g c</text>
+			</clip>
+			<clip kind="text" label="Ganglia Monitoring (USCA)" acetype="sg" date="2013-02-13T13:56:37">
+				<text>http://apollo.na.novartis.net/ganglia/</text>
+			</clip>
+			<clip kind="text" label="View jobs from all users" acetype="sg" date="2012-08-13T09:32:00">
+				<text>qstat -u \*</text>
+			</clip>
+			<clip kind="text" label="View jobs from this user" acetype="sg" date="2012-08-13T09:37:15">
+				<text>qstat -u moutsio1</text>
+			</clip>
+		</folder>
+		<folder label="Linux Commands">
+			<folder label="Networking">
+				<clip kind="text" label="enable SSH server" date="2014-11-05T09:46:03">
+					<text>sudo start ssh</text>
+				</clip>
+				<clip kind="text" label="Network Interface Review" date="2014-11-05T09:43:14">
+					<text>> /sbin/ifconfig -a</text>
+				</clip>
+			</folder>
+			<clip kind="text" label="processID_Virtual_Subdirectory" date="2014-04-03T15:53:41">
+				<text>/proc/%PID%</text>
+			</clip>
+			<clip kind="text" label="rsync for file delete" acetype="ln" date="2013-10-09T15:00:12">
+				<text>rsync -r --delete ./%emptydir%/ ./%dir2delete% &amp;</text>
+			</clip>
+			<clip kind="text" label="List directories only" acetype="ln" date="2013-08-12T09:12:57">
+				<text>ls -l | egrep '^d'</text>
+			</clip>
+			<clip kind="text" label="List directories starting with" acetype="ln" date="2013-08-12T09:25:08">
+				<text>>ls -d %NAMEPREFIX%*/&#13;&#10;</text>
+			</clip>
+			<clip kind="text" label="List files only" acetype="ln" date="2013-08-12T09:13:22">
+				<text>ls -l | egrep -v '^d'</text>
+			</clip>
+			<clip kind="text" label="Count Files" acetype="ln" date="2012-11-28T09:51:26">
+				<text>ls %NAMEFILTER% -1|wc -l</text>
+			</clip>
+			<clip kind="text" label="Find files (current dir no recurse)" acetype="ln" date="2012-12-12T09:12:40">
+				<text>find . -iname '%NameToFind%' -prune</text>
+			</clip>
+			<clip kind="text" label="Secure Copy (\\PHUSCA-S1602\Moutsio1$\DATA to Linux)" acetype="ln" date="2012-08-06T09:49:39">
+				<text>scp moutsio1@phusca-l42495.na.novartis.net:~/DATA/WORKSPACE/sts-2.9.0.RELEASE/GroovyHCS/src/* moutsio1@boomer.na.novartis.net:~/%yourLinuxpath%</text>
+			</clip>
+			<clip kind="text" label="Secure Copy (Linux to \\PHUSCA-S1602\Moutsio1$\DATA)" acetype="ln" date="2012-08-06T09:49:39">
+				<text>scp  ~/yourLinuxPath/yourfile moutsio1@phusca-l42495.na.novartis.net:~/DATA/WORKSPACE/yourWinPath/</text>
+			</clip>
+		</folder>
+		<folder label="Windows.cmd">
+			<clip kind="text" label="findstr – (grep for Windows)" date="2013-03-21T15:06:27">
+				<text>findstr – (grep for Windows)&#13;&#10;findstr searches for strings in files [or anything else]. If you wanted grep in Windows, you got it. findstr has been present in Windows since XP and 2003. It accepts regular expressions and can search case insensitive (/I). One of our favorite ways to use this command is for filtering—especially long lists such as process listings and listening ports.&#13;&#10;&#13;&#10;>tasklist | findstr /i EXPLORER</text>
+			</clip>
+			<clip kind="text" label="Command History to Clipboard" date="2013-03-21T14:47:52">
+				<text>doskey /history |clip</text>
+			</clip>
+			<clip kind="text" label="Command History" date="2013-03-21T14:53:30">
+				<text>F7: pops up menu&#13;&#10;F8: searches after yout type a few strating characters (Case Sensitive)&#13;&#10;F9: recall commands by their number, Pops a window to enter number&#13;&#10;->: Right arrow auto-completes</text>
+			</clip>
+		</folder>
+	</collection>
+</act:acetext>

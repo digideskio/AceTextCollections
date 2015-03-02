@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<act:acetext xmlns:act="http://www.acetext.com/acetext20.xsd" version="2.0">
+	<collection label="R.Language" sort="none">
+		<folder label="R.Oracle">
+			<clip kind="text" label="Load ODE Library" date="2012-09-06T14:33:09">
+				<text>library(ORE)</text>
+			</clip>
+			<clip kind="text" label="Connect_NGSTESTER" date="2012-09-06T14:32:36">
+				<text>ore.connect(user = "NGSTESTER", sid = "CABDMD", host = "uscalx4244.nibr.novartis.net", password = "tester123", port = 1521, all = TRUE)</text>
+			</clip>
+		</folder>
+		<folder label="R.In.Jenkins">
+			<clip kind="text" label="Save R workspace" date="2015-01-26T15:08:12">
+				<text>#Proven useful for debugging builds: named from build tag&#13;&#10;#DMPQM-258: write an image of the R workspace for troubleshooting&#13;&#10;print("Saving R workspace file")&#13;&#10;rDataPath&lt;-sprintf("%s/%s.%s",jworkspace,build.tag,"Rda")&#13;&#10;save.image(file = rDataPath)&#13;&#10;print("Saving R workspace file completed")</text>
+			</clip>
+		</folder>
+		<folder label="3.Linear.Regression">
+			<clip kind="text" label="Load Library Data" date="2014-02-04T15:49:44">
+				<text>library(%library%)</text>
+			</clip>
+			<clip kind="text" label="Review DataFrame" date="2014-02-04T15:49:44">
+				<text>names(%DataFrame%)&#13;&#10;?%DataFrame%</text>
+			</clip>
+			<clip kind="text" label="Plot Y vs X" date="2014-02-04T15:49:44">
+				<text>plot(%y%~%x%, %DataFrame%)</text>
+			</clip>
+			<clip kind="text" label="Fit linear model" date="2014-02-04T15:54:37">
+				<text>%fit%=lm(%y%~%x%, data=%Library%)</text>
+			</clip>
+			<clip kind="text" label="Describe fit" date="2014-02-04T16:02:18">
+				<text>%fit%&#13;&#10;summary(%fit%)</text>
+			</clip>
+			<clip kind="text" label="Plot fit" date="2014-02-04T16:02:27">
+				<text>abline(%fit%, col="red")</text>
+			</clip>
+			<clip kind="text" label="Components of Fit" date="2014-02-05T12:43:58">
+				<text>names(%fit%)</text>
+			</clip>
+			<clip kind="text" label="Confidence Intervals" date="2014-02-05T12:45:52">
+				<text>#By default the 95% confidence interval i,of the coefficients is reported&#13;&#10;confint(%fit%)</text>
+			</clip>
+			<clip kind="text" label="Predict with confidence" date="2014-02-05T12:48:22">
+				<text>predict(%fit%,data.frame(%x%=c(%val1%,%val2%,%val3%)),interval="confidence")</text>
+			</clip>
+		</folder>
+		<folder label="3.Linear Regression (Multiple)">
+			<clip kind="text" label="Fit linear model with 2Vars" date="2014-02-05T13:02:11">
+				<text>%lfit2%=lm(%y%~%x1%+%x2%, data=%DataFrame%)</text>
+			</clip>
+			<clip kind="text" label="Fit linear model with All_Vars" date="2014-02-05T13:02:11">
+				<text>%lfit3%=lm(%y%~., data=%DataFrame%)</text>
+			</clip>
+			<clip kind="text" label="Fit linear model with All_Except 2Vars" date="2014-02-05T13:02:11">
+				<text>%lfit4%=lm(%y%~.-%exc1%-%exc2%, data=%DataFrame%)</text>
+			</clip>
+			<clip kind="text" label="Factor Interaction" date="2014-02-05T13:31:18">
+				<text>%lfit5%=lm(%y%~%fact1%*%fact2%, data=%DataFrame%)&#13;&#10;&#13;&#10;#then review the interaction of %fact1%*%fact2%&#13;&#10;summary(%lfit5%)</text>
+			</clip>
+		</folder>
+		<folder label="3.Non-Linear.Regression">
+			<clip kind="text" label="Quadratic fit" date="2014-02-05T13:43:57">
+				<text>%fit6%=lm(%y%~%x% +I(%x%^2), data=%Library%)&#13;&#10;&#13;&#10;#Review the fit&#13;&#10;summary(%fit6%)</text>
+			</clip>
+			<clip kind="text" label="Plot Quadratic Fit" date="2014-02-05T13:48:20">
+				<text>par(mfrow=c(1,1))&#13;&#10;plot(%y%~%x%)&#13;&#10;#Plot Fitted data&#13;&#10;points(%x%,fitted(%fit6%),col="red",pch=20)</text>
+			</clip>
+			<clip kind="text" label="Polynomial fit" date="2014-02-05T18:20:42">
+				<text>#Polynomial Fit&#13;&#10;%fit7%=lm(%y%~poly(%x% ,%nDegree%), data=%Library%)</text>
+			</clip>
+		</folder>
+		<folder label="R.Packages">
+			<clip kind="text" label="Show Library Path" date="2014-02-05T12:06:49">
+				<text>.libPaths()</text>
+			</clip>
+			<clip kind="text" label="Packages saved in library" date="2014-02-05T12:07:26">
+				<text>#packages saved in your library&#13;&#10;library()&#13;&#10;#which packages are loaded and ready for use&#13;&#10;search()</text>
+			</clip>
+			<clip kind="text" label="Install package" date="2014-02-05T12:24:41">
+				<text>install.packages("%PACKAGE_NAME%")</text>
+			</clip>
+			<clip kind="text" label="Help on Package" date="2014-02-05T12:25:48">
+				<text>help(package="%PACKAGE_NAME%")</text>
+			</clip>
+		</folder>
+		<folder label="R.PCA">
+			<clip kind="text" label="Perform PCA" date="2013-05-10T15:49:57">
+				<text>princomp(%dataset%)</text>
+			</clip>
+			<clip kind="text" label="Save PCA model" date="2013-05-10T15:51:03">
+				<text>%modelname%&lt;-princomp(%dataset%)</text>
+			</clip>
+			<clip kind="text" label="View proportion of variance by component" date="2013-05-10T15:51:40">
+				<text>summary(%modelname%)</text>
+			</clip>
+			<clip kind="text" label="View loadings of each component" date="2013-05-10T15:52:55">
+				<text>%modelname%$loadings</text>
+			</clip>
+			<clip kind="text" label="View scores of each observation" date="2013-05-10T15:53:34">
+				<text>%modelname%$scores</text>
+			</clip>
+			<clip kind="text" label="Create scree plot" date="2013-05-10T15:54:54">
+				<text>screeplot(%modelname%)</text>
+			</clip>
+		</folder>
+		<folder label="R.Lattice">
+			<clip kind="text" label="Load library" date="2012-09-14T16:03:28">
+				<text>library(%package%)</text>
+			</clip>
+			<clip kind="text" label="Help on Lattice" date="2013-05-09T10:33:19">
+				<text>help(Lattice)</text>
+			</clip>
+			<clip kind="text" label="BoxWhisker Plot" date="2012-09-14T16:03:55">
+				<text>bwplot(~%x% | %group_by%, data=%data_frame%, main="%plot_title%")</text>
+			</clip>
+			<clip kind="text" label="Histogram" date="2013-05-09T10:52:30">
+				<text>histogram(~%x% | %group_by%, data=%data_frame%, main="%plot_title%")</text>
+			</clip>
+		</folder>
+		<folder label="R.Plot">
+			<clip kind="text" label="XY DotPlot" date="2013-05-09T10:47:31">
+				<text>plot(%x_var%,%y_var%)</text>
+			</clip>
+			<clip kind="text" label="BoxPlot GroupBy" date="2013-05-09T09:48:23">
+				<text>plot(%group_by%, %variable%)</text>
+			</clip>
+		</folder>
+		<folder label="R.String.Manipulations">
+			<clip kind="text" label="CSV String from Vector" date="2014-11-12T13:38:08">
+				<text>#motivation: data frame columns to csv string&#13;&#10;%csvString%&lt;-paste(%vector%, collapse=",")</text>
+			</clip>
+			<clip kind="text" label="concatenate" date="2014-11-03T13:04:56">
+				<text>paste("%a","%b", sep="%sep")</text>
+			</clip>
+			<clip kind="text" label="split char string" date="2014-10-27T10:20:56">
+				<text>#Split a character string or vector of character strings using a regular expression or a literal (fixed) string&#13;&#10;#fixed: If the split argument should be treated as fixed (i.e. literally).&#13;&#10;&#13;&#10;strsplit(%characterString%, "%splitCharacter%", fixed=%FALSE_TRUE%)</text>
+			</clip>
+			<clip kind="text" label="unlist" date="2014-10-27T10:26:15">
+				<text>#Unlist a list of vectors into a single vector. This function will also unlist all lists within the list as well x-usually a list&#13;&#10;&#13;&#10;unlist(%x%)</text>
+			</clip>
+			<clip kind="webtext" label="replace function" date="2014-10-27T10:34:46">
+				<text>#sub ("%pattern%","%replacement%",%x%) #replace first occurence&#13;&#10;# $ * + . ? [ ] ^ { } | ( ) \ metacharacters&#13;&#10;# all metacharacters are preceded by double backslash \\, except \ which is preceded by three \\\&#13;&#10;&#13;&#10;gsub ("%pattern%","%replacement%",%x%) #replace all occurences</text>
+				<url/>
+			</clip>
+		</folder>
+		<folder label="R.Data.Frames">
+			<clip kind="text" label="CSV String from Vector" date="2014-11-12T13:38:08">
+				<text>#motivation: data frame columns to csv string&#13;&#10;%csvString%&lt;-paste(%vector%, collapse=",")</text>
+			</clip>
+			<clip kind="text" label="Order by rowname" date="2014-11-04T15:03:03">
+				<text># Used for sorting data frames from properties in key order.&#13;&#10;%ord.df%&lt;-cbind(rownames(%df%)[order(rownames(%df%))], %df%[order(rownames(%df%)),])</text>
+			</clip>
+			<clip kind="text" label="Order Column Names" date="2014-11-20T14:22:49">
+				<text># create an ordered character vector of a data frame names&#13;&#10;sort(names(%df%))</text>
+			</clip>
+			<clip kind="text" label="Column from Rownames" date="2014-07-23T15:24:57">
+				<text>%dataFrame%&lt;-cbind('Barcodes'=rownames(%dataFrame%),%dataFrame%)</text>
+			</clip>
+			<clip kind="text" label="Review Data Frame" date="2014-02-05T18:33:05">
+				<text>#Review Data Frame&#13;&#10;fix(%DataFrame%)</text>
+			</clip>
+			<clip kind="text" label="Describe Attributes" date="2013-09-30T12:38:27">
+				<text>attributes(%dataframe%)</text>
+			</clip>
+			<clip kind="text" label="Create from CSV" date="2012-09-14T09:47:06">
+				<text>%data_frame%&lt;-read.csv(file="%csv_canonicalPath%", header=TRUE, sep=",")</text>
+			</clip>
+			<clip kind="text" label="Create from CSV file" date="2012-09-14T09:47:06">
+				<text>%data_frame%&lt;-read.csv(file="%filename%", header=TRUE, sep=",")</text>
+			</clip>
+			<clip kind="text" label="Subset.byColumn" date="2013-05-10T15:57:57">
+				<text>%newDF%&lt;-subset(%df_name%, select=c(%column1%,%column2%,%column3%))</text>
+			</clip>
+			<clip kind="text" label="Subset.numbers" date="2014-03-06T15:15:35">
+				<text>#subset numeric columns of dataframe&#13;&#10;%mydf"nums &lt;- %mydf%[sapply(%mydf%, is.numeric)]</text>
+			</clip>
+			<clip kind="text" label="Merge Data Frames" date="2013-05-10T15:59:27">
+				<text>%newDF%&lt;-merge(%df1_name%, %df2_name%,by=c("%column1%","%column2%")</text>
+			</clip>
+			<clip kind="text" label="Write to CSV" date="2013-05-10T16:02:15">
+				<text>write.csv(%df_name%, "%csv_file_path%")</text>
+			</clip>
+			<clip kind="text" label="Save.Robject" date="2014-03-06T15:19:48">
+				<text>save(%robject%,file="%data%.Rda")</text>
+			</clip>
+			<clip kind="text" label="Load.RObject" date="2014-03-06T15:20:53">
+				<text>load(%robject_filepath%)</text>
+			</clip>
+		</folder>
+		<parameters>
+			<parameter name="%column1%">
+				<history>1</history>
+			</parameter>
+			<parameter name="%column2%">
+				<history>2</history>
+			</parameter>
+			<parameter name="%column3%">
+				<history>3</history>
+			</parameter>
+			<parameter name="%csv_canonicalPath%">
+				<history>H:/DATA/CWorkspace/InCell/IMG_LIST_001_DAPI.csv</history>
+			</parameter>
+			<parameter name="%csv_file_path%">
+				<history>C:/CWorkspace/TEMP/DATA_42_WS/dexample_Norm.csv</history>
+				<history>C:/CWorkspace/TEMP/DATA_42_WS/dexample_minusfeatures.csv</history>
+			</parameter>
+			<parameter name="%csvString%">
+				<history>t</history>
+			</parameter>
+			<parameter name="%data%">
+				<history>C:/TEMP/hcs</history>
+			</parameter>
+			<parameter name="%data_frame%">
+				<history>test</history>
+				<history>VB7998</history>
+				<history>ClustTest_9371</history>
+			</parameter>
+			<parameter name="%dataframe%">
+				<history>carseats</history>
+				<history>Boston</history>
+				<history>VB7998</history>
+			</parameter>
+			<parameter name="%dataset%">
+				<history>vb832_s1</history>
+			</parameter>
+			<parameter name="%df%">
+				<history>data.props</history>
+				<history>c.df</history>
+			</parameter>
+			<parameter name="%df_name%">
+				<history>d.norm</history>
+				<history>d</history>
+				<history>vb832</history>
+			</parameter>
+			<parameter name="%fact1%">
+				<history>lstat</history>
+			</parameter>
+			<parameter name="%fact2%">
+				<history>age</history>
+			</parameter>
+			<parameter name="%filename%">
+				<history>C:\CWorkspace\R_TEST_SIMILARITY\FOXO_AKT_VB00007998\VB00007998_reduced.csv</history>
+				<history>C:\CWorkspace\CellProfiler_2.1\ImageLists\ca_HuCCT1.csv</history>
+			</parameter>
+			<parameter name="%fit%">
+				<history>lft1</history>
+				<history>lfit1</history>
+				<history>fit1</history>
+			</parameter>
+			<parameter name="%fit6%">
+				<history>fit6</history>
+			</parameter>
+			<parameter name="%fit7%">
+				<history>fit7</history>
+			</parameter>
+			<parameter name="%group_by%">
+				<history>AC_CONTROL</history>
+			</parameter>
+			<parameter name="%lfit3%">
+				<history>fit3</history>
+			</parameter>
+			<parameter name="%lfit5%">
+				<history>fit5</history>
+			</parameter>
+			<parameter name="%Library%">
+				<history>iris</history>
+				<history>Boston</history>
+			</parameter>
+			<parameter name="%modelname%">
+				<history>modvb832_s3</history>
+				<history>modvb832_s1</history>
+			</parameter>
+			<parameter name="%nDegree%">
+				<history>4</history>
+			</parameter>
+			<parameter name="%newDF%">
+				<history>vb832_s1</history>
+			</parameter>
+			<parameter name="%package%">
+				<history>lattice</history>
+			</parameter>
+			<parameter name="%PACKAGE_NAME%">
+				<history>caret</history>
+			</parameter>
+			<parameter name="%pattern%">
+				<history>JOB_NAME</history>
+			</parameter>
+			<parameter name="%replacement%">
+				<history>i</history>
+			</parameter>
+			<parameter name="%robject%">
+				<history>hcs</history>
+			</parameter>
+			<parameter name="%val1%">
+				<history>3</history>
+			</parameter>
+			<parameter name="%val2%">
+				<history>13</history>
+			</parameter>
+			<parameter name="%val3%">
+				<history>26</history>
+			</parameter>
+			<parameter name="%variable%">
+				<history>AREA_OCCUPIED_TOTALAREA_GRANULES</history>
+			</parameter>
+			<parameter name="%vector%">
+				<history>hcs.norm</history>
+			</parameter>
+			<parameter name="%x%">
+				<history>Petal.Length</history>
+				<history>lstat</history>
+				<history>crim</history>
+			</parameter>
+			<parameter name="%y%">
+				<history>Sepal.Length</history>
+				<history>medv</history>
+			</parameter>
+		</parameters>
+	</collection>
+</act:acetext>

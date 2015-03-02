@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<act:acetext xmlns:act="http://www.acetext.com/acetext20.xsd" version="2.0">
+	<collection label="EditPad ClipCollection" sort="none">
+		<folder label="JIRA-Markup">
+			<clip kind="text" label="JIRA-Bulleted List" date="2014-04-17T09:01:44">
+				<text>*%item1%&#13;&#10;*%item2%&#13;&#10;**%indentedItem3%</text>
+			</clip>
+			<clip kind="text" label="JIRA-link (external)" date="2014-04-17T08:55:39">
+				<text>[%linkAlias%|%URL%]</text>
+			</clip>
+			<clip kind="webtext" label="JIRA-Text Effects" date="2013-06-14T10:38:44">
+				<text>Text effects are used to change the formatting of words and sentences.&#13;&#10;Notation	Comment&#13;&#10;*strong*	Makes text strong.&#13;&#10;_emphasis_	Makes text emphasis..&#13;&#10;??citation??	Makes text in citation.&#13;&#10;-deleted-	Makes text as deleted.&#13;&#10;+inserted+	Makes text as inserted.&#13;&#10;^superscript^	Makes text in superscript.&#13;&#10;~subscript~	Makes text in subscript.&#13;&#10;{{monospaced}}	Makes text as monospaced.&#13;&#10;bq. Some block quoted text	To make an entire paragraph into a block quotation, place "bq. " before it.&#13;&#10;Example: &#13;&#10;Some block quoted text&#13;&#10;{quote}&#13;&#10;here is quotable&#13;&#10;content to be quoted&#13;&#10;{quote}	&#13;&#10;Quote a block of text that's longer than one paragraph.&#13;&#10;Example:&#13;&#10;here is quotable&#13;&#10;content to be quoted&#13;&#10;{color:red} &#13;&#10;look ma, red text! &#13;&#10;{color}	 Changes the color of a block of text.&#13;&#10;Example: look ma, red text!&#13;&#10;</text>
+				<url>http://web.global.nibr.novartis.net/apps/jira/secure/WikiRendererHelpAction.jspa?section=texteffects</url>
+			</clip>
+			<clip kind="beforeafter" label="JIRA-Strong" date="2014-04-17T08:57:39">
+				<before>*</before>
+				<after>*</after>
+			</clip>
+			<clip kind="text" label="JIRA-Image via URL" date="2014-04-17T08:59:13">
+				<text>!%imageURL%!</text>
+			</clip>
+		</folder>
+		<folder label="Markdown.GitHub_flavored">
+			<clip kind="text" label="h1" date="2015-02-23T10:47:44">
+				<text># </text>
+			</clip>
+			<clip kind="text" label="h2" date="2015-02-23T10:48:00">
+				<text>## </text>
+			</clip>
+			<clip kind="text" label="h3" date="2015-02-23T10:48:08">
+				<text>### </text>
+			</clip>
+			<clip kind="beforeafter" label="Bold (surround with)" date="2014-03-25T09:33:43">
+				<before>**</before>
+				<after>** </after>
+			</clip>
+			<clip kind="text" label="Italic" date="2014-03-25T09:33:55">
+				<text>*</text>
+			</clip>
+			<clip kind="text" label="Unordered List" date="2014-03-25T09:35:44">
+				<text>-</text>
+			</clip>
+			<clip kind="text" label="Ordered List" date="2014-03-25T09:36:04">
+				<text>1.&#13;&#10;2.&#13;&#10;3.&#13;&#10;4.&#13;&#10;</text>
+			</clip>
+			<clip kind="text" label="Link-text" date="2014-03-25T09:36:35">
+				<text>[%text%](%linkURL%)</text>
+			</clip>
+			<clip kind="text" label="Link-relative">
+				<text>[[%relative_path%/%resource_name%]]</text>
+			</clip>
+			<clip kind="text" label="Tables" date="2014-03-25T09:41:03">
+				<text>%FirstHeader%  | %SecondHeader%&#13;&#10;------------- | -------------&#13;&#10;%ContentCell1%  | %ContentCell2%</text>
+			</clip>
+			<clip kind="beforeafter" label="Strikethough(surround with)" date="2014-03-25T09:38:16">
+				<before>~~</before>
+				<after>~~</after>
+			</clip>
+			<clip kind="beforeafter" label="Code blocks(surround with)" date="2014-03-25T09:39:04">
+				<before>```&#13;&#10;</before>
+				<after>&#13;&#10;```</after>
+			</clip>
+			<clip kind="beforeafter" label="Groovy highlithing (surround with)" date="2015-02-23T10:48:50">
+				<before>```groovy</before>
+				<after>```</after>
+			</clip>
+			<clip kind="beforeafter" label="Monospace format (surround with)" date="2015-02-23T10:45:48">
+				<before>`</before>
+				<after>`</after>
+			</clip>
+		</folder>
+		<folder label="Wiki Markup">
+			<clip kind="text" label="Bullet">
+				<text>*</text>
+			</clip>
+			<clip kind="beforeafter" label="Wikitable">
+				<before>{|border=1 class="wikitable"&#13;&#10;|-&#13;&#10;</before>
+				<after>|}</after>
+			</clip>
+			<clip kind="text" label="Table Header">
+				<text>!Header1 !!Header2!!Header3</text>
+			</clip>
+			<clip kind="beforeafter" label="Hyperlink">
+				<before>[http://</before>
+				<after>]</after>
+			</clip>
+			<clip kind="beforeafter" label="Image with caption (example.jpg)">
+				<before>[[File:%example.jpg%</before>
+				<after>|frame|caption]]</after>
+			</clip>
+			<clip kind="beforeafter" label="Category Tag">
+				<before>[[Category:</before>
+				<after>]]</after>
+			</clip>
+		</folder>
+		<parameters>
+			<parameter name="%ANALYSIS%">
+				<history>DMPQM_14</history>
+				<history>DMPQM_13_24HR</history>
+				<history>DMPQM_13_6HR_ALL</history>
+				<history>DMPQM_13_6HR</history>
+				<history>DMPQM_12_ALL</history>
+				<history>DMPQM_12</history>
+				<history>P62V2FULLDECK</history>
+				<history>P62V2_FULLD_G456_</history>
+				<history>P62V2_FULLD_G456</history>
+			</parameter>
+			<parameter name="%ANALYSIS_ALL%">
+				<history>DMPQM_14_ALL</history>
+				<history>DMPQM_13_24HR_ALL</history>
+				<history>DMPQM_13_6HR_ALL</history>
+				<history>DMPQM_12_ALL</history>
+			</parameter>
+			<parameter name="%BARCODE%">
+				<history>VB00010256</history>
+				<history>VB00010318</history>
+				<history>VB00010258</history>
+			</parameter>
+			<parameter name="%BARCODE_FILTER%">
+				<history>AB0007</history>
+				<history>VB0001</history>
+			</parameter>
+			<parameter name="%ContentCell1%">
+				<history>1.234</history>
+			</parameter>
+			<parameter name="%ContentCell2%">
+				<history>Slope</history>
+			</parameter>
+			<parameter name="%FirstHeader%">
+				<history>Numeric</history>
+			</parameter>
+			<parameter name="%FOLDER%">
+				<history>DMPQM_23_24HR</history>
+				<history>DMPQM_8</history>
+				<history>DMPQM_12</history>
+			</parameter>
+			<parameter name="%headerList%">
+				<history>imageRowList</history>
+			</parameter>
+			<parameter name="%it%">
+				<history>indx</history>
+			</parameter>
+			<parameter name="%JOBID%">
+				<history>5787743</history>
+			</parameter>
+			<parameter name="%linkURL%">
+				<history>http://www.urbandictionary.com/define.php?term=iirc</history>
+				<history>https://wiki.jenkins-ci.org/display/JENKINS/Extended+Choice+Parameter+plugin</history>
+			</parameter>
+			<parameter name="%myapp%">
+				<history>test-app</history>
+			</parameter>
+			<parameter name="%NAMEFILTER%">
+				<history>Cpmeasurements*</history>
+				<history>All*</history>
+			</parameter>
+			<parameter name="%NAMEPREFIX%">
+				<history>AB00</history>
+			</parameter>
+			<parameter name="%NameToFind%">
+				<history>*p62*</history>
+				<history>*setup*</history>
+			</parameter>
+			<parameter name="%package%">
+				<history>com.novartis.dmp</history>
+			</parameter>
+			<parameter name="%relative_path%">
+				<history>images</history>
+			</parameter>
+			<parameter name="%resource_name%">
+				<history>key_as_value.jpg</history>
+				<history>UC_BuildList_Success_001.jpg</history>
+			</parameter>
+			<parameter name="%RUNID%">
+				<history>DMPQM13_6HR</history>
+			</parameter>
+			<parameter name="%SecondHeader%">
+				<history>Text</history>
+			</parameter>
+			<parameter name="%text%">
+				<history>IIRC</history>
+				<history>extended choise plugin</history>
+			</parameter>
+			<parameter name="%theCode%">
+				<history>def env = System.getenv()</history>
+			</parameter>
+		</parameters>
+	</collection>
+</act:acetext>

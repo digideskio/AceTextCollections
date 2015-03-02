@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<act:acetext xmlns:act="http://www.acetext.com/acetext20.xsd" version="2.0">
+	<collection label="SCM.Commands" sort="none">
+		<folder label="SVN.commands">
+			<clip kind="webtext" label="svn commit all pending" date="2012-08-10T14:46:53">
+				<text>svn commit -m "Commit Message"</text>
+				<url>http://svnbook.red-bean.com/en/1.7/svn.tour.cycle.html</url>
+			</clip>
+			<clip kind="text" label="svn list HCS" date="2012-08-10T14:35:47">
+				<text>svn list http://svn.nibr.novartis.intra/svn/DMP_CHBS/QB/BDM/HCS/moutsio1/ </text>
+			</clip>
+			<clip kind="webtext" label="svn revert" date="2012-08-10T14:47:57">
+				<text>svn revert sandwich.txt</text>
+				<url>http://svnbook.red-bean.com/en/1.7/svn.tour.cycle.html</url>
+			</clip>
+			<clip kind="webtext" label="svn review changes" date="2012-08-10T14:49:27">
+				<text>svn status</text>
+				<url>http://svnbook.red-bean.com/en/1.7/svn.tour.cycle.html</url>
+			</clip>
+		</folder>
+		<folder label="Git.Setup">
+			<clip kind="text" label="init" date="2015-03-02T11:21:08">
+				<text>git init</text>
+			</clip>
+			<clip kind="text" label="clone" date="2015-03-02T11:21:29">
+				<text>#Clone the repository located at &lt;repo> into the folder called &lt;directory> on the local machine.&#13;&#10;git clone %repo% %directory%</text>
+			</clip>
+			<clip kind="text" label="config.user" date="2015-03-02T11:22:59">
+				<text>git config --global user.name %name%&#13;&#10;git config --global user.email %email%</text>
+			</clip>
+		</folder>
+		<folder label="Git.Save.Changes">
+			<clip kind="text" label="add" date="2015-03-02T11:24:46">
+				<text>git add</text>
+			</clip>
+			<clip kind="text" label="commit" date="2015-03-02T11:24:57">
+				<text>git commit -m %message%</text>
+			</clip>
+		</folder>
+		<folder label="Git.Inspect.Repo">
+			<clip kind="text" label="status" date="2015-03-02T11:27:55">
+				<text>#List which files are staged, unstaged, and untracked.&#13;&#10;git status</text>
+			</clip>
+			<clip kind="text" label="log" date="2015-03-02T11:28:09">
+				<text>#Display the entire commit history&#13;&#10;git log</text>
+			</clip>
+			<clip kind="text" label="log.oneline" date="2015-03-02T11:29:29">
+				<text>#high-level overview of the project history&#13;&#10;git log --oneline</text>
+			</clip>
+			<clip kind="text" label="log.search" date="2015-03-02T11:31:04">
+				<text>#Search for commits with a commit message that matches &lt;pattern>&#13;&#10;git log --grep="%pattern%"</text>
+			</clip>
+			<clip kind="text" label="log.OfFile" date="2015-03-02T11:32:10">
+				<text>#see the commit history of a particular file&#13;&#10;git log %file%</text>
+			</clip>
+			<clip kind="text" label="log.browse" date="2015-03-02T11:34:05">
+				<text>#browse through commits at-a-glance&#13;&#10;git log --graph --decorate --oneline</text>
+			</clip>
+			<clip kind="text" label="log.compare.branches" date="2015-03-02T11:35:40">
+				<text>#The .. syntax is a very useful tool for comparing branches&#13;&#10;git log --oneline master..%some-feature%</text>
+			</clip>
+		</folder>
+	</collection>
+</act:acetext>
