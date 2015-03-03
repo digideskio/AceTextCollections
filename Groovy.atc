@@ -21,6 +21,36 @@
 			<clip kind="text" label="Operators" date="2014-08-01T12:17:37">
 				<text>http://groovy.codehaus.org/Operators&#13;&#10;&#13;&#10;In general all operators supported in Java are identical in Groovy. Groovy goes a step further by allowing you to customize behavior of operators on Groovy types.&#13;&#10;&#13;&#10;Arithmetic and Conditional Operators&#13;&#10;Collection-based Operators&#13;&#10;Spread Operator (*.)&#13;&#10;Object-Related Operators&#13;&#10;Java field (.@)&#13;&#10;Other Operators&#13;&#10;Elvis Operator (?: )&#13;&#10;Safe Navigation Operator (?.)&#13;&#10;Regular Expression Operators&#13;&#10;Table of Operators</text>
 			</clip>
+			<folder label="Annotations">
+				<clip kind="webtext" label="@Builder" date="2015-03-02T20:26:26">
+					<text>Since Groovy 2.3 we can easily create a fluent API for our classes with the @Builder AST transformation. We can apply the annotation to our classes and the resulting class file will have all the necessary methods to support a fluent API. We can customize how the fluent API is generated with different annotation parameters. In Groovy code we already can use the with method to have a clean way to set property values or use the named constructor arguments. But if our classes need to be used from Java it is nice to give the Java developers a fluent API for our Groovy classes.</text>
+					<url>http://mrhaki.blogspot.com/2014/05/groovy-goodness-use-builder-ast.html</url>
+				</clip>
+			</folder>
+			<folder label="Methods">
+				<clip kind="webtext" label="the With Method" date="2015-03-02T20:15:34">
+					<text>// Another example as seen at &#13;&#10;// http://javajeff.blogspot.com/2008/11/getting-groovy-with-with.html&#13;&#10;def cal = Calendar.instance&#13;&#10;cal.with {&#13;&#10;    clear()&#13;&#10;    set(YEAR, 2009)&#13;&#10;    set MONTH, SEPTEMBER&#13;&#10;    set DATE, 4    &#13;&#10;    add DATE, 2&#13;&#10;}&#13;&#10;assert'September 6, 2009' == cal.time.format('MMMM d, yyyy')</text>
+					<url>http://mrhaki.blogspot.com/2009/09/groovy-goodness-with-method.html</url>
+				</clip>
+			</folder>
+			<folder label="traits">
+				<clip kind="text" label="what.is.traits" date="2015-03-02T19:45:58">
+					<text>Traits (Groovy 2.3)&#13;&#10;http://mrhaki.blogspot.com/2014/05/groovy-goodness-implementing-traits-at.html&#13;&#10;/**&#13;&#10;A trait is a reusable set of methods and fields that can be added to one or more classes. &#13;&#10;A class can be composed out of multiple traits without using multiple inheritance&#13;&#10;Reference: http://java.dzone.com/articles/groovy-23-introduces-traits&#13;&#10;**/&#13;&#10;&#13;&#10;trait %SwimmingAbility% {&#10;	def %swim()% {&#10;		// println "swimming.."&#10;	}&#10;}&#13;&#10;&#13;&#10;/**&#13;&#10;Traits can be added to a class using the implements keyword&#13;&#10;**/&#13;&#10;&#13;&#10;class %Goldfish% implements %SwimmingAbility% {&#10;	..&#10;}</text>
+				</clip>
+				<clip kind="text" label="what.is.multiple.traits" date="2015-03-02T20:04:57">
+					<text>To apply multiple traits to an object we must use the method withTraits on an object. We can use one or more traits as arguments to this method.</text>
+				</clip>
+				<clip kind="webtext" label="withTraits" date="2015-03-02T20:06:03">
+					<text>trait Id {&#13;&#10;    Long id&#13;&#10;}&#13;&#10;&#13;&#10;trait Version {&#13;&#10;    Long version = 0&#13;&#10;}&#13;&#10;&#13;&#10;trait Active {&#13;&#10;    Date from = new Date()&#13;&#10;    Date to = null&#13;&#10;&#13;&#10;    boolean isActive() {&#13;&#10;        final Date now = new Date()&#13;&#10;        from &lt; now &amp;&amp; (!to || to > now)&#13;&#10;    }&#13;&#10;}&#13;&#10;&#13;&#10;class Person {&#13;&#10;    String username&#13;&#10;}&#13;&#10;&#13;&#10;def person = new Person(username: 'mrhaki')&#13;&#10;def domainPerson = person.withTraits Id, Version, Active&#13;&#10;&#13;&#10;domainPerson.id = 1&#13;&#10;&#13;&#10;assert domainPerson.username == 'mrhaki'&#13;&#10;assert domainPerson.id == 1&#13;&#10;assert domainPerson.version == 0&#13;&#10;assert domainPerson.active</text>
+					<url>http://mrhaki.blogspot.com/2014/05/groovy-goodness-implementing-traits-at.html</url>
+				</clip>
+			</folder>
+			<folder label="ConfigSlurper">
+				<clip kind="webtext" label="Custom Environment Sections" date="2015-03-02T20:10:19">
+					<text>Groovy contains the useful ConfigSlurper for reading in configuration files where settings can be different for different environments. &#13;&#10;&#13;&#10;We only have to include an environments block and define values for configuration properties per environment. Since Groovy 2.3 we can add our own conditional configuration blocks and therefore don't have to put everything in an environments block.</text>
+					<url>http://mrhaki.blogspot.com/2014/05/groovy-goodness-extend-configslurper.html</url>
+				</clip>
+			</folder>
 		</folder>
 		<folder label="Math">
 			<clip kind="text" label="envVar as Int" date="2013-03-28T11:43:30">
