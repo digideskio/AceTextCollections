@@ -53,6 +53,9 @@
 			<clip kind="text" label="add" date="2015-03-02T11:24:46">
 				<text>git add</text>
 			</clip>
+			<clip kind="text" label="remove.from.add" date="2015-03-02T16:49:16">
+				<text>#remove file from staged files before commit&#13;&#10;git reset %file%</text>
+			</clip>
 			<clip kind="text" label="commit" date="2015-03-02T11:24:57">
 				<text>git commit -m %message%</text>
 			</clip>
