@@ -143,6 +143,11 @@
 			<parameter name="%JOBID%">
 				<history>5787743</history>
 			</parameter>
+			<parameter name="%linkAlias%">
+				<history>Bioformats</history>
+				<history>Developer Documentation</history>
+				<history>Support Documentation</history>
+			</parameter>
 			<parameter name="%linkURL%">
 				<history>http://www.acetext.com/</history>
 				<history>http://www.urbandictionary.com/define.php?term=iirc</history>
@@ -185,6 +190,12 @@
 			</parameter>
 			<parameter name="%theCode%">
 				<history>def env = System.getenv()</history>
+			</parameter>
+			<parameter name="%URL%">
+				<history>https://wiki.jenkins-ci.org/display/JENKINS/Collapsing+Console+Sections+Plugin</history>
+				<history>https://github.com/openmicroscopy/bioformats</history>
+				<history>http://web.global.nibr.novartis.net/apps/confluence/display/DMPQM/Developer+Documentation</history>
+				<history>http://web.global.nibr.novartis.net/apps/confluence/display/DMPQM/Support+Documentation</history>
 			</parameter>
 		</parameters>
 	</collection>
