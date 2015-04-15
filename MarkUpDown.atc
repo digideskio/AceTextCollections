@@ -144,9 +144,16 @@
 				<history>5787743</history>
 			</parameter>
 			<parameter name="%linkAlias%">
-				<history>Bioformats</history>
-				<history>Developer Documentation</history>
-				<history>Support Documentation</history>
+				<history>Contribute_Pipeline</history>
+				<history>Cambridge-InCell</history>
+				<history>Basel-Yokogawa</history>
+				<history>Basel-InCell</history>
+				<history>Scriptler</history>
+				<history>UTIL_VIS_COMPARE</history>
+				<history>PP_DATASET_QC</history>
+				<history>PP_DATASET_HISTOGRAM</history>
+				<history>PP_FEATURE_ANALYSIS</history>
+				<history>PP_LOESS_NORMALIZATION</history>
 			</parameter>
 			<parameter name="%linkURL%">
 				<history>http://www.acetext.com/</history>
@@ -192,10 +199,16 @@
 				<history>def env = System.getenv()</history>
 			</parameter>
 			<parameter name="%URL%">
-				<history>https://wiki.jenkins-ci.org/display/JENKINS/Collapsing+Console+Sections+Plugin</history>
-				<history>https://github.com/openmicroscopy/bioformats</history>
-				<history>http://web.global.nibr.novartis.net/apps/confluence/display/DMPQM/Developer+Documentation</history>
-				<history>http://web.global.nibr.novartis.net/apps/confluence/display/DMPQM/Support+Documentation</history>
+				<history>http://nrchbs-wdl30631.nibr.novartis.net:8080/job/Contribute_Pipeline/</history>
+				<history>http://nrusca-s4474.nibr.novartis.net:8080/view/5.CellProfiler_LinuxCluster/job/CellProfiler_JClustSelect/</history>
+				<history>http://nrchbs-wdl30631.nibr.novartis.net:8080/view/8.Yokogawa%20View/job/CellProfiler_JClustSelect_Yokogawa/</history>
+				<history>http://nrchbs-wdl30631.nibr.novartis.net:8080/view/5.CellProfiler_LinuxCluster/job/CellProfiler_JClustSelect/</history>
+				<history>http://nrchbs-wdl30631.nibr.novartis.net:8080/scriptler/</history>
+				<history>http://nrusca-sd189.nibr.novartis.net:8080/job/UTIL_VIS_COMPARE/build</history>
+				<history>http://nrusca-sd189.nibr.novartis.net:8080/job/PP_DATASET_QC/build</history>
+				<history>http://nrusca-sd189.nibr.novartis.net:8080/job/PP_DATASET_HISTOGRAM/build?delay=0sec</history>
+				<history>http://nrusca-sd189.nibr.novartis.net:8080/job/PP_FEATURE_ANALYSIS/build</history>
+				<history>http://nrusca-sd189.nibr.novartis.net:8080/job/PP_LOESS_NORMALIZATION/build</history>
 			</parameter>
 		</parameters>
 	</collection>

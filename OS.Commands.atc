@@ -32,6 +32,11 @@
 					<text>> /sbin/ifconfig -a</text>
 				</clip>
 			</folder>
+			<folder label="Shares">
+				<clip kind="text" label="UNC: moutsio1 linux home" date="2015-03-30T15:14:26">
+					<text>\\isiusca05.na.novartis.net\home\moutsio1</text>
+				</clip>
+			</folder>
 			<clip kind="text" label="processID_Virtual_Subdirectory" date="2014-04-03T15:53:41">
 				<text>/proc/%PID%</text>
 			</clip>

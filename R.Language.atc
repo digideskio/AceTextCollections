@@ -9,9 +9,50 @@
 				<text>ore.connect(user = "NGSTESTER", sid = "CABDMD", host = "uscalx4244.nibr.novartis.net", password = "tester123", port = 1521, all = TRUE)</text>
 			</clip>
 		</folder>
+		<folder label="R.Data">
+			<clip kind="webtext" label="Download Archive" date="2015-03-18T16:11:01">
+				<text># Download archive file, if it does not exist (example)&#13;&#10;&#13;&#10;if(!(file.exists("summarySCC_PM25.rds") &amp;&amp; &#13;&#10;    file.exists("Source_Classification_Code.rds"))) { &#13;&#10;    archiveFile &lt;- "NEI_data.zip"&#13;&#10;    if(!file.exists(archiveFile)) {&#13;&#10;        archiveURL &lt;- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"&#13;&#10;        download.file(url=archiveURL,destfile=archiveFile,method="curl")&#13;&#10;    }  &#13;&#10;    unzip(archiveFile) &#13;&#10;}</text>
+				<url>https://rstudio-pubs-static.s3.amazonaws.com/28894_d9a735f1805e47e78e8c078982647207.html</url>
+			</clip>
+		</folder>
 		<folder label="R.In.Jenkins">
+			<clip kind="text" label="Hard-coded Vars" date="2015-04-02T15:40:20">
+				<text># Analysis hard-coded and custom  variables -----------------------------------------------------&#13;&#10;this.analysisName&lt;-"%Mahalanobis%"&#13;&#10;this.suffix&lt;-"%dataSuffix%" #suffix used for output.path and output.metapath&#13;&#10;this.output&lt;-sprintf("JData_%s.csv",this.suffix)&#13;&#10;this.Rds.output&lt;- sprintf("JData_%s.Rds",this.suffix) #name of serialized R  object&#13;&#10;this.meta&lt;-sprintf("JData_%s.properties",this.suffix)&#13;&#10;this.artifacts&lt;-"*zip*/archive.zip"&#13;&#10;&#13;&#10;#new metadata that analysis adds and custom output&#13;&#10;this.newMeta&lt;-sprintf("Metadata_WellType,Metadata_Outlier_%s",this.suffix)&#13;&#10;this.prediction&lt;-sprintf("%s.csv",this.suffix)#Hard-coded name of classification file</text>
+			</clip>
+			<clip kind="text" label="Read Data Set" date="2015-03-26T15:23:58">
+				<text>print ('Reading Data Set....')&#13;&#10;# Start the clock!&#13;&#10;ptm &lt;- proc.time()&#13;&#10;#DMPQM-234: Read the data from local path and continue processing&#13;&#10;sourceobject.path&lt;-sprintf("%s%s",thisdata.path,binrobjectFileName) #DMPQM-293&#13;&#10;sourcedata.path&lt;-sprintf("%s%s",thisdata.path,dataFileName)&#13;&#10;&#13;&#10;#DMPQM-293 Prefer to load data from R binary Object file&#13;&#10;if(file.exists(sourceobject.path)){&#13;&#10;  print("Loading data from Binary R Object...")&#13;&#10;  #Read serialized R object and assign to data frame hcs&#13;&#10;  %inputDataFrame%&lt;-readRDS(sourceobject.path)&#13;&#10;}else{&#13;&#10;  #load from CSV format data if binary R does not exist&#13;&#10;  print("Loading data from CSV file...")&#13;&#10;  rows2read=as.numeric(data.props['data.rows',1])+10&#13;&#10;  %inputDataFrame%&lt;-read.csv(sourcedata.path,header=TRUE,stringsAsFactors=FALSE, quote = "", nrows=rows2read, comment.char = "")&#13;&#10;}&#13;&#10;# Stop the clock&#13;&#10;proc.time() - ptm&#13;&#10;print ('Finished Reading Data Set!')</text>
+			</clip>
+			<clip kind="text" label="Read DataSet Properties" date="2015-04-02T11:25:18">
+				<text># Read data properties ----------------------------------------------------&#13;&#10;#DMPQM-261, DMPQM-257 get data/properties file name by convention&#13;&#10;urlParts &lt;-unlist(strsplit(bparam.dataurl,'/'))&#13;&#10;dataFileName=urlParts[length(urlParts)]&#13;&#10;propertiesFileName=gsub("\\.csv","\\.properties",dataFileName)&#13;&#10;binrobjectFileName=gsub("\\.csv","\\.Rds",dataFileName) #DMPQM-293 the serialized R binary object&#13;&#10;&#13;&#10;# Read data properties from same path as the data itself&#13;&#10;propUrl=gsub("\\.csv","\\.properties",bparam.dataurl)&#13;&#10;data.props&lt;-read.table(propUrl, header=FALSE, sep="=", row.names=1, strip.white=TRUE, na.strings="NA", stringsAsFactors=FALSE)&#13;&#10;&#13;&#10;#Extract required metadata from JData.properties file&#13;&#10;thisdata.path&lt;-unlist(strsplit(gsub("\\\\","",data.props['data.path',1]),',')) #DMPQM-231</text>
+			</clip>
+			<clip kind="text" label="Write Dataset CSV-Rds" date="2015-04-02T15:37:01">
+				<text># Export to file ------------------------------------&#13;&#10;#Create Destination file for various types&#13;&#10;print("Exporting data---Writing File!")&#13;&#10;# Write CSV file&#13;&#10;hcsxportdest&lt;-sprintf("%s/%s", jworkspace,this.output)&#13;&#10;write.table(jdataxport, hcsxportdest, sep=",", quote=FALSE, row.names=FALSE, col.names=TRUE)&#13;&#10;# Write serialized binary R object file&#13;&#10;robjectdest&lt;-sprintf("%s/%s", jworkspace,this.Rds.output)&#13;&#10;saveRDS(jdataxport,file=robjectdest)&#13;&#10;print("Exporting data---Completed!")</text>
+			</clip>
+			<clip kind="text" label="Write Meta-Readout Tables" date="2015-03-26T15:26:19">
+				<text>#Writes a metadata and a readout file for report for output data frame&#13;&#10;#Create Destination file for metadata&#13;&#10;metadest&lt;-sprintf("%s/%s", jworkspace,"meta.csv")&#13;&#10;#DMPQM-298 write table of metadata columns&#13;&#10;meta.df&lt;-data.frame(METADATA=c(1:length(names(%output%[,mtd==TRUE, drop=FALSE]))),DATA_COLUMN=names(%output%[,mtd==TRUE, drop=FALSE]))&#13;&#10;write.table(meta.df, metadest, sep=",", quote=FALSE, row.names=F, col.names=T)&#13;&#10;&#13;&#10;#Create Destination file for measurements&#13;&#10;measuredest&lt;-sprintf("%s/%s", jworkspace,"measure.csv")&#13;&#10;#DMPQM-298 write table of measurements columns&#13;&#10;readout.df&lt;-data.frame(MEASUREMENT=c(1:length(names(%output%[,mtd==FALSE, drop=FALSE]))),DATA_COLUMN=names(%output%[,mtd==FALSE, drop=FALSE]))&#13;&#10;write.table(readout.df, measuredest, sep=",", quote=FALSE, row.names=F, col.names=T)</text>
+			</clip>
+			<clip kind="text" label="DataColumn Subset Table" date="2015-04-02T13:52:59">
+				<text>#---DMPQM-298: Writes a subset of the columns with a numeric Index column as a table&#13;&#10;    %nzv%dest&lt;-sprintf("%s/%s", jworkspace,"%nearZeroVar%.csv")&#13;&#10;    %nzv%list&lt;-sort(names(%hcs%[,%nz%$%nzv%==TRUE]))&#13;&#10;    %nzv%.df&lt;-data.frame(%INDEX_COLUMN%=c(1:length(%nzv%list)),DATA_COLUMN=%nzv%list)&#13;&#10;    write.table(%nzv%.df, %nzv%dest, sep=",", quote=FALSE, row.names=FALSE, col.names=TRUE)</text>
+			</clip>
+			<clip kind="text" label="Write NEW dataset properties" date="2015-04-03T11:16:30">
+				<text># START: AceText Template for Output data set NEW properties file --------------------------------------------------&#13;&#10;# Requires&#13;&#10;#         data.props:    INPUT data properties&#13;&#10;#         this.newMeta: new meta that this analysis adds&#13;&#10;#---------------------------------------&#13;&#10;# Write OUTPUT Metadata to a new properties file&#13;&#10;# Include any new or updated properties&#13;&#10;#---------------------------------------&#13;&#10;# Assign variables from analysis context&#13;&#10;# output.data is the complete data frame of interest&#13;&#10;output.data&lt;-%nameOfDataFrame%&#13;&#10;&#13;&#10;#Create file path for OUTPUT data metadata-properties&#13;&#10;output.metapath&lt;-sprintf("%s/%s",jworkspace,this.meta)&#13;&#10;file.create(output.metapath)&#13;&#10;&#13;&#10;#Create a new data frame to maintain properties-Record Jenkins Server&#13;&#10;#initialize data frame, maintain row names&#13;&#10;output.props&lt;-data.frame(PROPERTY=(c("jenkins.computername","jenkins.home")),VALUE=c(jcomputer,jhome),stringsAsFactors=FALSE,row.names=NULL)&#13;&#10;output.props&lt;-rbind(output.props,c(buildid,job.name))&#13;&#10;output.props&lt;-rbind(output.props,c(buildurl,build.url))&#13;&#10;output.props&lt;-rbind(output.props,c(buildparams,sprintf("%sparameters",build.url)))&#13;&#10;output.props&lt;-rbind(output.props,c(buildtag,build.tag))&#13;&#10;&#13;&#10;output.props&lt;-rbind(output.props,c('artifact.type',job.name))&#13;&#10;output.props&lt;-rbind(output.props,c('data.type','derived'))&#13;&#10;&#13;&#10;#Transfer data set metadata&#13;&#10;output.props&lt;-rbind(output.props,c("data.origin",bparam.dataurl))&#13;&#10;output.props&lt;-rbind(output.props,c("data.origin.label",data.props['data.label',1]))&#13;&#10;output.props&lt;-rbind(output.props,c("data.label",bparam.label))&#13;&#10;output.props&lt;-rbind(output.props,c("data.owner",data.props['data.owner',1]))&#13;&#10;output.props&lt;-rbind(output.props,c("data.description",data.props['data.description',1]))&#13;&#10;output.props&lt;-rbind(output.props,c("data.path",sprintf("%s/jobs/%s/builds/%s/archive/",jhome,job.name,build.id)))&#13;&#10;&#13;&#10;output.props&lt;-rbind(output.props,c("data.rows",nrow(output.data)))&#13;&#10;output.props&lt;-rbind(output.props,c("data.cols",length(output.data)))&#13;&#10;output.props&lt;-rbind(output.props,c("data.complete",sum(complete.cases(output.data))))&#13;&#10;&#13;&#10;#Create Data Download links&#13;&#10;output.props&lt;-rbind(output.props,c("download.INPUT.DATA_SET",bparam.dataurl))&#13;&#10;output.props&lt;-rbind(output.props,c("download.OUTPUT.DATA_SET",sprintf("%sartifact/%s",build.url,this.output)))&#13;&#10;output.props&lt;-rbind(output.props,c("download.build.artifacts",sprintf("%sartifact/%s",build.url,this.artifacts)))&#13;&#10;&#13;&#10;#Create Custom Properties and Links (as needed)&#13;&#10;output.props&lt;-rbind(output.props,c(sprintf("download.%s",this.prediction),sprintf("%sartifact/%s",build.url,this.prediction)))&#13;&#10;&#13;&#10;#Create assay plate metadata&#13;&#10;output.props&lt;-rbind(output.props,c("missing.data.flag",data.props['missing.data.flag',1]))&#13;&#10;#Add plate geometry metadata&#13;&#10;p.df&lt;-subset(data.props,grepl("plate",row.names(data.props),,TRUE))&#13;&#10;#Make p.df resemble output.props structure so that we can merge&#13;&#10;ordp.df&lt;-cbind('PROPERTY'=rownames(p.df)[order(rownames(p.df))], 'VALUE'=p.df[order(rownames(p.df)),])&#13;&#10;output.props&lt;-rbind(output.props, ordp.df) #merge&#13;&#10;#TESTING-add new metadata attached to analysis OUTPUT&#13;&#10;output.metaString&lt;-sprintf("%s,%s",data.props['metadata',1],this.newMeta)&#13;&#10;output.meta=unlist(strsplit(output.metaString,','))&#13;&#10;output.anno &lt;- names (output.data[,which(names(output.data) %in% output.meta)])&#13;&#10;output.props&lt;-rbind(output.props,c('metadata',paste(names(output.data[,output.anno]), collapse=",")))&#13;&#10;&#13;&#10;#motivation: data frame columns to csv string&#13;&#10;output.measurements &lt;- names (output.data[,(which(!names(output.data) %in% output.meta))])&#13;&#10;output.measurementsString&lt;-paste(output.measurements, collapse=",")&#13;&#10;output.props&lt;-rbind(output.props,c('measurements',output.measurementsString))&#13;&#10;&#13;&#10;#Create data frame column type properties&#13;&#10;output.props&lt;-rbind(output.props,c("frame.characterColumns",toString(paste(names(output.data[sapply(output.data, is.character)]),collapse=","))))&#13;&#10;output.props&lt;-rbind(output.props,c("frame.numericColumns",toString(paste(names(output.data[sapply(output.data, is.numeric)]),collapse=","))))&#13;&#10;&#13;&#10;#Add assay control metadata&#13;&#10;c.df&lt;-subset(data.props,grepl("control",row.names(data.props),,TRUE))&#13;&#10;#Make c.df resemble output.props structure so that we can merge&#13;&#10;ordc.df&lt;-cbind('PROPERTY'=rownames(c.df)[order(rownames(c.df))], 'VALUE'=c.df[order(rownames(c.df)),])&#13;&#10;output.props&lt;-rbind(output.props, ordc.df) #merge &#13;&#10;&#13;&#10;#DMPQM-244 Add feature-predictor metadata (from PP_FEATURE_ANALYSIS.LAST)&#13;&#10;fa.df&lt;-subset(data.props,grepl("PP_FEATURE_ANALYSIS.LAST",row.names(data.props),,TRUE))&#13;&#10;#Make c.df resemble output.props structure so that we can merge&#13;&#10;ordfa.df&lt;-cbind('PROPERTY'=rownames(fa.df)[order(rownames(fa.df))], 'VALUE'=fa.df[order(rownames(fa.df)),])&#13;&#10;output.props&lt;-rbind(output.props, ordfa.df) #merge &#13;&#10;&#13;&#10;#Create, sort and write ordered output.props frame to the properties file&#13;&#10;ord.output.props&lt;-order(output.props$PROPERTY) #get sort order&#13;&#10;write.table(output.props[ord.output.props,], output.metapath, sep="=", quote=FALSE,row.names=FALSE,col.names=TRUE)&#13;&#10;&#13;&#10;#write table of metadata columns&#13;&#10;#---DMPQM-298: Writes a subset of the columns with a numeric Index column as a table&#13;&#10;row.names(output.props)&lt;-output.props[,'PROPERTY']&#13;&#10;metadest&lt;-sprintf("%s/%s", jworkspace,"meta.csv")&#13;&#10;print(output.props['metadata',2])&#13;&#10;metalist&lt;-unlist(strsplit(output.props['metadata',2],','))&#13;&#10;meta.df&lt;-data.frame(METADATA=c(1:length(metalist)),DATA_COLUMN=metalist)&#13;&#10;write.table(meta.df, metadest, sep=",", quote=FALSE, row.names=FALSE, col.names=TRUE)&#13;&#10;&#13;&#10;#Write table of measurements columns&#13;&#10;#---DMPQM-298: Writes a subset of the columns with a numeric Index column as a table&#13;&#10;measdest&lt;-sprintf("%s/%s", jworkspace,"measure.csv")&#13;&#10;measlist&lt;-unlist(strsplit(output.measurements,','))&#13;&#10;meas.df&lt;-data.frame(MEASUREMENT=c(1:length(measlist)),DATA_COLUMN=measlist)&#13;&#10;write.table(meas.df, measdest, sep=",", quote=FALSE, row.names=FALSE, col.names=TRUE)&#13;&#10;# END: AceText Template for Output data set NEW properties file</text>
+			</clip>
 			<clip kind="text" label="Save R workspace" date="2015-01-26T15:08:12">
 				<text>#Proven useful for debugging builds: named from build tag&#13;&#10;#DMPQM-258: write an image of the R workspace for troubleshooting&#13;&#10;print("Saving R workspace file")&#13;&#10;rDataPath&lt;-sprintf("%s/%s.%s",jworkspace,build.tag,"Rda")&#13;&#10;save.image(file = rDataPath)&#13;&#10;print("Saving R workspace file completed")</text>
+			</clip>
+		</folder>
+		<folder label="R.on.Linux">
+			<clip kind="text" label="package.manual.install" date="2015-03-30T15:21:30">
+				<text># can be used to install older versions of a package&#13;&#10;packageurl &lt;- "~/%rtemp/dplyr_0.2.tar.gz%"&#13;&#10;install.packages(packageurl, repos=NULL, type="source")</text>
+			</clip>
+			<clip kind="text" label="User R library" date="2015-03-30T15:17:34">
+				<text> ~/R/x86_64-unknown-linux-gnu-library/3.1</text>
+			</clip>
+			<clip kind="text" label="Start" date="2015-03-30T15:16:43">
+				<text>R</text>
+			</clip>
+			<clip kind="text" label="Quit" date="2015-03-30T15:16:54">
+				<text>q()</text>
 			</clip>
 		</folder>
 		<folder label="3.Linear.Regression">
@@ -222,6 +263,11 @@
 			<parameter name="%dataset%">
 				<history>vb832_s1</history>
 			</parameter>
+			<parameter name="%dataSuffix%">
+				<history>Aggregated</history>
+				<history>Exported</history>
+				<history>Nbayes</history>
+			</parameter>
 			<parameter name="%df%">
 				<history>data.props</history>
 				<history>c.df</history>
@@ -255,6 +301,20 @@
 			<parameter name="%group_by%">
 				<history>AC_CONTROL</history>
 			</parameter>
+			<parameter name="%hcs%">
+				<history>hcs</history>
+			</parameter>
+			<parameter name="%in%">
+				<history>%in%</history>
+			</parameter>
+			<parameter name="%INDEX_COLUMN%">
+				<history>FEATURE</history>
+			</parameter>
+			<parameter name="%inputDataFrame%">
+				<history>hcs</history>
+				<history>mpData</history>
+				<history>d.norm</history>
+			</parameter>
 			<parameter name="%lfit3%">
 				<history>fit3</history>
 			</parameter>
@@ -265,15 +325,39 @@
 				<history>iris</history>
 				<history>Boston</history>
 			</parameter>
+			<parameter name="%Mahalanobis%">
+				<history>AggregateStats</history>
+				<history>DataExport</history>
+				<history>NaiveBayes</history>
+			</parameter>
 			<parameter name="%modelname%">
 				<history>modvb832_s3</history>
 				<history>modvb832_s1</history>
 			</parameter>
+			<parameter name="%nameOfDataFrame%">
+				<history>hcsAgSum</history>
+				<history>jdataxport</history>
+				<history>jdatanb</history>
+			</parameter>
 			<parameter name="%nDegree%">
 				<history>4</history>
 			</parameter>
+			<parameter name="%nearZeroVar%">
+				<history>measure</history>
+				<history>meta</history>
+				<history>zeroVar</history>
+			</parameter>
 			<parameter name="%newDF%">
 				<history>vb832_s1</history>
+			</parameter>
+			<parameter name="%nz%">
+				<history>nz</history>
+			</parameter>
+			<parameter name="%nzv%">
+				<history>meas</history>
+				<history>meta</history>
+				<history>zeroVar</history>
+				<history>zeroV</history>
 			</parameter>
 			<parameter name="%package%">
 				<history>lattice</history>
@@ -289,6 +373,9 @@
 			</parameter>
 			<parameter name="%robject%">
 				<history>hcs</history>
+			</parameter>
+			<parameter name="%s%">
+				<history>%s%</history>
 			</parameter>
 			<parameter name="%val1%">
 				<history>3</history>
