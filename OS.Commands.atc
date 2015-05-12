@@ -9,6 +9,14 @@
 				<text>qsub -cwd  /path_to_script/myFirstTest.sh</text>
 			</clip>
 		</folder>
+		<folder label="SSH Helpers">
+			<clip kind="text" label="rsa key-pair generation" date="2015-05-05T14:02:20">
+				<text># Creates a new ssh key, using the provided email as a label&#13;&#10;ssh-keygen -t rsa -C "%your_email%"&#13;&#10;</text>
+			</clip>
+			<clip kind="text" label="list existing SSH" date="2015-05-05T14:04:13">
+				<text># Lists the files in your .ssh directory, if they exist&#13;&#10;ls -al ~/.ssh&#13;&#10;</text>
+			</clip>
+		</folder>
 		<folder label="SGE.commands">
 			<clip kind="text" label="Delete JobID" acetype="sg" date="2012-10-10T11:54:36">
 				<text>qdel %JOBID%</text>
@@ -70,5 +78,10 @@
 				<text>F7: pops up menu&#13;&#10;F8: searches after yout type a few strating characters (Case Sensitive)&#13;&#10;F9: recall commands by their number, Pops a window to enter number&#13;&#10;->: Right arrow auto-completes</text>
 			</clip>
 		</folder>
+		<parameters>
+			<parameter name="%your_email%">
+				<history>ioannis.moutsatsos@novartis.com</history>
+			</parameter>
+		</parameters>
 	</collection>
 </act:acetext>

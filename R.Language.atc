@@ -9,6 +9,17 @@
 				<text>ore.connect(user = "NGSTESTER", sid = "CABDMD", host = "uscalx4244.nibr.novartis.net", password = "tester123", port = 1521, all = TRUE)</text>
 			</clip>
 		</folder>
+		<folder label="R.Objects">
+			<clip kind="text" label="Display Object class" date="2015-04-22T13:27:04">
+				<text>class(%object%)</text>
+			</clip>
+			<clip kind="text" label="Display Object Structure" date="2015-04-22T13:22:09">
+				<text># a diagnostic function&#13;&#10;#Compactly Display the Structure of an Arbitrary R Object&#13;&#10;str(%object%)</text>
+			</clip>
+			<clip kind="text" label="Model Object Summary" date="2015-04-22T13:23:30">
+				<text>#a generic function used to produce result summaries of the results of various model fitting functions. The function invokes particular methods which depend on the class of the first argument.&#13;&#10;&#13;&#10;summary(%model%)</text>
+			</clip>
+		</folder>
 		<folder label="R.Data">
 			<clip kind="webtext" label="Download Archive" date="2015-03-18T16:11:01">
 				<text># Download archive file, if it does not exist (example)&#13;&#10;&#13;&#10;if(!(file.exists("summarySCC_PM25.rds") &amp;&amp; &#13;&#10;    file.exists("Source_Classification_Code.rds"))) { &#13;&#10;    archiveFile &lt;- "NEI_data.zip"&#13;&#10;    if(!file.exists(archiveFile)) {&#13;&#10;        archiveURL &lt;- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"&#13;&#10;        download.file(url=archiveURL,destfile=archiveFile,method="curl")&#13;&#10;    }  &#13;&#10;    unzip(archiveFile) &#13;&#10;}</text>
@@ -124,10 +135,7 @@
 			</clip>
 		</folder>
 		<folder label="R.PCA">
-			<clip kind="text" label="Perform PCA" date="2013-05-10T15:49:57">
-				<text>princomp(%dataset%)</text>
-			</clip>
-			<clip kind="text" label="Save PCA model" date="2013-05-10T15:51:03">
+			<clip kind="text" label="Perform PCA" date="2013-05-10T15:51:03">
 				<text>%modelname%&lt;-princomp(%dataset%)</text>
 			</clip>
 			<clip kind="text" label="View proportion of variance by component" date="2013-05-10T15:51:40">
@@ -165,6 +173,22 @@
 				<text>plot(%group_by%, %variable%)</text>
 			</clip>
 		</folder>
+		<folder label="R.Graphics">
+			<clip kind="text" label="Margin Parameters" date="2015-04-22T15:23:40">
+				<text>#specify graphics margin width in number of lines&#13;&#10;par(oma=c(%n%,%n%,%n%,%n%))  # all sides have n lines of space </text>
+			</clip>
+			<clip kind="text" label="Plot a 2nd data set" date="2015-04-22T15:48:53">
+				<text>#Plot a second set of data without erasing the first plot&#13;&#10;par(new=T)</text>
+			</clip>
+			<clip kind="text" label="Margin Write Text" date="2015-04-22T15:25:51">
+				<text>#Write Text into the Margins of a Plot&#13;&#10;mtext('%text%', side=%side_options%, line=%line_options%)</text>
+			</clip>
+		</folder>
+		<folder label="R.Numbers">
+			<clip kind="text" label="Rounding" date="2015-04-22T13:57:17">
+				<text>#ceiling(x)&#13;&#10;#floor(x)&#13;&#10;#trunc(x, ...)&#13;&#10;#round(x, digits = 0)&#13;&#10;#signif(x, digits = 6)&#13;&#10;&#13;&#10;round(%x%,3)</text>
+			</clip>
+		</folder>
 		<folder label="R.String.Manipulations">
 			<clip kind="text" label="CSV String from Vector" date="2014-11-12T13:38:08">
 				<text>#motivation: data frame columns to csv string&#13;&#10;%csvString%&lt;-paste(%vector%, collapse=",")</text>
@@ -184,6 +208,12 @@
 			</clip>
 		</folder>
 		<folder label="R.Data.Frames">
+			<clip kind="text" label="Remove NA Columns " date="2015-04-21T13:42:02">
+				<text># Filters a data frame df from columns whose values are all NA&#13;&#10;%df%&lt;- Filter(function(x)!all(is.na(x)), %df%)</text>
+			</clip>
+			<clip kind="text" label="Remove NA Rows" date="2015-04-21T13:46:07">
+				<text># Filters a data frame df from columns whose values are all NA&#13;&#10;%df%&lt;-%df%[apply(%df%,1,function(x)any(!is.na(x))),]</text>
+			</clip>
 			<clip kind="text" label="CSV String from Vector" date="2014-11-12T13:38:08">
 				<text>#motivation: data frame columns to csv string&#13;&#10;%csvString%&lt;-paste(%vector%, collapse=",")</text>
 			</clip>
@@ -194,7 +224,7 @@
 				<text># create an ordered character vector of a data frame names&#13;&#10;sort(names(%df%))</text>
 			</clip>
 			<clip kind="text" label="Column from Rownames" date="2014-07-23T15:24:57">
-				<text>%dataFrame%&lt;-cbind('Barcodes'=rownames(%dataFrame%),%dataFrame%)</text>
+				<text>%dataFrame%&lt;-cbind('%rowNamesColumn%'=rownames(%dataFrame%),%dataFrame%)</text>
 			</clip>
 			<clip kind="text" label="Review Data Frame" date="2014-02-05T18:33:05">
 				<text>#Review Data Frame&#13;&#10;fix(%DataFrame%)</text>
@@ -227,6 +257,12 @@
 				<text>load(%robject_filepath%)</text>
 			</clip>
 		</folder>
+		<folder label="R.Evernote">
+			<clip kind="webtext" label="Evernote Shared Notes" date="2015-04-24T11:11:10">
+				<text>http://www.evernote.com/l/AJ9GzhmcQmdAW5nWyrLgJYKisn1nW_ibZyE/</text>
+				<url>http://www.evernote.com/l/AJ9GzhmcQmdAW5nWyrLgJYKisn1nW_ibZyE/</url>
+			</clip>
+		</folder>
 		<parameters>
 			<parameter name="%column1%">
 				<history>1</history>
@@ -256,6 +292,9 @@
 				<history>ClustTest_9371</history>
 			</parameter>
 			<parameter name="%dataframe%">
+				<history>pc2.rot</history>
+				<history>pc1.rot</history>
+				<history>t10_1</history>
 				<history>carseats</history>
 				<history>Boston</history>
 				<history>VB7998</history>
@@ -269,6 +308,7 @@
 				<history>Nbayes</history>
 			</parameter>
 			<parameter name="%df%">
+				<history>d.norm</history>
 				<history>data.props</history>
 				<history>c.df</history>
 			</parameter>
@@ -374,8 +414,19 @@
 			<parameter name="%robject%">
 				<history>hcs</history>
 			</parameter>
+			<parameter name="%rowNamesColumn%">
+				<history>Features</history>
+			</parameter>
 			<parameter name="%s%">
 				<history>%s%</history>
+			</parameter>
+			<parameter name="%text%">
+				<history>3</history>
+				<history>2</history>
+				<history>1</history>
+				<history>StrangeText3</history>
+				<history>StrangeText2</history>
+				<history>StrangeText</history>
 			</parameter>
 			<parameter name="%val1%">
 				<history>3</history>

@@ -10,6 +10,12 @@
 			</clip>
 		</folder>
 		<folder label="Strings">
+			<clip kind="text" label="capitalize" date="2015-04-16T13:49:45">
+				<text>%stringTo%.toUpperCase()</text>
+			</clip>
+			<clip kind="text" label="capitalize first letter" date="2015-04-16T13:47:32">
+				<text>%stringTo%.capitalize()</text>
+			</clip>
 			<clip kind="text" label="replace a with b" date="2015-01-05T10:04:47">
 				<text>%target%.replace('%a%','%b%')</text>
 			</clip>
@@ -155,14 +161,14 @@
 			</clip>
 		</folder>
 		<folder label="CliBuilder">
+			<clip kind="text" label="New cli" date="2014-01-14T16:10:55">
+				<text>def cli = new CliBuilder(usage:'%scriptUsage%')&#13;&#10; cli.with{&#13;&#10;     h longOpt: 'help', 'Show usage information'&#13;&#10;     }&#13;&#10; def options = cli.parse(args)&#13;&#10;&#13;&#10; if (!options) {&#13;&#10;        cli.usage()&#13;&#10;        return&#13;&#10;        }&#13;&#10;if(options.h){&#13;&#10;    cli.usage()&#13;&#10;    return&#13;&#10;    } </text>
+			</clip>
 			<clip kind="text" label="Optional Cli Argument" date="2014-01-14T16:15:27">
 				<text>%singleLetterName% longOpt: '%longName%', args:%argNumber%, argName: '%argName%', '%argDescription%'</text>
 			</clip>
 			<clip kind="text" label="Required Cli Argument" date="2014-01-14T16:12:51">
 				<text>%singleLetterName% longOpt: '%longName%', args:%argNumber%, argName: '%argName%', '%argDescription%', required:true</text>
-			</clip>
-			<clip kind="text" label="New cli" date="2014-01-14T16:10:55">
-				<text>def cli = new CliBuilder(usage:'%scriptUsage%')&#13;&#10; cli.with{&#13;&#10;     h longOpt: 'help', 'Show usage information'&#13;&#10;     }&#13;&#10; def options = cli.parse(args)&#13;&#10;&#13;&#10; if (!options) {&#13;&#10;        cli.usage()&#13;&#10;        return&#13;&#10;        }&#13;&#10;if(options.h){&#13;&#10;    cli.usage()&#13;&#10;    return&#13;&#10;    } </text>
 			</clip>
 		</folder>
 		<folder label="Logic">

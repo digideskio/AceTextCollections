@@ -19,6 +19,17 @@
 			<clip kind="text" label="JIRA-Image via URL" date="2014-04-17T08:59:13">
 				<text>!%imageURL%!</text>
 			</clip>
+			<clip kind="beforeafter" label="JIRA-quote" date="2015-05-08T09:08:14">
+				<before>{quote}</before>
+				<after>{quote}</after>
+			</clip>
+			<clip kind="beforeafter" label="JIRA-code" date="2015-05-08T09:05:32">
+				<before>{code}</before>
+				<after>{code}</after>
+			</clip>
+			<clip kind="text" label="JIRA-panel" date="2015-05-08T09:09:32">
+				<text>{panel:title=%MyTitle%|borderStyle=dashed|borderColor=#ccc|titleBGColor=#F7D6C1|bgColor=#FFFFCE}</text>
+			</clip>
 		</folder>
 		<folder label="Markdown.GitHub_flavored">
 			<clip kind="text" label="h1" date="2015-02-23T10:47:44">
@@ -144,6 +155,7 @@
 				<history>5787743</history>
 			</parameter>
 			<parameter name="%linkAlias%">
+				<history>page</history>
 				<history>Contribute_Pipeline</history>
 				<history>Cambridge-InCell</history>
 				<history>Basel-Yokogawa</history>
@@ -153,9 +165,9 @@
 				<history>PP_DATASET_QC</history>
 				<history>PP_DATASET_HISTOGRAM</history>
 				<history>PP_FEATURE_ANALYSIS</history>
-				<history>PP_LOESS_NORMALIZATION</history>
 			</parameter>
 			<parameter name="%linkURL%">
+				<history>http://www.biouno.org</history>
 				<history>http://www.acetext.com/</history>
 				<history>http://www.urbandictionary.com/define.php?term=iirc</history>
 				<history>https://wiki.jenkins-ci.org/display/JENKINS/Extended+Choice+Parameter+plugin</history>
@@ -191,6 +203,7 @@
 				<history>Text</history>
 			</parameter>
 			<parameter name="%text%">
+				<history>BioUno</history>
 				<history>AceText</history>
 				<history>IIRC</history>
 				<history>extended choise plugin</history>
@@ -199,6 +212,7 @@
 				<history>def env = System.getenv()</history>
 			</parameter>
 			<parameter name="%URL%">
+				<history>https://wiki.jenkins-ci.org/display/JENKINS/Active+Choices+Plugin</history>
 				<history>http://nrchbs-wdl30631.nibr.novartis.net:8080/job/Contribute_Pipeline/</history>
 				<history>http://nrusca-s4474.nibr.novartis.net:8080/view/5.CellProfiler_LinuxCluster/job/CellProfiler_JClustSelect/</history>
 				<history>http://nrchbs-wdl30631.nibr.novartis.net:8080/view/8.Yokogawa%20View/job/CellProfiler_JClustSelect_Yokogawa/</history>
@@ -208,7 +222,6 @@
 				<history>http://nrusca-sd189.nibr.novartis.net:8080/job/PP_DATASET_QC/build</history>
 				<history>http://nrusca-sd189.nibr.novartis.net:8080/job/PP_DATASET_HISTOGRAM/build?delay=0sec</history>
 				<history>http://nrusca-sd189.nibr.novartis.net:8080/job/PP_FEATURE_ANALYSIS/build</history>
-				<history>http://nrusca-sd189.nibr.novartis.net:8080/job/PP_LOESS_NORMALIZATION/build</history>
 			</parameter>
 		</parameters>
 	</collection>
