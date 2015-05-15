@@ -165,6 +165,9 @@
 			<parameter name="%email%">
 				<history>imoutsatsos@msn.com</history>
 			</parameter>
+			<parameter name="%message%">
+				<history>"Updates for 5/12/2015"</history>
+			</parameter>
 			<parameter name="%name%">
 				<history>imoutsatsos</history>
 			</parameter>
