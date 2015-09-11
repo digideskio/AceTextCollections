@@ -67,9 +67,6 @@
 			</clip>
 		</folder>
 		<folder label="Jenkins">
-			<clip kind="text" label="Jenkins URL" date="2014-05-14T16:13:43">
-				<text>//get the Jenkins URL&#13;&#10;import hudson.model.*&#13;&#10;jenkinsURL=jenkins.model.Jenkins.instance.getRootUrl()</text>
-			</clip>
 			<clip kind="text" label="Choice List from Static Properties" date="2014-05-15T13:57:32">
 				<text>/* &#13;&#10; Generates a dynamic choice list from a static property file in userContent/properties&#13;&#10;  Assumes a property file with propertyFileName and given propertyKey exists in Jenkins properties folder&#13;&#10;*/&#13;&#10;import hudson.model.*&#13;&#10;def jenkinsURL=jenkins.model.Jenkins.instance.getRootUrl()&#13;&#10;def propAddress="$jenkinsURL/userContent/properties/%propertyFileName%.properties"&#13;&#10;def propKey= '%propertyKey%'&#13;&#10;&#13;&#10;def props= new Properties()&#13;&#10;props.load(new URL(propAddress).openStream())&#13;&#10;def choices=[]&#13;&#10;if (props.get(propKey)!=null){&#13;&#10; props.get(propKey).split(",").each{&#13;&#10;      choices.add(it) }&#13;&#10;}else{&#13;&#10;choices.add('NOT SET')&#13;&#10;}&#13;&#10;return choices</text>
 			</clip>
@@ -93,6 +90,20 @@
 			</clip>
 			<clip kind="text" label="External.Groovy" date="2012-12-12T15:26:16">
 				<text>def env = System.getenv()&#13;&#10;//by mapping environment vars to options allow easy mapping with CLI script arguments &#13;&#10;def options= new HashMap()&#13;&#10;	options.d=env['WORKSPACE']&#13;&#10;	options.i=env['SOURCE_FOLDER']</text>
+			</clip>
+		</folder>
+		<folder label="Jenkins.API">
+			<clip kind="text" label="Build Environment" date="2015-07-22T14:46:37">
+				<text>import hudson.model.*&#13;&#10;//def choices=[]&#13;&#10;def job = hudson.model.Hudson.instance.getItem("%JOB_NAME%")&#13;&#10;&#13;&#10;def build=job.getBuildByNumber(%%BUILD_NUMBER%)&#13;&#10;env=[:] &#13;&#10;env= build.getEnvironment(TaskListener.NULL);&#13;&#10;//choices=env.getKeys()&#13;&#10;  &#13;&#10;//return choices</text>
+			</clip>
+			<clip kind="text" label="Jenkins URL" date="2014-05-14T16:13:43">
+				<text>//get the Jenkins URL&#13;&#10;import hudson.model.*&#13;&#10;jenkinsURL=jenkins.model.Jenkins.instance.getRootUrl()</text>
+			</clip>
+			<clip kind="text" label="Job.Workspace.Path" date="2015-07-20T09:21:27">
+				<text>//workspace path of specified job&#13;&#10;println(jenkins.model.Jenkins.instance.getJob("CellProfiler_JenkinsRun").getWorkspace())</text>
+			</clip>
+			<clip kind="text" label="All.job.names" date="2015-07-20T09:20:56">
+				<text>//all job name&#13;&#10;jenkins.model.Jenkins.instance.items.each {&#13;&#10;  println "Job: ${it.name}"&#13;&#10;}&#13;&#10; </text>
 			</clip>
 		</folder>
 		<folder label="FileActions">
@@ -196,6 +207,9 @@
 			</clip>
 		</folder>
 		<folder label="Collections">
+			<clip kind="text" label="flatten" date="2015-08-13T09:16:20">
+				<text>/*&#13;&#10;Flatten a Set. &#13;&#10;This Set and any nested arrays or collections have their contents (recursively) added to the new Set.&#13;&#10;Useful when you are adding collections to create a new and just interested in the collection elements&#13;&#10;*/&#13;&#10;&#13;&#10;%set%.flatten()</text>
+			</clip>
 			<clip kind="text" label="sort a list" date="2015-03-13T16:40:19">
 				<text>//alphanumerical string sort&#13;&#10;%list%.sort()</text>
 			</clip>
@@ -265,6 +279,7 @@
 				<history>http://nrusca-sd189.nibr.novartis.net:8080/job/CellProfiler_JClustSelect/31/api/json?pretty=true</history>
 			</parameter>
 			<parameter name="%argDescription%">
+				<history>folder to list</history>
 				<history>path to output file</history>
 				<history>comma separated plate list</history>
 				<history>column to pivot</history>
@@ -275,6 +290,7 @@
 				<history>Jenkins server</history>
 			</parameter>
 			<parameter name="%argName%">
+				<history>folder</history>
 				<history>output file</history>
 				<history>plate list</history>
 				<history>pivot column</history>
@@ -286,6 +302,9 @@
 			</parameter>
 			<parameter name="%argNumber%">
 				<history>1</history>
+			</parameter>
+			<parameter name="%BUILD_NUMBER%">
+				<history/>
 			</parameter>
 			<parameter name="%caseVAL1%">
 				<history>IMAGE</history>
@@ -333,6 +352,7 @@
 				<history>1</history>
 			</parameter>
 			<parameter name="%file%">
+				<history>testCase</history>
 				<history>recovery</history>
 				<history>f</history>
 				<history>outFile</history>
@@ -362,6 +382,9 @@
 			<parameter name="%it%">
 				<history>k</history>
 			</parameter>
+			<parameter name="%JOB_NAME%">
+				<history>DMPQM369_MERGE</history>
+			</parameter>
 			<parameter name="%jobName%">
 				<history>PP_UPLOAD_DATA</history>
 			</parameter>
@@ -372,6 +395,7 @@
 				<history>CP_Jobs_Status</history>
 			</parameter>
 			<parameter name="%longName%">
+				<history>folder name</history>
 				<history>output</history>
 				<history>plates</history>
 				<history>pivot</history>
@@ -402,6 +426,7 @@
 				<history>1</history>
 			</parameter>
 			<parameter name="%propertiesCanonicalFileName%">
+				<history>./merge.properties</history>
 				<history>./imagelist.properties</history>
 			</parameter>
 			<parameter name="%propertiesFileName%">
@@ -426,11 +451,13 @@
 				<history>3</history>
 			</parameter>
 			<parameter name="%scriptUsage%">
+				<history>listDir -d</history>
 				<history>operTempInFile -p -o</history>
 				<history>groupByPivot -f -g -p</history>
 				<history>JsonBuild.groovy -s -j -b</history>
 			</parameter>
 			<parameter name="%singleLetterName%">
+				<history>d</history>
 				<history>o</history>
 				<history>p</history>
 				<history>g</history>
@@ -452,6 +479,7 @@
 				<history>wellPlateInfo</history>
 			</parameter>
 			<parameter name="%WriteWhat%">
+				<history>writeWhat</history>
 				<history>lines[it]</history>
 			</parameter>
 		</parameters>

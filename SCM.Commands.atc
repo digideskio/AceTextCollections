@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <act:acetext xmlns:act="http://www.acetext.com/acetext20.xsd" version="2.0">
 	<collection label="SCM.Commands" sort="none">
-		<clip kind="text" date="2015-03-02T16:45:19">
-			<text>what.is.upstream</text>
-		</clip>
 		<folder label="Maven">
 			<clip kind="text" label="create project" date="2013-04-30T15:42:48">
 				<text>mvn archetype:generate -DgroupId=%package% -DartifactId=%myapp% -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false</text>
