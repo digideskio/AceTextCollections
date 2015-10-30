@@ -2,6 +2,10 @@
 <act:acetext xmlns:act="http://www.acetext.com/acetext20.xsd" version="2.0">
 	<collection label="SCM.Commands" sort="none">
 		<folder label="Maven">
+			<clip kind="webtext" label="download Artifact+Dependencies" date="2015-10-14T15:35:15">
+				<text>mvn org.apache.maven.plugins:maven-dependency-plugin:RELEASE:get "-DartifactId=%artifactId%" "-DgroupId=%groupId%" "-Dversion=%version%"</text>
+				<url>http://stackoverflow.com/questions/11262861/how-do-i-download-a-maven-artifact-at-the-command-line-without-using-dependency</url>
+			</clip>
 			<clip kind="text" label="create project" date="2013-04-30T15:42:48">
 				<text>mvn archetype:generate -DgroupId=%package% -DartifactId=%myapp% -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false</text>
 			</clip>
@@ -159,14 +163,25 @@
 			</folder>
 		</folder>
 		<parameters>
+			<parameter name="%artifactId%">
+				<history>spark-csv_2.11</history>
+				<history>com.databricks</history>
+			</parameter>
 			<parameter name="%email%">
 				<history>imoutsatsos@msn.com</history>
+			</parameter>
+			<parameter name="%groupId%">
+				<history>com.databricks</history>
+				<history>spark-csv_2.11</history>
 			</parameter>
 			<parameter name="%message%">
 				<history>"Updates for 5/12/2015"</history>
 			</parameter>
 			<parameter name="%name%">
 				<history>imoutsatsos</history>
+			</parameter>
+			<parameter name="%version%">
+				<history>1.2.0</history>
 			</parameter>
 		</parameters>
 	</collection>

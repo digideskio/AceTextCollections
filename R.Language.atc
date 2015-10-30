@@ -19,6 +19,12 @@
 			<clip kind="text" label="Model Object Summary" date="2015-04-22T13:23:30">
 				<text>#a generic function used to produce result summaries of the results of various model fitting functions. The function invokes particular methods which depend on the class of the first argument.&#13;&#10;&#13;&#10;summary(%model%)</text>
 			</clip>
+			<clip kind="text" label="Load.RObject" date="2014-03-06T15:20:53">
+				<text>load(%robject_filepath%)</text>
+			</clip>
+			<clip kind="text" label="Save.Robject" date="2014-03-06T15:19:48">
+				<text>save(%robject%,file="%data%.Rda")</text>
+			</clip>
 		</folder>
 		<folder label="R.Data">
 			<clip kind="webtext" label="Download Archive" date="2015-03-18T16:11:01">
@@ -46,15 +52,31 @@
 					<text>%data_frame%&lt;-read.csv(file="%csv_canonicalPath%", header=TRUE, sep=",")</text>
 				</clip>
 			</folder>
-			<folder label="Manipulate Data Frames">
+			<folder label="Manipulate Data Frame">
+				<clip kind="text" label="Impute NA with Median" date="2015-10-29T16:33:24">
+					<text>#this will replace NA values with the column median&#13;&#10;#x&lt;-as.numeric(as.character(x)) #first convert each column into numeric if it is from factor&#13;&#10;#assume columns are numeric or use above line also&#13;&#10;&#13;&#10;fImputeNumeric=function(x){   &#13;&#10;   x[is.na(x)] =median(x, na.rm=TRUE) #convert the item with NA to median value from the column&#13;&#10;   x #display the column&#13;&#10;}&#13;&#10;&#13;&#10;#then apply function to data frame&#13;&#10;%df.impNum%=data.frame(apply(%df%,2,fImputeNumeric))</text>
+				</clip>
 				<clip kind="text" label="Add Column from Rownames" date="2014-07-23T15:24:57">
 					<text>%dataFrame%&lt;-cbind('%rowNamesColumn%'=rownames(%dataFrame%),%dataFrame%)</text>
+				</clip>
+				<clip kind="text" label="Order.byRowname" date="2014-11-04T15:03:03">
+					<text># Used for sorting data frames from properties in key order.&#13;&#10;%ord.df%&lt;-cbind(rownames(%df%)[order(rownames(%df%))], %df%[order(rownames(%df%)),])</text>
+				</clip>
+				<clip kind="text" label="Remove NA_NAN_INF Rows" date="2015-10-28T10:41:21">
+					<text>%df%= %df%[which(rowSums(is.finite(as.matrix(%df%)))==ncol(%df%)),]</text>
+				</clip>
+				<clip kind="text" label="Remove INF Rows" date="2015-10-28T13:34:32">
+					<text>#assumes that all of your variables are numeric. if not you must subset&#13;&#10;%df%&lt;-%df%[is.finite(rowSums(%df%)),]</text>
 				</clip>
 				<clip kind="text" label="Remove NA Rows" date="2015-04-21T13:46:07">
 					<text># Filters a data frame df from columns whose values are all NA&#13;&#10;%df%&lt;-%df%[apply(%df%,1,function(x)any(!is.na(x))),]</text>
 				</clip>
 				<clip kind="text" label="Remove NA Columns " date="2015-04-21T13:42:02">
 					<text># Filters a data frame df from columns whose values are all NA&#13;&#10;%df%&lt;- Filter(function(x)!all(is.na(x)), %df%)</text>
+				</clip>
+				<clip kind="webtext" label="Transpose" date="2015-10-29T17:04:07">
+					<text>#reversing rows and columns&#13;&#10;%df%.transpose&lt;-t(%df%)</text>
+					<url>http://www.r-statistics.com/tag/transpose/</url>
 				</clip>
 				<clip kind="text" label="Subset.byColumn" date="2013-05-10T15:57:57">
 					<text>%newDF%&lt;-subset(%df_name%, select=c(%column1%,%column2%,%column3%))</text>
@@ -63,16 +85,16 @@
 					<text>%newDF%&lt;-%df%[,names(%df%) %in% %stringList%]</text>
 				</clip>
 				<clip kind="text" label="Subset.NumericColumns" date="2014-03-06T15:15:35">
-					<text>#subset numeric columns of dataframe&#13;&#10;%mydf"nums &lt;- %mydf%[sapply(%mydf%, is.numeric)]</text>
-				</clip>
-				<clip kind="text" label="Order.byRowname" date="2014-11-04T15:03:03">
-					<text># Used for sorting data frames from properties in key order.&#13;&#10;%ord.df%&lt;-cbind(rownames(%df%)[order(rownames(%df%))], %df%[order(rownames(%df%)),])</text>
-				</clip>
-				<clip kind="text" label="Merge Data Frames" date="2013-05-10T15:59:27">
-					<text>%newDF%&lt;-merge(%df1_name%, %df2_name%,by=c("%column1%","%column2%")</text>
+					<text>#subset numeric columns of dataframe&#13;&#10;%mydf%_nums &lt;- %mydf%[sapply(%mydf%, is.numeric)]</text>
 				</clip>
 			</folder>
 			<folder label="Review Data Frames">
+				<clip kind="text" label="Summary Stats Table #1" date="2015-10-29T16:38:21">
+					<text>#Step 1: Register function&#13;&#10;my.summary &lt;- function(x,...){&#13;&#10;  c(mean=mean(x, ...),&#13;&#10;    sd=sd(x, ...),&#13;&#10;    median=median(x, ...),&#13;&#10;    min=min(x, ...),&#13;&#10;    max=max(x,...), &#13;&#10;    n=length(x),&#13;&#10;    nFinite=sum(is.finite(x)),&#13;&#10;    NAcount=sum(is.na(x)),&#13;&#10;    InfCount=sum(is.infinite(x)),&#13;&#10;    NanCount=sum(is.nan(x)))&#13;&#10;}&#13;&#10;&#13;&#10;#Step 2: Create data frame summary&#13;&#10;%df%.summary&lt;-apply(%df%,2,my.summary)</text>
+				</clip>
+				<clip kind="text" label="Summary Stats Table #2" date="2015-10-29T16:42:09">
+					<text>#Includes InterQuartiles but no NA or INF count&#13;&#10;&#13;&#10;%df%.sumTable&lt;-as.data.frame(sapply(%df%, summary))</text>
+				</clip>
 				<clip kind="text" label="Look at DF structure" date="2015-09-11T10:47:20">
 					<text># Factors, num, int&#13;&#10;str(%df%)</text>
 				</clip>
@@ -89,11 +111,8 @@
 			<clip kind="text" label="Write to CSV" date="2013-05-10T16:02:15">
 				<text>write.csv(%df_name%, "%csv_file_path%")</text>
 			</clip>
-			<clip kind="text" label="Save.Robject" date="2014-03-06T15:19:48">
-				<text>save(%robject%,file="%data%.Rda")</text>
-			</clip>
-			<clip kind="text" label="Load.RObject" date="2014-03-06T15:20:53">
-				<text>load(%robject_filepath%)</text>
+			<clip kind="text" label="Merge Data Frames" date="2013-05-10T15:59:27">
+				<text>%newDF%&lt;-merge(%df1_name%, %df2_name%,by=c("%column1%","%column2%")</text>
 			</clip>
 		</folder>
 		<folder label="R.In.Jenkins">
@@ -144,7 +163,7 @@
 		</folder>
 		<folder label="R.Logic">
 			<clip kind="text" label="Check for Empty or Null" date="2015-08-28T12:00:54">
-				<text># Logic check that a list is empty or null&#13;&#10;  if(is.na(%list%)||length(%list%)==0){&#13;&#10;  print('List is empty')&#13;&#10;}else{&#13;&#10;  print('List Contents')&#13;&#10;  %list%&#13;&#10;}</text>
+				<text># Logic check that a list/data-frame is empty or null&#13;&#10;  if(is.na(%list%)||length(%list%)==0){&#13;&#10;  print('List is empty')&#13;&#10;}else{&#13;&#10;  print('List Contents')&#13;&#10;  %list%&#13;&#10;}</text>
 			</clip>
 		</folder>
 		<folder label="R.on.Linux">
@@ -188,6 +207,11 @@
 			</clip>
 			<clip kind="text" label="Predict with confidence" date="2014-02-05T12:48:22">
 				<text>predict(%fit%,data.frame(%x%=c(%val1%,%val2%,%val3%)),interval="confidence")</text>
+			</clip>
+		</folder>
+		<folder label="R.Functions">
+			<clip kind="text" label="Variable Interpolation" date="2015-10-08T09:44:25">
+				<text>eval(parse(text=sprintf("%s_%s",%var1%,%var2%)))</text>
 			</clip>
 		</folder>
 		<folder label="3.Linear Regression (Multiple)">
@@ -276,11 +300,22 @@
 			</clip>
 		</folder>
 		<folder label="R.Plot">
+			<clip kind="text" label="Simple Dot Plot" date="2015-10-07T11:12:40">
+				<text>plot(%var%)</text>
+			</clip>
 			<clip kind="text" label="XY DotPlot" date="2013-05-09T10:47:31">
 				<text>plot(%x_var%,%y_var%)</text>
 			</clip>
-			<clip kind="text" label="BoxPlot GroupBy" date="2013-05-09T09:48:23">
+			<clip kind="text" label="Plot Var Distibution" date="2015-10-07T11:15:04">
+				<text>plot(density(%var%))</text>
+			</clip>
+			<clip kind="webtext" label="Add line to Plot" date="2015-10-07T11:13:35">
+				<text>#for example to indicate median or mean&#13;&#10;# draw horizontal line at mean&#13;&#10;abline(h=median(%var%), col=4,lty=2)</text>
+				<url>https://cran.r-project.org/doc/contrib/Lemon-kickstart/index.html</url>
+			</clip>
+			<clip kind="webtext" label="BoxPlot GroupBy" date="2013-05-09T09:48:23">
 				<text>plot(%group_by%, %variable%)</text>
+				<url/>
 			</clip>
 		</folder>
 		<folder label="R.Graphics">
@@ -379,6 +414,7 @@
 				<history>ClustTest_9371</history>
 			</parameter>
 			<parameter name="%dataframe%">
+				<history>hcsNormSummary</history>
 				<history>pc2.rot</history>
 				<history>pc1.rot</history>
 				<history>t10_1</history>
@@ -395,9 +431,10 @@
 				<history>Nbayes</history>
 			</parameter>
 			<parameter name="%df%">
+				<history>good.norm</history>
+				<history>d.norm</history>
 				<history>anno</history>
 				<history>b.df</history>
-				<history>d.norm</history>
 				<history>data.props</history>
 				<history>c.df</history>
 			</parameter>
@@ -457,6 +494,10 @@
 				<history>iris</history>
 				<history>Boston</history>
 			</parameter>
+			<parameter name="%list%">
+				<history>d.extreme</history>
+				<history>ref.data</history>
+			</parameter>
 			<parameter name="%Mahalanobis%">
 				<history>AggregateStats</history>
 				<history>DataExport</history>
@@ -465,6 +506,9 @@
 			<parameter name="%modelname%">
 				<history>modvb832_s3</history>
 				<history>modvb832_s1</history>
+			</parameter>
+			<parameter name="%mydf%">
+				<history>dnorm</history>
 			</parameter>
 			<parameter name="%nameOfDataFrame%">
 				<history>hcsAgSum</history>
@@ -516,6 +560,9 @@
 			<parameter name="%s%">
 				<history>%s%</history>
 			</parameter>
+			<parameter name="%s_%">
+				<history/>
+			</parameter>
 			<parameter name="%text%">
 				<history>3</history>
 				<history>2</history>
@@ -533,6 +580,12 @@
 			<parameter name="%val3%">
 				<history>26</history>
 			</parameter>
+			<parameter name="%var1%">
+				<history>assignMDCenter</history>
+			</parameter>
+			<parameter name="%var2%">
+				<history/>
+			</parameter>
 			<parameter name="%variable%">
 				<history>AREA_OCCUPIED_TOTALAREA_GRANULES</history>
 			</parameter>
@@ -544,9 +597,15 @@
 				<history>lstat</history>
 				<history>crim</history>
 			</parameter>
+			<parameter name="%x_var%">
+				<history>ref$Count_Cells</history>
+			</parameter>
 			<parameter name="%y%">
 				<history>Sepal.Length</history>
 				<history>medv</history>
+			</parameter>
+			<parameter name="%y_var%">
+				<history>ref$Count_Nuclei</history>
 			</parameter>
 			<parameter name="%ZIP_NAME%">
 				<history>C:\CWorkspace\TEMP\XLConnectJars_0.2-9.tar.gz</history>
