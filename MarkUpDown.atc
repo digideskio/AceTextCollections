@@ -217,6 +217,7 @@
 				<history>def env = System.getenv()</history>
 			</parameter>
 			<parameter name="%URL%">
+				<history>http://nrchbs-wdl30631.nibr.novartis.net:8080/view/1.HELP/</history>
 				<history>http://nrusca-s4474.nibr.novartis.net:8080/job/PP_DATASET_PUBLISH/build?delay=0sec</history>
 				<history>http://web.global.nibr.novartis.net/apps/jira/secure/attachment/68486/MD_Raw_Normalized.png</history>
 				<history>http://web.global.nibr.novartis.net/apps/confluence/display/DMPQM/PP_DATASET_MERGE</history>
@@ -226,7 +227,6 @@
 				<history>http://nrchbs-wdl30631.nibr.novartis.net:8080/job/Contribute_Pipeline</history>
 				<history>http://web.global.nibr.novartis.net/apps/jira/secure/thumbnail/61769/_thumb_61769.png</history>
 				<history>http://share.nibr.novartis.net/communities/HUG/_layouts/OneNote.aspx?id=%2fcommunities%2fHUG%2fHighcontent%20meetings_Basel%2fHigh%20Content%20Imaging%20User%20Group&amp;wd=target%28HP.Image_Analysis.one%7cAC94CF2E-C2D0-4A5E-9248-437E351CC253%2fCellProfiler%20Cluster%20Runs%3a%20Troubleshooting%7c547EA0A6-EA14-42FA-AD0D-08E36DC11472%2f%29</history>
-				<history>https://wiki.jenkins-ci.org/display/JENKINS/Active+Choices+Plugin</history>
 			</parameter>
 		</parameters>
 	</collection>

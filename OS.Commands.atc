@@ -32,6 +32,14 @@
 			</clip>
 		</folder>
 		<folder label="Linux Commands">
+			<folder label="System Info">
+				<clip kind="text" label="View Enviroment Variables" date="2015-11-10T11:13:43">
+					<text>printenv | more</text>
+				</clip>
+				<clip kind="text" label="Red Hat Release" date="2015-11-09T16:43:51">
+					<text>cat /etc/redhat-release</text>
+				</clip>
+			</folder>
 			<folder label="Networking">
 				<clip kind="text" label="enable SSH server" date="2014-11-05T09:46:03">
 					<text>sudo start ssh</text>
@@ -60,11 +68,11 @@
 			<clip kind="text" label="List files only" acetype="ln" date="2013-08-12T09:13:22">
 				<text>ls -l | egrep -v '^d'</text>
 			</clip>
-			<clip kind="text" label="Count Files" acetype="ln" date="2012-11-28T09:51:26">
-				<text>ls %NAMEFILTER% -1|wc -l</text>
-			</clip>
 			<clip kind="text" label="Find files (current dir no recurse)" acetype="ln" date="2012-12-12T09:12:40">
 				<text>find . -iname '%NameToFind%' -prune</text>
+			</clip>
+			<clip kind="text" label="Count Files" acetype="ln" date="2012-11-28T09:51:26">
+				<text>ls %NAMEFILTER% -1|wc -l</text>
 			</clip>
 		</folder>
 		<folder label="Windows.cmd">
@@ -79,6 +87,9 @@
 			</clip>
 		</folder>
 		<parameters>
+			<parameter name="%username%">
+				<history>moutsio1</history>
+			</parameter>
 			<parameter name="%your_email%">
 				<history>ioannis.moutsatsos@novartis.com</history>
 			</parameter>

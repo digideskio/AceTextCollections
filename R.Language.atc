@@ -78,6 +78,13 @@
 					<text>#reversing rows and columns&#13;&#10;%df%.transpose&lt;-t(%df%)</text>
 					<url>http://www.r-statistics.com/tag/transpose/</url>
 				</clip>
+				<clip kind="text" label="Sort" date="2015-11-05T13:40:52">
+					<text># sort by var1&#13;&#10;%newdf% &lt;- %df%[order(%var1%),]&#13;&#10;# sort by var1 and var2 (descending)&#13;&#10;newdata2 &lt;- old[order(var1, -var2),]&#13;&#10;%newdf% &lt;- %df%[order(%var1%, -%var2%),]</text>
+				</clip>
+				<clip kind="webtext" label="Split" date="2015-11-04T13:01:30">
+					<text>#function divides the data in a vector&#13;&#10;%g%&lt;-split(%df%,%on_index%,,drop=FALSE)&#13;&#10;&#13;&#10;# you can then create calculations on each group created by split&#13;&#10;#sapply(%g%,length)&#13;&#10;#sapply(%g%,mean)&#13;&#10;</text>
+					<url>http://www.endmemo.com/program/R/split.php</url>
+				</clip>
 				<clip kind="text" label="Subset.byColumn" date="2013-05-10T15:57:57">
 					<text>%newDF%&lt;-subset(%df_name%, select=c(%column1%,%column2%,%column3%))</text>
 				</clip>
@@ -86,6 +93,10 @@
 				</clip>
 				<clip kind="text" label="Subset.NumericColumns" date="2014-03-06T15:15:35">
 					<text>#subset numeric columns of dataframe&#13;&#10;%mydf%_nums &lt;- %mydf%[sapply(%mydf%, is.numeric)]</text>
+				</clip>
+				<clip kind="webtext" label="Unsplit" date="2015-11-04T13:07:50">
+					<text>#Reverses the result of a split&#13;&#10;unsplit(%g%,%on_index%)</text>
+					<url>http://www.endmemo.com/program/R/split.php</url>
 				</clip>
 			</folder>
 			<folder label="Review Data Frames">
@@ -340,6 +351,9 @@
 			</clip>
 		</folder>
 		<folder label="R.String.Manipulations">
+			<clip kind="text" label="Execute String" date="2015-11-06T09:25:56">
+				<text># Evaluates the string as code&#13;&#10;eval(parse(text=%str%))</text>
+			</clip>
 			<clip kind="text" label="CSV String from Vector" date="2014-11-12T13:38:08">
 				<text>#motivation: data frame columns to csv string&#13;&#10;%csvString%&lt;-paste(%vector%, collapse=",")</text>
 			</clip>
