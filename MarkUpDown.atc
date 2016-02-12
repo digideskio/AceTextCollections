@@ -3,10 +3,11 @@
 	<collection label="MarkUpDown" sort="none">
 		<folder label="JIRA-Markup">
 			<clip kind="text" label="JIRA-Bulleted List" date="2014-04-17T09:01:44">
-				<text>*%item1%&#13;&#10;*%item2%&#13;&#10;**%indentedItem3%</text>
+				<text>* %item1%&#13;&#10;* %item2%&#13;&#10;** %indentedItem3%</text>
 			</clip>
-			<clip kind="text" label="JIRA-link (external)" date="2014-04-17T08:55:39">
-				<text>[%linkAlias%|%URL%]</text>
+			<clip kind="beforeafter" label="JIRA-link (external)" date="2014-04-17T08:55:39">
+				<before>[</before>
+				<after>|%URL%]</after>
 			</clip>
 			<clip kind="webtext" label="JIRA-Text Effects" date="2013-06-14T10:38:44">
 				<text>Text effects are used to change the formatting of words and sentences.&#13;&#10;Notation	Comment&#13;&#10;*strong*	Makes text strong.&#13;&#10;_emphasis_	Makes text emphasis..&#13;&#10;??citation??	Makes text in citation.&#13;&#10;-deleted-	Makes text as deleted.&#13;&#10;+inserted+	Makes text as inserted.&#13;&#10;^superscript^	Makes text in superscript.&#13;&#10;~subscript~	Makes text in subscript.&#13;&#10;{{monospaced}}	Makes text as monospaced.&#13;&#10;bq. Some block quoted text	To make an entire paragraph into a block quotation, place "bq. " before it.&#13;&#10;Example: &#13;&#10;Some block quoted text&#13;&#10;{quote}&#13;&#10;here is quotable&#13;&#10;content to be quoted&#13;&#10;{quote}	&#13;&#10;Quote a block of text that's longer than one paragraph.&#13;&#10;Example:&#13;&#10;here is quotable&#13;&#10;content to be quoted&#13;&#10;{color:red} &#13;&#10;look ma, red text! &#13;&#10;{color}	 Changes the color of a block of text.&#13;&#10;Example: look ma, red text!&#13;&#10;</text>
@@ -18,6 +19,17 @@
 			</clip>
 			<clip kind="text" label="JIRA-Image via URL" date="2014-04-17T08:59:13">
 				<text>!%imageURL%!</text>
+			</clip>
+			<clip kind="beforeafter" label="JIRA-quote" date="2015-05-08T09:08:14">
+				<before>{quote}</before>
+				<after>{quote}</after>
+			</clip>
+			<clip kind="beforeafter" label="JIRA-code" date="2015-05-08T09:05:32">
+				<before>{code}</before>
+				<after>{code}</after>
+			</clip>
+			<clip kind="text" label="JIRA-panel" date="2015-05-08T09:09:32">
+				<text>{panel:title=%MyTitle%|borderStyle=dashed|borderColor=#ccc|titleBGColor=#F7D6C1|bgColor=#FFFFCE}</text>
 			</clip>
 		</folder>
 		<folder label="Markdown.GitHub_flavored">
@@ -73,6 +85,10 @@
 			</clip>
 		</folder>
 		<folder label="Wiki Markup">
+			<clip kind="beforeafter" label="code" date="2015-07-02T17:02:32">
+				<before>{code}</before>
+				<after>{code}</after>
+			</clip>
 			<clip kind="text" label="Bullet">
 				<text>*</text>
 			</clip>
@@ -146,8 +162,21 @@
 			<parameter name="%JOBID%">
 				<history>5787743</history>
 			</parameter>
+			<parameter name="%linkAlias%">
+				<history>this</history>
+				<history>OneNotes</history>
+				<history>page</history>
+				<history>Contribute_Pipeline</history>
+				<history>Cambridge-InCell</history>
+				<history>Basel-Yokogawa</history>
+				<history>Basel-InCell</history>
+				<history>Scriptler</history>
+				<history>UTIL_VIS_COMPARE</history>
+				<history>PP_DATASET_QC</history>
+			</parameter>
 			<parameter name="%linkURL%">
 				<history>https://wiki.jenkins-ci.org/display/JENKINS/inheritance-plugin</history>
+				<history>http://www.biouno.org</history>
 				<history>http://www.acetext.com/</history>
 				<history>http://www.urbandictionary.com/define.php?term=iirc</history>
 				<history>https://wiki.jenkins-ci.org/display/JENKINS/Extended+Choice+Parameter+plugin</history>
@@ -183,12 +212,25 @@
 				<history>Text</history>
 			</parameter>
 			<parameter name="%text%">
+				<history>BioUno</history>
 				<history>AceText</history>
 				<history>IIRC</history>
 				<history>extended choise plugin</history>
 			</parameter>
 			<parameter name="%theCode%">
 				<history>def env = System.getenv()</history>
+			</parameter>
+			<parameter name="%URL%">
+				<history>http://nrchbs-wdl30631.nibr.novartis.net:8080/view/1.HELP/</history>
+				<history>http://nrusca-s4474.nibr.novartis.net:8080/job/PP_DATASET_PUBLISH/build?delay=0sec</history>
+				<history>http://web.global.nibr.novartis.net/apps/jira/secure/attachment/68486/MD_Raw_Normalized.png</history>
+				<history>http://web.global.nibr.novartis.net/apps/confluence/display/DMPQM/PP_DATASET_MERGE</history>
+				<history>http://web.global.nibr.novartis.net/apps/jira/secure/attachment/65432/Untitled_Clipping_080315_121007_PM.jpg</history>
+				<history>https://wiki.jenkins-ci.org/display/JENKINS/Metadata+plugin</history>
+				<history>http://svn.nibr.novartis.intra/svn/DMP_CHBS/QMIC/IMAGE_DATA/Processing/monitorCsvOutput_build.groovy</history>
+				<history>http://nrchbs-wdl30631.nibr.novartis.net:8080/job/Contribute_Pipeline</history>
+				<history>http://web.global.nibr.novartis.net/apps/jira/secure/thumbnail/61769/_thumb_61769.png</history>
+				<history>http://share.nibr.novartis.net/communities/HUG/_layouts/OneNote.aspx?id=%2fcommunities%2fHUG%2fHighcontent%20meetings_Basel%2fHigh%20Content%20Imaging%20User%20Group&amp;wd=target%28HP.Image_Analysis.one%7cAC94CF2E-C2D0-4A5E-9248-437E351CC253%2fCellProfiler%20Cluster%20Runs%3a%20Troubleshooting%7c547EA0A6-EA14-42FA-AD0D-08E36DC11472%2f%29</history>
 			</parameter>
 		</parameters>
 	</collection>

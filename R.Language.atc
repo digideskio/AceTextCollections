@@ -9,9 +9,186 @@
 				<text>ore.connect(user = "NGSTESTER", sid = "CABDMD", host = "uscalx4244.nibr.novartis.net", password = "tester123", port = 1521, all = TRUE)</text>
 			</clip>
 		</folder>
+		<folder label="R.Objects">
+			<clip kind="text" label="Display Object class" date="2015-04-22T13:27:04">
+				<text>class(%object%)</text>
+			</clip>
+			<clip kind="text" label="Display Object Structure" date="2015-04-22T13:22:09">
+				<text># a diagnostic function&#13;&#10;#Compactly Display the Structure of an Arbitrary R Object&#13;&#10;str(%object%)</text>
+			</clip>
+			<clip kind="text" label="Model Object Summary" date="2015-04-22T13:23:30">
+				<text>#a generic function used to produce result summaries of the results of various model fitting functions. The function invokes particular methods which depend on the class of the first argument.&#13;&#10;&#13;&#10;summary(%model%)</text>
+			</clip>
+			<clip kind="text" label="Load.RObject" date="2014-03-06T15:20:53">
+				<text>load(%robject_filepath%)</text>
+			</clip>
+			<clip kind="text" label="Save.Robject" date="2014-03-06T15:19:48">
+				<text>save(%robject%,file="%data%.Rda")</text>
+			</clip>
+		</folder>
+		<folder label="R.Data">
+			<clip kind="webtext" label="Download Archive" date="2015-03-18T16:11:01">
+				<text># Download archive file, if it does not exist (example)&#13;&#10;&#13;&#10;if(!(file.exists("summarySCC_PM25.rds") &amp;&amp; &#13;&#10;    file.exists("Source_Classification_Code.rds"))) { &#13;&#10;    archiveFile &lt;- "NEI_data.zip"&#13;&#10;    if(!file.exists(archiveFile)) {&#13;&#10;        archiveURL &lt;- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"&#13;&#10;        download.file(url=archiveURL,destfile=archiveFile,method="curl")&#13;&#10;    }  &#13;&#10;    unzip(archiveFile) &#13;&#10;}</text>
+				<url>https://rstudio-pubs-static.s3.amazonaws.com/28894_d9a735f1805e47e78e8c078982647207.html</url>
+			</clip>
+		</folder>
+		<folder label="R.Data.Frames">
+			<folder label="Useful Ops">
+				<clip kind="text" label="Order Column Names" date="2014-11-20T14:22:49">
+					<text># create an ordered character vector of a data frame names&#13;&#10;sort(names(%df%))</text>
+				</clip>
+				<clip kind="text" label="CSV String from Vector" date="2014-11-12T13:38:08">
+					<text>#Create CSV string from data frame columns&#13;&#10;%csvString%&lt;-paste(%vector%, collapse=",")</text>
+				</clip>
+			</folder>
+			<folder label="Create Data Frames">
+				<clip kind="text" label="DF from Scratch" date="2015-08-18T13:40:48">
+					<text>#create a new data frame&#13;&#10;%df%&lt;-data.frame()</text>
+				</clip>
+				<clip kind="text" label="Create from CSV file" date="2012-09-14T09:47:06">
+					<text>%data_frame%&lt;-read.csv(file="%filename%", header=TRUE, sep=",")</text>
+				</clip>
+				<clip kind="text" label="Create from CSV" date="2012-09-14T09:47:06">
+					<text>%data_frame%&lt;-read.csv(file="%csv_canonicalPath%", header=TRUE, sep=",")</text>
+				</clip>
+			</folder>
+			<folder label="Manipulate Data Frame">
+				<clip kind="text" label="Impute NA with Median" date="2015-10-29T16:33:24">
+					<text>#this will replace NA values with the column median&#13;&#10;#x&lt;-as.numeric(as.character(x)) #first convert each column into numeric if it is from factor&#13;&#10;#assume columns are numeric or use above line also&#13;&#10;&#13;&#10;fImputeNumeric=function(x){   &#13;&#10;   x[is.na(x)] =median(x, na.rm=TRUE) #convert the item with NA to median value from the column&#13;&#10;   x #display the column&#13;&#10;}&#13;&#10;&#13;&#10;#then apply function to data frame&#13;&#10;%df.impNum%=data.frame(apply(%df%,2,fImputeNumeric))</text>
+				</clip>
+				<clip kind="text" label="Add Column from Rownames" date="2014-07-23T15:24:57">
+					<text>%dataFrame%&lt;-cbind('%rowNamesColumn%'=rownames(%dataFrame%),%dataFrame%)</text>
+				</clip>
+				<clip kind="text" label="Order.byRowname" date="2014-11-04T15:03:03">
+					<text># Used for sorting data frames from properties in key order.&#13;&#10;%ord.df%&lt;-cbind(rownames(%df%)[order(rownames(%df%))], %df%[order(rownames(%df%)),])</text>
+				</clip>
+				<clip kind="text" label="Remove NA_NAN_INF Rows" date="2015-10-28T10:41:21">
+					<text>%df%= %df%[which(rowSums(is.finite(as.matrix(%df%)))==ncol(%df%)),]</text>
+				</clip>
+				<clip kind="text" label="Remove INF Rows" date="2015-10-28T13:34:32">
+					<text>#assumes that all of your variables are numeric. if not you must subset&#13;&#10;%df%&lt;-%df%[is.finite(rowSums(%df%)),]</text>
+				</clip>
+				<clip kind="text" label="Remove NA Rows" date="2015-04-21T13:46:07">
+					<text># Filters a data frame df from columns whose values are all NA&#13;&#10;%df%&lt;-%df%[apply(%df%,1,function(x)any(!is.na(x))),]</text>
+				</clip>
+				<clip kind="text" label="Remove NA Columns " date="2015-04-21T13:42:02">
+					<text># Filters a data frame df from columns whose values are all NA&#13;&#10;%df%&lt;- Filter(function(x)!all(is.na(x)), %df%)</text>
+				</clip>
+				<clip kind="webtext" label="Transpose" date="2015-10-29T17:04:07">
+					<text>#reversing rows and columns&#13;&#10;%df%.transpose&lt;-t(%df%)</text>
+					<url>http://www.r-statistics.com/tag/transpose/</url>
+				</clip>
+				<clip kind="text" label="Sort" date="2015-11-05T13:40:52">
+					<text># sort by var1&#13;&#10;%newdf% &lt;- %df%[order(%var1%),]&#13;&#10;# sort by var1 and var2 (descending)&#13;&#10;newdata2 &lt;- old[order(var1, -var2),]&#13;&#10;%newdf% &lt;- %df%[order(%var1%, -%var2%),]</text>
+				</clip>
+				<clip kind="webtext" label="Split" date="2015-11-04T13:01:30">
+					<text>#function divides the data in a vector&#13;&#10;%g%&lt;-split(%df%,%on_index%,,drop=FALSE)&#13;&#10;&#13;&#10;# you can then create calculations on each group created by split&#13;&#10;#sapply(%g%,length)&#13;&#10;#sapply(%g%,mean)&#13;&#10;</text>
+					<url>http://www.endmemo.com/program/R/split.php</url>
+				</clip>
+				<clip kind="text" label="Subset.byColumn" date="2013-05-10T15:57:57">
+					<text>%newDF%&lt;-subset(%df_name%, select=c(%column1%,%column2%,%column3%))</text>
+				</clip>
+				<clip kind="text" label="Subset.byColumn in List" date="2013-05-10T15:57:57">
+					<text>%newDF%&lt;-%df%[,names(%df%) %in% %stringList%]</text>
+				</clip>
+				<clip kind="text" label="Subset.NumericColumns" date="2014-03-06T15:15:35">
+					<text>#subset numeric columns of dataframe&#13;&#10;%mydf%_nums &lt;- %mydf%[sapply(%mydf%, is.numeric)]</text>
+				</clip>
+				<clip kind="webtext" label="Unsplit" date="2015-11-04T13:07:50">
+					<text>#Reverses the result of a split&#13;&#10;unsplit(%g%,%on_index%)</text>
+					<url>http://www.endmemo.com/program/R/split.php</url>
+				</clip>
+			</folder>
+			<folder label="Review Data Frames">
+				<clip kind="text" label="Summary Stats Table #1" date="2015-10-29T16:38:21">
+					<text>#Step 1: Register function&#13;&#10;my.summary &lt;- function(x,...){&#13;&#10;  c(mean=mean(x, ...),&#13;&#10;    sd=sd(x, ...),&#13;&#10;    median=median(x, ...),&#13;&#10;    min=min(x, ...),&#13;&#10;    max=max(x,...), &#13;&#10;    n=length(x),&#13;&#10;    nFinite=sum(is.finite(x)),&#13;&#10;    NAcount=sum(is.na(x)),&#13;&#10;    InfCount=sum(is.infinite(x)),&#13;&#10;    NanCount=sum(is.nan(x)))&#13;&#10;}&#13;&#10;&#13;&#10;#Step 2: Create data frame summary&#13;&#10;%df%.summary&lt;-apply(%df%,2,my.summary)</text>
+				</clip>
+				<clip kind="text" label="Summary Stats Table #2" date="2015-10-29T16:42:09">
+					<text>#Includes InterQuartiles but no NA or INF count&#13;&#10;&#13;&#10;%df%.sumTable&lt;-as.data.frame(sapply(%df%, summary))</text>
+				</clip>
+				<clip kind="text" label="Look at DF structure" date="2015-09-11T10:47:20">
+					<text># Factors, num, int&#13;&#10;str(%df%)</text>
+				</clip>
+				<clip kind="text" label="Review Data Frame" date="2014-02-05T18:33:05">
+					<text>#Review Data Frame&#13;&#10;fix(%DataFrame%)</text>
+				</clip>
+				<clip kind="text" label="Describe Attributes" date="2013-09-30T12:38:27">
+					<text>attributes(%dataframe%)</text>
+				</clip>
+				<clip kind="text" label="Distinct column values" date="2015-08-19T16:10:53">
+					<text>unique(%df%$%column_name%)</text>
+				</clip>
+			</folder>
+			<clip kind="text" label="Write to CSV" date="2013-05-10T16:02:15">
+				<text>write.csv(%df_name%, "%csv_file_path%")</text>
+			</clip>
+			<clip kind="text" label="Merge Data Frames" date="2013-05-10T15:59:27">
+				<text>%newDF%&lt;-merge(%df1_name%, %df2_name%,by=c("%column1%","%column2%")</text>
+			</clip>
+		</folder>
 		<folder label="R.In.Jenkins">
-			<clip kind="text" label="Save R workspace" date="2015-01-26T15:08:12">
-				<text>#Proven useful for debugging builds: named from build tag&#13;&#10;#DMPQM-258: write an image of the R workspace for troubleshooting&#13;&#10;print("Saving R workspace file")&#13;&#10;rDataPath&lt;-sprintf("%s/%s.%s",jworkspace,build.tag,"Rda")&#13;&#10;save.image(file = rDataPath)&#13;&#10;print("Saving R workspace file completed")</text>
+			<clip kind="text" label="Get Environment Variables" date="2015-09-10T09:35:37">
+				<text>#Assign specific environment variables to a map&#13;&#10;%j%&lt;-Sys.getenv(c("%JOB_NAME%","%JOB_URL%","%MD_STATS_ENGINE_EXPORT_SESSION%")))&#13;&#10;&#13;&#10;#Then can assign specific env vars to local vars&#13;&#10;#job.name&lt;-%j%['%JOB_NAME%']&#13;&#10;#job.url&lt;-%j%['%JOB_URL%']&#13;&#10;#job.rsession&lt;-%j%['%MD_STATS_ENGINE_EXPORT_SESSION%']</text>
+			</clip>
+			<clip kind="text" label="Add property row" date="2015-08-25T14:19:50">
+				<text>#Having the &lt;data.props> data frame from a properties file&#13;&#10;#You can add a new property&#13;&#10;data.props[%newProp%,1]&lt;-%newValue%</text>
+			</clip>
+			<clip kind="text" label="Hard-coded Vars" date="2015-04-02T15:40:20">
+				<text># Analysis hard-coded and custom  variables -----------------------------------------------------&#13;&#10;this.analysisName&lt;-"%Mahalanobis%"&#13;&#10;this.suffix&lt;-"%dataSuffix%" #suffix used for output.path and output.metapath&#13;&#10;this.output&lt;-sprintf("JData_%s.csv",this.suffix)&#13;&#10;this.Rds.output&lt;- sprintf("JData_%s.Rds",this.suffix) #name of serialized R  object&#13;&#10;this.meta&lt;-sprintf("JData_%s.properties",this.suffix)&#13;&#10;this.artifacts&lt;-"*zip*/archive.zip"&#13;&#10;&#13;&#10;#new metadata that analysis adds and custom output&#13;&#10;this.newMeta&lt;-sprintf("Metadata_WellType,Metadata_Outlier_%s",this.suffix)&#13;&#10;this.prediction&lt;-sprintf("%s.csv",this.suffix)#Hard-coded name of classification file</text>
+			</clip>
+			<clip kind="text" label="Read Data Set" date="2015-03-26T15:23:58">
+				<text>print ('Reading Data Set....')&#13;&#10;# Start the clock!&#13;&#10;ptm &lt;- proc.time()&#13;&#10;#DMPQM-234: Read the data from local path and continue processing&#13;&#10;sourceobject.path&lt;-sprintf("%s%s",thisdata.path,binrobjectFileName) #DMPQM-293&#13;&#10;sourcedata.path&lt;-sprintf("%s%s",thisdata.path,dataFileName)&#13;&#10;&#13;&#10;#DMPQM-293 Prefer to load data from R binary Object file&#13;&#10;if(file.exists(sourceobject.path)){&#13;&#10;  print("Loading data from Binary R Object...")&#13;&#10;  #Read serialized R object and assign to data frame hcs&#13;&#10;  %inputDataFrame%&lt;-readRDS(sourceobject.path)&#13;&#10;}else{&#13;&#10;  #load from CSV format data if binary R does not exist&#13;&#10;  print("Loading data from CSV file...")&#13;&#10;  rows2read=as.numeric(data.props['data.rows',1])+10&#13;&#10;  %inputDataFrame%&lt;-read.csv(sourcedata.path,header=TRUE,stringsAsFactors=FALSE, quote = "", nrows=rows2read, comment.char = "")&#13;&#10;}&#13;&#10;# Stop the clock&#13;&#10;proc.time() - ptm&#13;&#10;print ('Finished Reading Data Set!')</text>
+			</clip>
+			<clip kind="text" label="Read DataSet Properties" date="2015-04-02T11:25:18">
+				<text># Read data properties ----------------------------------------------------&#13;&#10;#DMPQM-261, DMPQM-257 get data/properties file name by convention&#13;&#10;urlParts &lt;-unlist(strsplit(bparam.dataurl,'/'))&#13;&#10;dataFileName=urlParts[length(urlParts)]&#13;&#10;propertiesFileName=gsub("\\.csv","\\.properties",dataFileName)&#13;&#10;binrobjectFileName=gsub("\\.csv","\\.Rds",dataFileName) #DMPQM-293 the serialized R binary object&#13;&#10;&#13;&#10;# Read data properties from same path as the data itself&#13;&#10;propUrl=gsub("\\.csv","\\.properties",bparam.dataurl)&#13;&#10;data.props&lt;-read.table(propUrl, header=FALSE, sep="=", row.names=1, strip.white=TRUE, na.strings="NA", stringsAsFactors=FALSE)&#13;&#10;&#13;&#10;#Extract required metadata from JData.properties file&#13;&#10;thisdata.path&lt;-unlist(strsplit(gsub("\\\\","",data.props['data.path',1]),',')) #DMPQM-231</text>
+			</clip>
+			<clip kind="text" label="Write Dataset CSV-Rds" date="2015-04-02T15:37:01">
+				<text># Export to file ------------------------------------&#13;&#10;#Create Destination file for various types&#13;&#10;print("Exporting data---Writing File!")&#13;&#10;# Write CSV file&#13;&#10;hcsxportdest&lt;-sprintf("%s/%s", jworkspace,this.output)&#13;&#10;write.table(jdataxport, hcsxportdest, sep=",", quote=FALSE, row.names=FALSE, col.names=TRUE)&#13;&#10;# Write serialized binary R object file&#13;&#10;robjectdest&lt;-sprintf("%s/%s", jworkspace,this.Rds.output)&#13;&#10;saveRDS(jdataxport,file=robjectdest)&#13;&#10;print("Exporting data---Completed!")</text>
+			</clip>
+			<clip kind="text" label="Write Meta-Readout Tables" date="2015-03-26T15:26:19">
+				<text>#Writes a metadata and a readout file for report for output data frame&#13;&#10;#Create Destination file for metadata&#13;&#10;metadest&lt;-sprintf("%s/%s", jworkspace,"meta.csv")&#13;&#10;#DMPQM-298 write table of metadata columns&#13;&#10;meta.df&lt;-data.frame(METADATA=c(1:length(names(%output%[,mtd==TRUE, drop=FALSE]))),DATA_COLUMN=names(%output%[,mtd==TRUE, drop=FALSE]))&#13;&#10;write.table(meta.df, metadest, sep=",", quote=FALSE, row.names=F, col.names=T)&#13;&#10;&#13;&#10;#Create Destination file for measurements&#13;&#10;measuredest&lt;-sprintf("%s/%s", jworkspace,"measure.csv")&#13;&#10;#DMPQM-298 write table of measurements columns&#13;&#10;readout.df&lt;-data.frame(MEASUREMENT=c(1:length(names(%output%[,mtd==FALSE, drop=FALSE]))),DATA_COLUMN=names(%output%[,mtd==FALSE, drop=FALSE]))&#13;&#10;write.table(readout.df, measuredest, sep=",", quote=FALSE, row.names=F, col.names=T)</text>
+			</clip>
+			<clip kind="text" label="DataColumn Subset Table" date="2015-04-02T13:52:59">
+				<text>#---DMPQM-298: Writes a subset of the columns with a numeric Index column as a table&#13;&#10;    %nzv%dest&lt;-sprintf("%s/%s", jworkspace,"%nearZeroVar%.csv")&#13;&#10;    %nzv%list&lt;-sort(names(%hcs%[,%nz%$%nzv%==TRUE]))&#13;&#10;    %nzv%.df&lt;-data.frame(%INDEX_COLUMN%=c(1:length(%nzv%list)),DATA_COLUMN=%nzv%list)&#13;&#10;    write.table(%nzv%.df, %nzv%dest, sep=",", quote=FALSE, row.names=FALSE, col.names=TRUE)</text>
+			</clip>
+			<clip kind="text" label="Write NEW dataset properties" date="2015-04-03T11:16:30">
+				<text># START: AceText Template for Output data set NEW properties file --------------------------------------------------&#13;&#10;# Requires&#13;&#10;#         data.props:    INPUT data properties&#13;&#10;#         this.newMeta: new meta that this analysis adds&#13;&#10;#---------------------------------------&#13;&#10;# Write OUTPUT Metadata to a new properties file&#13;&#10;# Include any new or updated properties&#13;&#10;#---------------------------------------&#13;&#10;# Assign variables from analysis context&#13;&#10;# output.data is the complete data frame of interest&#13;&#10;output.data&lt;-%nameOfDataFrame%&#13;&#10;&#13;&#10;#Create file path for OUTPUT data metadata-properties&#13;&#10;output.metapath&lt;-sprintf("%s/%s",jworkspace,this.meta)&#13;&#10;file.create(output.metapath)&#13;&#10;&#13;&#10;#Create a new data frame to maintain properties-Record Jenkins Server&#13;&#10;#initialize data frame, maintain row names&#13;&#10;output.props&lt;-data.frame(PROPERTY=(c("jenkins.computername","jenkins.home")),VALUE=c(jcomputer,jhome),stringsAsFactors=FALSE,row.names=NULL)&#13;&#10;output.props&lt;-rbind(output.props,c(buildid,job.name))&#13;&#10;output.props&lt;-rbind(output.props,c(buildurl,build.url))&#13;&#10;output.props&lt;-rbind(output.props,c(buildparams,sprintf("%sparameters",build.url)))&#13;&#10;output.props&lt;-rbind(output.props,c(buildtag,build.tag))&#13;&#10;&#13;&#10;output.props&lt;-rbind(output.props,c('artifact.type',job.name))&#13;&#10;output.props&lt;-rbind(output.props,c('data.type','derived'))&#13;&#10;&#13;&#10;#Transfer data set metadata&#13;&#10;output.props&lt;-rbind(output.props,c("data.origin",bparam.dataurl))&#13;&#10;output.props&lt;-rbind(output.props,c("data.origin.label",data.props['data.label',1]))&#13;&#10;output.props&lt;-rbind(output.props,c("data.label",bparam.label))&#13;&#10;output.props&lt;-rbind(output.props,c("data.owner",data.props['data.owner',1]))&#13;&#10;output.props&lt;-rbind(output.props,c("data.description",data.props['data.description',1]))&#13;&#10;output.props&lt;-rbind(output.props,c("data.path",sprintf("%s/jobs/%s/builds/%s/archive/",jhome,job.name,build.id)))&#13;&#10;&#13;&#10;output.props&lt;-rbind(output.props,c("data.rows",nrow(output.data)))&#13;&#10;output.props&lt;-rbind(output.props,c("data.cols",length(output.data)))&#13;&#10;output.props&lt;-rbind(output.props,c("data.complete",sum(complete.cases(output.data))))&#13;&#10;&#13;&#10;#Create Data Download links&#13;&#10;output.props&lt;-rbind(output.props,c("download.INPUT.DATA_SET",bparam.dataurl))&#13;&#10;output.props&lt;-rbind(output.props,c("download.OUTPUT.DATA_SET",sprintf("%sartifact/%s",build.url,this.output)))&#13;&#10;output.props&lt;-rbind(output.props,c("download.build.artifacts",sprintf("%sartifact/%s",build.url,this.artifacts)))&#13;&#10;&#13;&#10;#Create Custom Properties and Links (as needed)&#13;&#10;output.props&lt;-rbind(output.props,c(sprintf("download.%s",this.prediction),sprintf("%sartifact/%s",build.url,this.prediction)))&#13;&#10;&#13;&#10;#Create assay plate metadata&#13;&#10;output.props&lt;-rbind(output.props,c("missing.data.flag",data.props['missing.data.flag',1]))&#13;&#10;#Add plate geometry metadata&#13;&#10;p.df&lt;-subset(data.props,grepl("plate",row.names(data.props),,TRUE))&#13;&#10;#Make p.df resemble output.props structure so that we can merge&#13;&#10;ordp.df&lt;-cbind('PROPERTY'=rownames(p.df)[order(rownames(p.df))], 'VALUE'=p.df[order(rownames(p.df)),])&#13;&#10;output.props&lt;-rbind(output.props, ordp.df) #merge&#13;&#10;#TESTING-add new metadata attached to analysis OUTPUT&#13;&#10;output.metaString&lt;-sprintf("%s,%s",data.props['metadata',1],this.newMeta)&#13;&#10;output.meta=unlist(strsplit(output.metaString,','))&#13;&#10;output.anno &lt;- names (output.data[,which(names(output.data) %in% output.meta)])&#13;&#10;output.props&lt;-rbind(output.props,c('metadata',paste(names(output.data[,output.anno]), collapse=",")))&#13;&#10;&#13;&#10;#motivation: data frame columns to csv string&#13;&#10;output.measurements &lt;- names (output.data[,(which(!names(output.data) %in% output.meta))])&#13;&#10;output.measurementsString&lt;-paste(output.measurements, collapse=",")&#13;&#10;output.props&lt;-rbind(output.props,c('measurements',output.measurementsString))&#13;&#10;&#13;&#10;#Create data frame column type properties&#13;&#10;output.props&lt;-rbind(output.props,c("frame.characterColumns",toString(paste(names(output.data[sapply(output.data, is.character)]),collapse=","))))&#13;&#10;output.props&lt;-rbind(output.props,c("frame.numericColumns",toString(paste(names(output.data[sapply(output.data, is.numeric)]),collapse=","))))&#13;&#10;&#13;&#10;#Add assay control metadata&#13;&#10;c.df&lt;-subset(data.props,grepl("control",row.names(data.props),,TRUE))&#13;&#10;#Make c.df resemble output.props structure so that we can merge&#13;&#10;ordc.df&lt;-cbind('PROPERTY'=rownames(c.df)[order(rownames(c.df))], 'VALUE'=c.df[order(rownames(c.df)),])&#13;&#10;output.props&lt;-rbind(output.props, ordc.df) #merge &#13;&#10;&#13;&#10;#DMPQM-244 Add feature-predictor metadata (from PP_FEATURE_ANALYSIS.LAST)&#13;&#10;fa.df&lt;-subset(data.props,grepl("PP_FEATURE_ANALYSIS.LAST",row.names(data.props),,TRUE))&#13;&#10;#Make c.df resemble output.props structure so that we can merge&#13;&#10;ordfa.df&lt;-cbind('PROPERTY'=rownames(fa.df)[order(rownames(fa.df))], 'VALUE'=fa.df[order(rownames(fa.df)),])&#13;&#10;output.props&lt;-rbind(output.props, ordfa.df) #merge &#13;&#10;&#13;&#10;#Create, sort and write ordered output.props frame to the properties file&#13;&#10;ord.output.props&lt;-order(output.props$PROPERTY) #get sort order&#13;&#10;write.table(output.props[ord.output.props,], output.metapath, sep="=", quote=FALSE,row.names=FALSE,col.names=TRUE)&#13;&#10;&#13;&#10;#write table of metadata columns&#13;&#10;#---DMPQM-298: Writes a subset of the columns with a numeric Index column as a table&#13;&#10;row.names(output.props)&lt;-output.props[,'PROPERTY']&#13;&#10;metadest&lt;-sprintf("%s/%s", jworkspace,"meta.csv")&#13;&#10;print(output.props['metadata',2])&#13;&#10;metalist&lt;-unlist(strsplit(output.props['metadata',2],','))&#13;&#10;meta.df&lt;-data.frame(METADATA=c(1:length(metalist)),DATA_COLUMN=metalist)&#13;&#10;write.table(meta.df, metadest, sep=",", quote=FALSE, row.names=FALSE, col.names=TRUE)&#13;&#10;&#13;&#10;#Write table of measurements columns&#13;&#10;#---DMPQM-298: Writes a subset of the columns with a numeric Index column as a table&#13;&#10;measdest&lt;-sprintf("%s/%s", jworkspace,"measure.csv")&#13;&#10;measlist&lt;-unlist(strsplit(output.measurements,','))&#13;&#10;meas.df&lt;-data.frame(MEASUREMENT=c(1:length(measlist)),DATA_COLUMN=measlist)&#13;&#10;write.table(meas.df, measdest, sep=",", quote=FALSE, row.names=FALSE, col.names=TRUE)&#13;&#10;# END: AceText Template for Output data set NEW properties file</text>
+			</clip>
+			<clip kind="text" label="Save R workspace (Conditional)" date="2015-01-26T15:08:12">
+				<text>#job.rsession parameter-needed&#13;&#10;#names(j&lt;-Sys.getenv(c("JOB_NAME","JOB_URL","MD_STATS_ENGINE_EXPORT_SESSION")))&#13;&#10;#job.name&lt;-j['JOB_NAME']&#13;&#10;#job.url&lt;-j['JOB_URL']&#13;&#10;job.rsession&lt;-j['MD_STATS_ENGINE_EXPORT_SESSION']&#13;&#10;&#13;&#10;if(job.rsession=='true'){&#13;&#10;  print("Saving R workspace file")&#13;&#10;  rDataPath&lt;-sprintf("%s/%s.%s",jworkspace,build.tag,"Rda")&#13;&#10;  save.image(file = rDataPath)&#13;&#10;  print("Saving R workspace file completed")&#13;&#10;}</text>
+			</clip>
+		</folder>
+		<folder label="R.MPDA">
+			<clip kind="text" label="Subset selected readouts" date="2015-09-10T09:51:49">
+				<text># bparam.readouts&lt;-unlist(strsplit(p['READOUTS'],','))&#13;&#10;# if the user did not submit readouts from the user interface we select ALL from the data set measurements&#13;&#10;# if(length(bparam.readouts)==0){&#13;&#10;#  print("User did not submit READOUTS. Selecting ALL measurements")&#13;&#10;#  bparam.readouts&lt;-unlist(strsplit(data.props['measurements',1],','))&#13;&#10;# }&#13;&#10;&#13;&#10;hcs&lt;-hcs[,names(hcs) %in% bparam.readouts]</text>
+			</clip>
+			<clip kind="text" label="Assign well.type from assay controls" date="2015-09-10T09:49:20">
+				<text>#Assign well.type from named assay controls&#13;&#10;# anno &lt;- hcs[,anno.columns]&#13;&#10;anno$well.type &lt;- "SA" # Sample&#13;&#10;for (t in 1:length(control.types)){&#13;&#10;  s1rows&lt;-sprintf("%s.%s.%s","control",control.types[t],"rows")&#13;&#10;  s1cols&lt;-sprintf("%s.%s.%s","control",control.types[t],"columns")&#13;&#10;  plate.row.pos&lt;-unlist(strsplit(data.props[s1rows,1],','))&#13;&#10;  plate.column.pos&lt;-unlist(strsplit(data.props[s1cols,1],','))&#13;&#10;  &#13;&#10;  for (i in 1:length(anno$well.type)){&#13;&#10;    if(anno[i,plate.row] %in% plate.row.pos &amp;&amp; anno[i,plate.column] %in% plate.column.pos){&#13;&#10;      anno[i,'well.type']&lt;-control.types[t]&#13;&#10;    }&#13;&#10;  }&#13;&#10;}&#13;&#10;anno$well.type &lt;- factor(anno$well.type)</text>
+			</clip>
+			<clip kind="text" label="Encode well.type as factor" date="2015-09-10T09:48:26">
+				<text># anno &lt;- hcs[,anno.columns]&#13;&#10;anno$well.type &lt;- factor(anno$well.type)</text>
+			</clip>
+			<clip kind="text" label="Separate meta from data columns" date="2015-09-10T09:42:33">
+				<text># separate out annotation/metadata columns&#13;&#10;&#13;&#10;# commended lines usually in MPDA analysis header&#13;&#10;# names(p&lt;-Sys.getenv(c("DATA_URL")))&#13;&#10;# bparam.dataurl&lt;-p['DATA_URL']&#13;&#10;# propUrl=gsub("\\.csv","\\.properties",bparam.dataurl) #DMPQM-257 auto-generation of properties file URL&#13;&#10;# data.props&lt;-read.table(propUrl, header=FALSE, sep="=", row.names=1, strip.white=TRUE, na.strings="NA", stringsAsFactors=FALSE)&#13;&#10;# anno.columns&lt;-unlist(strsplit(data.props['metadata',1],','))&#13;&#10; &#13;&#10;  print('Creating anno data-frame')&#13;&#10;  anno &lt;- hcs[,anno.columns]&#13;&#10;  hcs &lt;- hcs[,-which(names(hcs) %in% anno.columns)]</text>
+			</clip>
+		</folder>
+		<folder label="R.Logic">
+			<clip kind="text" label="Check for Empty or Null" date="2015-08-28T12:00:54">
+				<text># Logic check that a list/data-frame is empty or null&#13;&#10;  if(is.na(%list%)||length(%list%)==0){&#13;&#10;  print('List is empty')&#13;&#10;}else{&#13;&#10;  print('List Contents')&#13;&#10;  %list%&#13;&#10;}</text>
+			</clip>
+		</folder>
+		<folder label="R.on.Linux">
+			<clip kind="text" label="package.manual.install" date="2015-03-30T15:21:30">
+				<text># can be used to install older versions of a package&#13;&#10;packageurl &lt;- "~/%rtemp/dplyr_0.2.tar.gz%"&#13;&#10;install.packages(packageurl, repos=NULL, type="source")</text>
+			</clip>
+			<clip kind="text" label="User R library" date="2015-03-30T15:17:34">
+				<text> ~/R/x86_64-unknown-linux-gnu-library/3.1</text>
+			</clip>
+			<clip kind="text" label="Start" date="2015-03-30T15:16:43">
+				<text>R</text>
+			</clip>
+			<clip kind="text" label="Quit" date="2015-03-30T15:16:54">
+				<text>q()</text>
 			</clip>
 		</folder>
 		<folder label="3.Linear.Regression">
@@ -43,6 +220,11 @@
 				<text>predict(%fit%,data.frame(%x%=c(%val1%,%val2%,%val3%)),interval="confidence")</text>
 			</clip>
 		</folder>
+		<folder label="R.Functions">
+			<clip kind="text" label="Variable Interpolation" date="2015-10-08T09:44:25">
+				<text>eval(parse(text=sprintf("%s_%s",%var1%,%var2%)))</text>
+			</clip>
+		</folder>
 		<folder label="3.Linear Regression (Multiple)">
 			<clip kind="text" label="Fit linear model with 2Vars" date="2014-02-05T13:02:11">
 				<text>%lfit2%=lm(%y%~%x1%+%x2%, data=%DataFrame%)</text>
@@ -72,21 +254,33 @@
 			<clip kind="text" label="Show Library Path" date="2014-02-05T12:06:49">
 				<text>.libPaths()</text>
 			</clip>
+			<clip kind="text" label="Show all packages" date="2015-06-29T14:44:52">
+				<text>library()</text>
+			</clip>
+			<clip kind="text" label="Package Version" date="2015-06-29T15:20:34">
+				<text>packageVersion("%packageName%")</text>
+			</clip>
+			<clip kind="text" label="Session Info" date="2015-06-29T15:21:17">
+				<text>sessionInfo()</text>
+			</clip>
 			<clip kind="text" label="Packages saved in library" date="2014-02-05T12:07:26">
 				<text>#packages saved in your library&#13;&#10;library()&#13;&#10;#which packages are loaded and ready for use&#13;&#10;search()</text>
 			</clip>
-			<clip kind="text" label="Install package" date="2014-02-05T12:24:41">
+			<clip kind="text" label="Install package (default repos)" date="2014-02-05T12:24:41">
 				<text>install.packages("%PACKAGE_NAME%")</text>
+			</clip>
+			<clip kind="text" label="Install packages (several)" date="2015-08-26T14:46:32">
+				<text>#NA_logical: true, false, a subset of c("Depends", "Imports", "LinkingTo", "Suggests", "Enhances")&#13;&#10;install.packages(c("%pkg1%", "%pkg2%"), dependencies = %NA_logical%)</text>
+			</clip>
+			<clip kind="text" label="Install package (zip/tar)" date="2014-02-05T12:24:41">
+				<text>install.packages("%ZIP_NAME%", lib="C:/Program Files/R/R-3.1.1/library", repos=NULL, type="source")</text>
 			</clip>
 			<clip kind="text" label="Help on Package" date="2014-02-05T12:25:48">
 				<text>help(package="%PACKAGE_NAME%")</text>
 			</clip>
 		</folder>
 		<folder label="R.PCA">
-			<clip kind="text" label="Perform PCA" date="2013-05-10T15:49:57">
-				<text>princomp(%dataset%)</text>
-			</clip>
-			<clip kind="text" label="Save PCA model" date="2013-05-10T15:51:03">
+			<clip kind="text" label="Perform PCA" date="2013-05-10T15:51:03">
 				<text>%modelname%&lt;-princomp(%dataset%)</text>
 			</clip>
 			<clip kind="text" label="View proportion of variance by component" date="2013-05-10T15:51:40">
@@ -104,7 +298,7 @@
 		</folder>
 		<folder label="R.Lattice">
 			<clip kind="text" label="Load library" date="2012-09-14T16:03:28">
-				<text>library(%package%)</text>
+				<text># package: Lattice&#13;&#10;library(%package%)</text>
 			</clip>
 			<clip kind="text" label="Help on Lattice" date="2013-05-09T10:33:19">
 				<text>help(Lattice)</text>
@@ -117,14 +311,49 @@
 			</clip>
 		</folder>
 		<folder label="R.Plot">
+			<clip kind="text" label="Simple Dot Plot" date="2015-10-07T11:12:40">
+				<text>plot(%var%)</text>
+			</clip>
 			<clip kind="text" label="XY DotPlot" date="2013-05-09T10:47:31">
 				<text>plot(%x_var%,%y_var%)</text>
 			</clip>
-			<clip kind="text" label="BoxPlot GroupBy" date="2013-05-09T09:48:23">
+			<clip kind="text" label="Plot Var Distibution" date="2015-10-07T11:15:04">
+				<text>plot(density(%var%))</text>
+			</clip>
+			<clip kind="webtext" label="Add line to Plot" date="2015-10-07T11:13:35">
+				<text>#for example to indicate median or mean&#13;&#10;# draw horizontal line at mean&#13;&#10;abline(h=median(%var%), col=4,lty=2)</text>
+				<url>https://cran.r-project.org/doc/contrib/Lemon-kickstart/index.html</url>
+			</clip>
+			<clip kind="webtext" label="BoxPlot GroupBy" date="2013-05-09T09:48:23">
 				<text>plot(%group_by%, %variable%)</text>
+				<url/>
+			</clip>
+		</folder>
+		<folder label="R.Graphics">
+			<clip kind="text" label="Margin Parameters" date="2015-04-22T15:23:40">
+				<text>#specify graphics margin width in number of lines&#13;&#10;par(oma=c(%n%,%n%,%n%,%n%))  # all sides have n lines of space </text>
+			</clip>
+			<clip kind="text" label="Plot a 2nd data set" date="2015-04-22T15:48:53">
+				<text>#Plot a second set of data without erasing the first plot&#13;&#10;par(new=T)</text>
+			</clip>
+			<clip kind="text" label="Margin Write Text" date="2015-04-22T15:25:51">
+				<text>#Write Text into the Margins of a Plot&#13;&#10;mtext('%text%', side=%side_options%, line=%line_options%)</text>
+			</clip>
+		</folder>
+		<folder label="R.Numbers">
+			<clip kind="text" label="Rounding" date="2015-04-22T13:57:17">
+				<text>#ceiling(x)&#13;&#10;#floor(x)&#13;&#10;#trunc(x, ...)&#13;&#10;#round(x, digits = 0)&#13;&#10;#signif(x, digits = 6)&#13;&#10;&#13;&#10;round(%x%,3)</text>
+			</clip>
+		</folder>
+		<folder label="R.Set.Operations">
+			<clip kind="text" label="difference" date="2015-08-25T15:09:40">
+				<text>#difference&#13;&#10;setdiff(%setA%,%setB%)</text>
 			</clip>
 		</folder>
 		<folder label="R.String.Manipulations">
+			<clip kind="text" label="Execute String" date="2015-11-06T09:25:56">
+				<text># Evaluates the string as code&#13;&#10;eval(parse(text=%str%))</text>
+			</clip>
 			<clip kind="text" label="CSV String from Vector" date="2014-11-12T13:38:08">
 				<text>#motivation: data frame columns to csv string&#13;&#10;%csvString%&lt;-paste(%vector%, collapse=",")</text>
 			</clip>
@@ -142,51 +371,35 @@
 				<url/>
 			</clip>
 		</folder>
-		<folder label="R.Data.Frames">
-			<clip kind="text" label="CSV String from Vector" date="2014-11-12T13:38:08">
-				<text>#motivation: data frame columns to csv string&#13;&#10;%csvString%&lt;-paste(%vector%, collapse=",")</text>
+		<folder label="R.dplyr">
+			<clip kind="text" label="Select Distinct Column Values" date="2015-08-19T15:54:48">
+				<text>%distinct%=%df% %>% select(%column%) %>%distinct(%column%)</text>
 			</clip>
-			<clip kind="text" label="Order by rowname" date="2014-11-04T15:03:03">
-				<text># Used for sorting data frames from properties in key order.&#13;&#10;%ord.df%&lt;-cbind(rownames(%df%)[order(rownames(%df%))], %df%[order(rownames(%df%)),])</text>
+		</folder>
+		<folder label="R.Evernote">
+			<clip kind="webtext" label="Evernote Shared Notes" date="2015-04-24T11:11:10">
+				<text>http://www.evernote.com/l/AJ9GzhmcQmdAW5nWyrLgJYKisn1nW_ibZyE/</text>
+				<url>http://www.evernote.com/l/AJ9GzhmcQmdAW5nWyrLgJYKisn1nW_ibZyE/</url>
 			</clip>
-			<clip kind="text" label="Order Column Names" date="2014-11-20T14:22:49">
-				<text># create an ordered character vector of a data frame names&#13;&#10;sort(names(%df%))</text>
+		</folder>
+		<folder label="R.Upgrade">
+			<clip kind="text" label="R for Windows" date="2015-06-29T15:50:46">
+				<text>http://cran.r-project.org/bin/windows/base/</text>
 			</clip>
-			<clip kind="text" label="Column from Rownames" date="2014-07-23T15:24:57">
-				<text>%dataFrame%&lt;-cbind('Barcodes'=rownames(%dataFrame%),%dataFrame%)</text>
+			<clip kind="text" label="How to upgrade-Delete 2 Options" date="2015-06-29T15:51:17">
+				<text>http://cran.r-project.org/bin/windows/base/rw-FAQ.html#What_0027s-the-best-way-to-upgrade_003f&#13;&#10;That’s a matter of taste. For most people the best thing to do is to:&#13;&#10;-uninstall R (see the previous Q), install the new version, &#13;&#10;-copy any installed packages to the library folder in the new installation, &#13;&#10;-run update.packages(checkBuilt=TRUE, ask=FALSE) in the new R and then &#13;&#10;-delete anything left of the old installation. &#13;&#10;&#13;&#10;Different versions of R are quite deliberately installed in parallel folders so you can keep old versions around if you wish.&#13;&#10;&#13;&#10;For those with a personal library (folder R\win-library\x.y of your home directory, R\win64-library\x.y on 64-bit builds), you will need to update that too when the minor version of R changes (e.g. from 3.0.2 to 3.1.0). A simple way to do so is to copy (say) R\win-library\3.0 to R\win-library\3.1 before running update.packages(checkBuilt=TRUE, ask=FALSE).</text>
 			</clip>
-			<clip kind="text" label="Review Data Frame" date="2014-02-05T18:33:05">
-				<text>#Review Data Frame&#13;&#10;fix(%DataFrame%)</text>
-			</clip>
-			<clip kind="text" label="Describe Attributes" date="2013-09-30T12:38:27">
-				<text>attributes(%dataframe%)</text>
-			</clip>
-			<clip kind="text" label="Create from CSV" date="2012-09-14T09:47:06">
-				<text>%data_frame%&lt;-read.csv(file="%csv_canonicalPath%", header=TRUE, sep=",")</text>
-			</clip>
-			<clip kind="text" label="Create from CSV file" date="2012-09-14T09:47:06">
-				<text>%data_frame%&lt;-read.csv(file="%filename%", header=TRUE, sep=",")</text>
-			</clip>
-			<clip kind="text" label="Subset.byColumn" date="2013-05-10T15:57:57">
-				<text>%newDF%&lt;-subset(%df_name%, select=c(%column1%,%column2%,%column3%))</text>
-			</clip>
-			<clip kind="text" label="Subset.numbers" date="2014-03-06T15:15:35">
-				<text>#subset numeric columns of dataframe&#13;&#10;%mydf"nums &lt;- %mydf%[sapply(%mydf%, is.numeric)]</text>
-			</clip>
-			<clip kind="text" label="Merge Data Frames" date="2013-05-10T15:59:27">
-				<text>%newDF%&lt;-merge(%df1_name%, %df2_name%,by=c("%column1%","%column2%")</text>
-			</clip>
-			<clip kind="text" label="Write to CSV" date="2013-05-10T16:02:15">
-				<text>write.csv(%df_name%, "%csv_file_path%")</text>
-			</clip>
-			<clip kind="text" label="Save.Robject" date="2014-03-06T15:19:48">
-				<text>save(%robject%,file="%data%.Rda")</text>
-			</clip>
-			<clip kind="text" label="Load.RObject" date="2014-03-06T15:20:53">
-				<text>load(%robject_filepath%)</text>
+			<clip kind="text" label="Update Packages for Version" date="2015-06-29T15:54:00">
+				<text>update.packages(checkBuilt=TRUE, ask=FALSE)</text>
 			</clip>
 		</folder>
 		<parameters>
+			<parameter name="%column%">
+				<history>Barcode</history>
+			</parameter>
+			<parameter name="%column_name%">
+				<history>Barcode</history>
+			</parameter>
 			<parameter name="%column1%">
 				<history>1</history>
 			</parameter>
@@ -215,6 +428,10 @@
 				<history>ClustTest_9371</history>
 			</parameter>
 			<parameter name="%dataframe%">
+				<history>hcsNormSummary</history>
+				<history>pc2.rot</history>
+				<history>pc1.rot</history>
+				<history>t10_1</history>
 				<history>carseats</history>
 				<history>Boston</history>
 				<history>VB7998</history>
@@ -222,7 +439,16 @@
 			<parameter name="%dataset%">
 				<history>vb832_s1</history>
 			</parameter>
+			<parameter name="%dataSuffix%">
+				<history>Aggregated</history>
+				<history>Exported</history>
+				<history>Nbayes</history>
+			</parameter>
 			<parameter name="%df%">
+				<history>good.norm</history>
+				<history>d.norm</history>
+				<history>anno</history>
+				<history>b.df</history>
 				<history>data.props</history>
 				<history>c.df</history>
 			</parameter>
@@ -230,6 +456,9 @@
 				<history>d.norm</history>
 				<history>d</history>
 				<history>vb832</history>
+			</parameter>
+			<parameter name="%distinct%">
+				<history>d.df</history>
 			</parameter>
 			<parameter name="%fact1%">
 				<history>lstat</history>
@@ -255,6 +484,20 @@
 			<parameter name="%group_by%">
 				<history>AC_CONTROL</history>
 			</parameter>
+			<parameter name="%hcs%">
+				<history>hcs</history>
+			</parameter>
+			<parameter name="%in%">
+				<history>%in%</history>
+			</parameter>
+			<parameter name="%INDEX_COLUMN%">
+				<history>FEATURE</history>
+			</parameter>
+			<parameter name="%inputDataFrame%">
+				<history>hcs</history>
+				<history>mpData</history>
+				<history>d.norm</history>
+			</parameter>
 			<parameter name="%lfit3%">
 				<history>fit3</history>
 			</parameter>
@@ -265,21 +508,56 @@
 				<history>iris</history>
 				<history>Boston</history>
 			</parameter>
+			<parameter name="%list%">
+				<history>d.extreme</history>
+				<history>ref.data</history>
+			</parameter>
+			<parameter name="%Mahalanobis%">
+				<history>AggregateStats</history>
+				<history>DataExport</history>
+				<history>NaiveBayes</history>
+			</parameter>
 			<parameter name="%modelname%">
 				<history>modvb832_s3</history>
 				<history>modvb832_s1</history>
 			</parameter>
+			<parameter name="%mydf%">
+				<history>dnorm</history>
+			</parameter>
+			<parameter name="%nameOfDataFrame%">
+				<history>hcsAgSum</history>
+				<history>jdataxport</history>
+				<history>jdatanb</history>
+			</parameter>
 			<parameter name="%nDegree%">
 				<history>4</history>
 			</parameter>
+			<parameter name="%nearZeroVar%">
+				<history>measure</history>
+				<history>meta</history>
+				<history>zeroVar</history>
+			</parameter>
 			<parameter name="%newDF%">
 				<history>vb832_s1</history>
+			</parameter>
+			<parameter name="%nz%">
+				<history>nz</history>
+			</parameter>
+			<parameter name="%nzv%">
+				<history>meas</history>
+				<history>meta</history>
+				<history>zeroVar</history>
+				<history>zeroV</history>
 			</parameter>
 			<parameter name="%package%">
 				<history>lattice</history>
 			</parameter>
 			<parameter name="%PACKAGE_NAME%">
+				<history>dplyr</history>
 				<history>caret</history>
+			</parameter>
+			<parameter name="%packageName%">
+				<history>dplyr</history>
 			</parameter>
 			<parameter name="%pattern%">
 				<history>JOB_NAME</history>
@@ -290,6 +568,23 @@
 			<parameter name="%robject%">
 				<history>hcs</history>
 			</parameter>
+			<parameter name="%rowNamesColumn%">
+				<history>Features</history>
+			</parameter>
+			<parameter name="%s%">
+				<history>%s%</history>
+			</parameter>
+			<parameter name="%s_%">
+				<history/>
+			</parameter>
+			<parameter name="%text%">
+				<history>3</history>
+				<history>2</history>
+				<history>1</history>
+				<history>StrangeText3</history>
+				<history>StrangeText2</history>
+				<history>StrangeText</history>
+			</parameter>
 			<parameter name="%val1%">
 				<history>3</history>
 			</parameter>
@@ -298,6 +593,12 @@
 			</parameter>
 			<parameter name="%val3%">
 				<history>26</history>
+			</parameter>
+			<parameter name="%var1%">
+				<history>assignMDCenter</history>
+			</parameter>
+			<parameter name="%var2%">
+				<history/>
 			</parameter>
 			<parameter name="%variable%">
 				<history>AREA_OCCUPIED_TOTALAREA_GRANULES</history>
@@ -310,9 +611,19 @@
 				<history>lstat</history>
 				<history>crim</history>
 			</parameter>
+			<parameter name="%x_var%">
+				<history>ref$Count_Cells</history>
+			</parameter>
 			<parameter name="%y%">
 				<history>Sepal.Length</history>
 				<history>medv</history>
+			</parameter>
+			<parameter name="%y_var%">
+				<history>ref$Count_Nuclei</history>
+			</parameter>
+			<parameter name="%ZIP_NAME%">
+				<history>C:\CWorkspace\TEMP\XLConnectJars_0.2-9.tar.gz</history>
+				<history>C:/Users/moutsio1/AppData/Local/Temp/RtmpcxyThC/downloaded_packages/Rcpp_0.11.6.zip</history>
 			</parameter>
 		</parameters>
 	</collection>

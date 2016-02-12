@@ -10,6 +10,12 @@
 			</clip>
 		</folder>
 		<folder label="Strings">
+			<clip kind="text" label="capitalize" date="2015-04-16T13:49:45">
+				<text>%stringTo%.toUpperCase()</text>
+			</clip>
+			<clip kind="text" label="capitalize first letter" date="2015-04-16T13:47:32">
+				<text>%stringTo%.capitalize()</text>
+			</clip>
 			<clip kind="text" label="replace a with b" date="2015-01-05T10:04:47">
 				<text>%target%.replace('%a%','%b%')</text>
 			</clip>
@@ -21,6 +27,36 @@
 			<clip kind="text" label="Operators" date="2014-08-01T12:17:37">
 				<text>http://groovy.codehaus.org/Operators&#13;&#10;&#13;&#10;In general all operators supported in Java are identical in Groovy. Groovy goes a step further by allowing you to customize behavior of operators on Groovy types.&#13;&#10;&#13;&#10;Arithmetic and Conditional Operators&#13;&#10;Collection-based Operators&#13;&#10;Spread Operator (*.)&#13;&#10;Object-Related Operators&#13;&#10;Java field (.@)&#13;&#10;Other Operators&#13;&#10;Elvis Operator (?: )&#13;&#10;Safe Navigation Operator (?.)&#13;&#10;Regular Expression Operators&#13;&#10;Table of Operators</text>
 			</clip>
+			<folder label="Annotations">
+				<clip kind="webtext" label="@Builder" date="2015-03-02T20:26:26">
+					<text>Since Groovy 2.3 we can easily create a fluent API for our classes with the @Builder AST transformation. We can apply the annotation to our classes and the resulting class file will have all the necessary methods to support a fluent API. We can customize how the fluent API is generated with different annotation parameters. In Groovy code we already can use the with method to have a clean way to set property values or use the named constructor arguments. But if our classes need to be used from Java it is nice to give the Java developers a fluent API for our Groovy classes.</text>
+					<url>http://mrhaki.blogspot.com/2014/05/groovy-goodness-use-builder-ast.html</url>
+				</clip>
+			</folder>
+			<folder label="Methods">
+				<clip kind="webtext" label="the With Method" date="2015-03-02T20:15:34">
+					<text>// Another example as seen at &#13;&#10;// http://javajeff.blogspot.com/2008/11/getting-groovy-with-with.html&#13;&#10;def cal = Calendar.instance&#13;&#10;cal.with {&#13;&#10;    clear()&#13;&#10;    set(YEAR, 2009)&#13;&#10;    set MONTH, SEPTEMBER&#13;&#10;    set DATE, 4    &#13;&#10;    add DATE, 2&#13;&#10;}&#13;&#10;assert'September 6, 2009' == cal.time.format('MMMM d, yyyy')</text>
+					<url>http://mrhaki.blogspot.com/2009/09/groovy-goodness-with-method.html</url>
+				</clip>
+			</folder>
+			<folder label="traits">
+				<clip kind="text" label="what.is.traits" date="2015-03-02T19:45:58">
+					<text>Traits (Groovy 2.3)&#13;&#10;http://mrhaki.blogspot.com/2014/05/groovy-goodness-implementing-traits-at.html&#13;&#10;/**&#13;&#10;A trait is a reusable set of methods and fields that can be added to one or more classes. &#13;&#10;A class can be composed out of multiple traits without using multiple inheritance&#13;&#10;Reference: http://java.dzone.com/articles/groovy-23-introduces-traits&#13;&#10;**/&#13;&#10;&#13;&#10;trait %SwimmingAbility% {&#10;	def %swim()% {&#10;		// println "swimming.."&#10;	}&#10;}&#13;&#10;&#13;&#10;/**&#13;&#10;Traits can be added to a class using the implements keyword&#13;&#10;**/&#13;&#10;&#13;&#10;class %Goldfish% implements %SwimmingAbility% {&#10;	..&#10;}</text>
+				</clip>
+				<clip kind="text" label="what.is.multiple.traits" date="2015-03-02T20:04:57">
+					<text>To apply multiple traits to an object we must use the method withTraits on an object. We can use one or more traits as arguments to this method.</text>
+				</clip>
+				<clip kind="webtext" label="withTraits" date="2015-03-02T20:06:03">
+					<text>trait Id {&#13;&#10;    Long id&#13;&#10;}&#13;&#10;&#13;&#10;trait Version {&#13;&#10;    Long version = 0&#13;&#10;}&#13;&#10;&#13;&#10;trait Active {&#13;&#10;    Date from = new Date()&#13;&#10;    Date to = null&#13;&#10;&#13;&#10;    boolean isActive() {&#13;&#10;        final Date now = new Date()&#13;&#10;        from &lt; now &amp;&amp; (!to || to > now)&#13;&#10;    }&#13;&#10;}&#13;&#10;&#13;&#10;class Person {&#13;&#10;    String username&#13;&#10;}&#13;&#10;&#13;&#10;def person = new Person(username: 'mrhaki')&#13;&#10;def domainPerson = person.withTraits Id, Version, Active&#13;&#10;&#13;&#10;domainPerson.id = 1&#13;&#10;&#13;&#10;assert domainPerson.username == 'mrhaki'&#13;&#10;assert domainPerson.id == 1&#13;&#10;assert domainPerson.version == 0&#13;&#10;assert domainPerson.active</text>
+					<url>http://mrhaki.blogspot.com/2014/05/groovy-goodness-implementing-traits-at.html</url>
+				</clip>
+			</folder>
+			<folder label="ConfigSlurper">
+				<clip kind="webtext" label="Custom Environment Sections" date="2015-03-02T20:10:19">
+					<text>Groovy contains the useful ConfigSlurper for reading in configuration files where settings can be different for different environments. &#13;&#10;&#13;&#10;We only have to include an environments block and define values for configuration properties per environment. Since Groovy 2.3 we can add our own conditional configuration blocks and therefore don't have to put everything in an environments block.</text>
+					<url>http://mrhaki.blogspot.com/2014/05/groovy-goodness-extend-configslurper.html</url>
+				</clip>
+			</folder>
 		</folder>
 		<folder label="Math">
 			<clip kind="text" label="envVar as Int" date="2013-03-28T11:43:30">
@@ -31,9 +67,6 @@
 			</clip>
 		</folder>
 		<folder label="Jenkins">
-			<clip kind="text" label="Jenkins URL" date="2014-05-14T16:13:43">
-				<text>//get the Jenkins URL&#13;&#10;import hudson.model.*&#13;&#10;jenkinsURL=jenkins.model.Jenkins.instance.getRootUrl()</text>
-			</clip>
 			<clip kind="text" label="Choice List from Static Properties" date="2014-05-15T13:57:32">
 				<text>/* &#13;&#10; Generates a dynamic choice list from a static property file in userContent/properties&#13;&#10;  Assumes a property file with propertyFileName and given propertyKey exists in Jenkins properties folder&#13;&#10;*/&#13;&#10;import hudson.model.*&#13;&#10;def jenkinsURL=jenkins.model.Jenkins.instance.getRootUrl()&#13;&#10;def propAddress="$jenkinsURL/userContent/properties/%propertyFileName%.properties"&#13;&#10;def propKey= '%propertyKey%'&#13;&#10;&#13;&#10;def props= new Properties()&#13;&#10;props.load(new URL(propAddress).openStream())&#13;&#10;def choices=[]&#13;&#10;if (props.get(propKey)!=null){&#13;&#10; props.get(propKey).split(",").each{&#13;&#10;      choices.add(it) }&#13;&#10;}else{&#13;&#10;choices.add('NOT SET')&#13;&#10;}&#13;&#10;return choices</text>
 			</clip>
@@ -57,6 +90,20 @@
 			</clip>
 			<clip kind="text" label="External.Groovy" date="2012-12-12T15:26:16">
 				<text>def env = System.getenv()&#13;&#10;//by mapping environment vars to options allow easy mapping with CLI script arguments &#13;&#10;def options= new HashMap()&#13;&#10;	options.d=env['WORKSPACE']&#13;&#10;	options.i=env['SOURCE_FOLDER']</text>
+			</clip>
+		</folder>
+		<folder label="Jenkins.API">
+			<clip kind="text" label="Build Environment" date="2015-07-22T14:46:37">
+				<text>import hudson.model.*&#13;&#10;//def choices=[]&#13;&#10;def job = hudson.model.Hudson.instance.getItem("%JOB_NAME%")&#13;&#10;&#13;&#10;def build=job.getBuildByNumber(%%BUILD_NUMBER%)&#13;&#10;env=[:] &#13;&#10;env= build.getEnvironment(TaskListener.NULL);&#13;&#10;//choices=env.getKeys()&#13;&#10;  &#13;&#10;//return choices</text>
+			</clip>
+			<clip kind="text" label="Jenkins URL" date="2014-05-14T16:13:43">
+				<text>//get the Jenkins URL&#13;&#10;import hudson.model.*&#13;&#10;jenkinsURL=jenkins.model.Jenkins.instance.getRootUrl()</text>
+			</clip>
+			<clip kind="text" label="Job.Workspace.Path" date="2015-07-20T09:21:27">
+				<text>//workspace path of specified job&#13;&#10;println(jenkins.model.Jenkins.instance.getJob("CellProfiler_JenkinsRun").getWorkspace())</text>
+			</clip>
+			<clip kind="text" label="All.job.names" date="2015-07-20T09:20:56">
+				<text>//all job name&#13;&#10;jenkins.model.Jenkins.instance.items.each {&#13;&#10;  println "Job: ${it.name}"&#13;&#10;}&#13;&#10; </text>
 			</clip>
 		</folder>
 		<folder label="FileActions">
@@ -125,14 +172,14 @@
 			</clip>
 		</folder>
 		<folder label="CliBuilder">
+			<clip kind="text" label="New cli" date="2014-01-14T16:10:55">
+				<text>def cli = new CliBuilder(usage:'%scriptUsage%')&#13;&#10; cli.with{&#13;&#10;     h longOpt: 'help', 'Show usage information'&#13;&#10;     }&#13;&#10; def options = cli.parse(args)&#13;&#10;&#13;&#10; if (!options) {&#13;&#10;        cli.usage()&#13;&#10;        return&#13;&#10;        }&#13;&#10;if(options.h){&#13;&#10;    cli.usage()&#13;&#10;    return&#13;&#10;    } </text>
+			</clip>
 			<clip kind="text" label="Optional Cli Argument" date="2014-01-14T16:15:27">
 				<text>%singleLetterName% longOpt: '%longName%', args:%argNumber%, argName: '%argName%', '%argDescription%'</text>
 			</clip>
 			<clip kind="text" label="Required Cli Argument" date="2014-01-14T16:12:51">
 				<text>%singleLetterName% longOpt: '%longName%', args:%argNumber%, argName: '%argName%', '%argDescription%', required:true</text>
-			</clip>
-			<clip kind="text" label="New cli" date="2014-01-14T16:10:55">
-				<text>def cli = new CliBuilder(usage:'%scriptUsage%')&#13;&#10; cli.with{&#13;&#10;     h longOpt: 'help', 'Show usage information'&#13;&#10;     }&#13;&#10; def options = cli.parse(args)&#13;&#10;&#13;&#10; if (!options) {&#13;&#10;        cli.usage()&#13;&#10;        return&#13;&#10;        }&#13;&#10;if(options.h){&#13;&#10;    cli.usage()&#13;&#10;    return&#13;&#10;    } </text>
 			</clip>
 		</folder>
 		<folder label="Logic">
@@ -160,6 +207,12 @@
 			</clip>
 		</folder>
 		<folder label="Collections">
+			<clip kind="text" label="flatten" date="2015-08-13T09:16:20">
+				<text>/*&#13;&#10;Flatten a Set. &#13;&#10;This Set and any nested arrays or collections have their contents (recursively) added to the new Set.&#13;&#10;Useful when you are adding collections to create a new and just interested in the collection elements&#13;&#10;*/&#13;&#10;&#13;&#10;%set%.flatten()</text>
+			</clip>
+			<clip kind="text" label="sort a list" date="2015-03-13T16:40:19">
+				<text>//alphanumerical string sort&#13;&#10;%list%.sort()</text>
+			</clip>
 			<clip kind="text" label="Get list at Range" date="2014-09-16T14:28:56">
 				<text>//return list avalues at the specified range&#13;&#10;%listName%.getAt(%rangeStart%..%rangeEnd%)</text>
 			</clip>
@@ -183,6 +236,11 @@
 			</clip>
 			<clip kind="text" label="GroupBy" date="2013-10-03T15:28:05">
 				<text>// group a collection using one or more closures&#13;&#10;//--copy to clipboard the collection name to group--&#13;&#10;def %CLIPBOARD%Group=%CLIPBOARD%.groupBy({%groupByClosure%})</text>
+			</clip>
+		</folder>
+		<folder label="Uno-Choice">
+			<clip kind="text" label="READOUTS" date="2015-03-13T16:44:57">
+				<text>/*&#13;&#10;Returns a sorted list of readouts after selected readout features are removed&#13;&#10;*/&#13;&#10;import hudson.model.*&#13;&#10;def dataUrl=DATA_URL&#13;&#10;def derivedProps= new Properties()&#13;&#10;if(dataUrl=='FAILED UNIQUENESS TEST'){&#13;&#10;return ['ERROR: JData file is not Unique!']&#13;&#10;}&#13;&#10;      &#13;&#10;  if(dataUrl=='SELECT A DATA_SET'){&#13;&#10;    return ['SELECT A DATA_SET']&#13;&#10;  }else{&#13;&#10;&#13;&#10;//find property file by replacing the dataUrl '.csv' extension-case insensitive&#13;&#10;derivedPropAddress=dataUrl.replaceAll(~/\.(?i)csv/,'.properties')&#13;&#10;println derivedPropAddress&#13;&#10;&#13;&#10;&#13;&#10;/* Using derived data properties find derived data meta and annotations */&#13;&#10;derivedProps.load(new URL(derivedPropAddress).openStream())&#13;&#10;//-------------&#13;&#10;def readouts=[]&#13;&#10;def lowvar=[]&#13;&#10;def highcorr=[]&#13;&#10;def lincomb=[]&#13;&#10;def allLowvar=[]&#13;&#10;def allHighCorr=[]&#13;&#10;def allLinComb=[]&#13;&#10;&#13;&#10;def remAll=[]&#13;&#10;def lvKey='PP_FEATURE_ANALYSIS.LAST.nearZeroVar'&#13;&#10;def hcKey='PP_FEATURE_ANALYSIS.LAST.highlyCorrelated'&#13;&#10;def lcKey='PP_FEATURE_ANALYSIS.LAST.linearCombos'&#13;&#10;&#13;&#10;if (REMOVE_LOWVAR!=''){&#13;&#10;lowvar=REMOVE_LOWVAR.split(',') as List&#13;&#10;}&#13;&#10;&#13;&#10;if (REMOVE_HIGHCORR!=''){&#13;&#10;highcorr=REMOVE_HIGHCORR.split(',') as List&#13;&#10;}&#13;&#10;&#13;&#10;if (REMOVE_LINEARCOMBOS!=''){&#13;&#10;lincomb=REMOVE_HIGHCORR.split(',') as List&#13;&#10;}&#13;&#10;&#13;&#10;readouts= derivedProps.get ('measurements').split(",") as List&#13;&#10;//now remove features from user selections&#13;&#10;&#13;&#10;if (binding.variables.containsKey("REMOVE_ALL")){&#13;&#10;remAll=REMOVE_ALL.split(",")&#13;&#10;}&#13;&#10;if ('LOWVAR' in remAll &amp;&amp; derivedProps.get(lvKey)!=null){&#13;&#10;allLowvar= derivedProps.get (lvKey).split(",") as List&#13;&#10;}&#13;&#10;&#13;&#10;if ('HIGHCORR' in remAll&amp;&amp; derivedProps.get(hcKey)!=null){&#13;&#10;allHighCorr= derivedProps.get (hcKey).split(",") as List&#13;&#10;}&#13;&#10;&#13;&#10;if ('LINEARCOMBOS' in remAll&amp;&amp; derivedProps.get(lcKey)!=null){&#13;&#10;allLinComb= derivedProps.get (lcKey).split(",") as List&#13;&#10;}&#13;&#10;&#13;&#10;return (readouts-lowvar-highcorr-lincomb-allLowvar-allHighCorr-allLinComb).sort()&#13;&#10;} //end else&#13;&#10;</text>
 			</clip>
 		</folder>
 		<folder label="Parsing">
@@ -221,6 +279,7 @@
 				<history>http://nrusca-sd189.nibr.novartis.net:8080/job/CellProfiler_JClustSelect/31/api/json?pretty=true</history>
 			</parameter>
 			<parameter name="%argDescription%">
+				<history>folder to list</history>
 				<history>path to output file</history>
 				<history>comma separated plate list</history>
 				<history>column to pivot</history>
@@ -231,6 +290,7 @@
 				<history>Jenkins server</history>
 			</parameter>
 			<parameter name="%argName%">
+				<history>folder</history>
 				<history>output file</history>
 				<history>plate list</history>
 				<history>pivot column</history>
@@ -242,6 +302,9 @@
 			</parameter>
 			<parameter name="%argNumber%">
 				<history>1</history>
+			</parameter>
+			<parameter name="%BUILD_NUMBER%">
+				<history/>
 			</parameter>
 			<parameter name="%caseVAL1%">
 				<history>IMAGE</history>
@@ -289,6 +352,8 @@
 				<history>1</history>
 			</parameter>
 			<parameter name="%file%">
+				<history>testCase</history>
+				<history>recovery</history>
 				<history>f</history>
 				<history>outFile</history>
 				<history>cpPipeline</history>
@@ -317,6 +382,9 @@
 			<parameter name="%it%">
 				<history>k</history>
 			</parameter>
+			<parameter name="%JOB_NAME%">
+				<history>DMPQM369_MERGE</history>
+			</parameter>
 			<parameter name="%jobName%">
 				<history>PP_UPLOAD_DATA</history>
 			</parameter>
@@ -327,6 +395,7 @@
 				<history>CP_Jobs_Status</history>
 			</parameter>
 			<parameter name="%longName%">
+				<history>folder name</history>
 				<history>output</history>
 				<history>plates</history>
 				<history>pivot</history>
@@ -357,6 +426,7 @@
 				<history>1</history>
 			</parameter>
 			<parameter name="%propertiesCanonicalFileName%">
+				<history>./merge.properties</history>
 				<history>./imagelist.properties</history>
 			</parameter>
 			<parameter name="%propertiesFileName%">
@@ -381,11 +451,13 @@
 				<history>3</history>
 			</parameter>
 			<parameter name="%scriptUsage%">
+				<history>listDir -d</history>
 				<history>operTempInFile -p -o</history>
 				<history>groupByPivot -f -g -p</history>
 				<history>JsonBuild.groovy -s -j -b</history>
 			</parameter>
 			<parameter name="%singleLetterName%">
+				<history>d</history>
 				<history>o</history>
 				<history>p</history>
 				<history>g</history>
@@ -405,6 +477,10 @@
 			</parameter>
 			<parameter name="%type%">
 				<history>wellPlateInfo</history>
+			</parameter>
+			<parameter name="%WriteWhat%">
+				<history>writeWhat</history>
+				<history>lines[it]</history>
 			</parameter>
 		</parameters>
 	</collection>

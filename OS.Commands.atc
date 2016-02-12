@@ -9,6 +9,14 @@
 				<text>qsub -cwd  /path_to_script/myFirstTest.sh</text>
 			</clip>
 		</folder>
+		<folder label="SSH Helpers">
+			<clip kind="text" label="rsa key-pair generation" date="2015-05-05T14:02:20">
+				<text># Creates a new ssh key, using the provided email as a label&#13;&#10;ssh-keygen -t rsa -C "%your_email%"&#13;&#10;</text>
+			</clip>
+			<clip kind="text" label="list existing SSH" date="2015-05-05T14:04:13">
+				<text># Lists the files in your .ssh directory, if they exist&#13;&#10;ls -al ~/.ssh&#13;&#10;</text>
+			</clip>
+		</folder>
 		<folder label="SGE.commands">
 			<clip kind="text" label="Delete JobID" acetype="sg" date="2012-10-10T11:54:36">
 				<text>qdel %JOBID%</text>
@@ -24,12 +32,25 @@
 			</clip>
 		</folder>
 		<folder label="Linux Commands">
+			<folder label="System Info">
+				<clip kind="text" label="View Enviroment Variables" date="2015-11-10T11:13:43">
+					<text>printenv | more</text>
+				</clip>
+				<clip kind="text" label="Red Hat Release" date="2015-11-09T16:43:51">
+					<text>cat /etc/redhat-release</text>
+				</clip>
+			</folder>
 			<folder label="Networking">
 				<clip kind="text" label="enable SSH server" date="2014-11-05T09:46:03">
 					<text>sudo start ssh</text>
 				</clip>
 				<clip kind="text" label="Network Interface Review" date="2014-11-05T09:43:14">
 					<text>> /sbin/ifconfig -a</text>
+				</clip>
+			</folder>
+			<folder label="Shares">
+				<clip kind="text" label="UNC: moutsio1 linux home" date="2015-03-30T15:14:26">
+					<text>\\isiusca05.na.novartis.net\home\moutsio1</text>
 				</clip>
 			</folder>
 			<clip kind="text" label="processID_Virtual_Subdirectory" date="2014-04-03T15:53:41">
@@ -47,11 +68,11 @@
 			<clip kind="text" label="List files only" acetype="ln" date="2013-08-12T09:13:22">
 				<text>ls -l | egrep -v '^d'</text>
 			</clip>
-			<clip kind="text" label="Count Files" acetype="ln" date="2012-11-28T09:51:26">
-				<text>ls %NAMEFILTER% -1|wc -l</text>
-			</clip>
 			<clip kind="text" label="Find files (current dir no recurse)" acetype="ln" date="2012-12-12T09:12:40">
 				<text>find . -iname '%NameToFind%' -prune</text>
+			</clip>
+			<clip kind="text" label="Count Files" acetype="ln" date="2012-11-28T09:51:26">
+				<text>ls %NAMEFILTER% -1|wc -l</text>
 			</clip>
 		</folder>
 		<folder label="Windows.cmd">
@@ -65,5 +86,13 @@
 				<text>F7: pops up menu&#13;&#10;F8: searches after yout type a few strating characters (Case Sensitive)&#13;&#10;F9: recall commands by their number, Pops a window to enter number&#13;&#10;->: Right arrow auto-completes</text>
 			</clip>
 		</folder>
+		<parameters>
+			<parameter name="%username%">
+				<history>moutsio1</history>
+			</parameter>
+			<parameter name="%your_email%">
+				<history>ioannis.moutsatsos@novartis.com</history>
+			</parameter>
+		</parameters>
 	</collection>
 </act:acetext>
