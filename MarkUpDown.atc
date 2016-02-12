@@ -40,6 +40,9 @@
 			<clip kind="text" label="Unordered List" date="2014-03-25T09:35:44">
 				<text>-</text>
 			</clip>
+			<clip kind="text" label="Unordered List (blog)" date="2015-06-27T11:16:39">
+				<text>* </text>
+			</clip>
 			<clip kind="text" label="Ordered List" date="2014-03-25T09:36:04">
 				<text>1.&#13;&#10;2.&#13;&#10;3.&#13;&#10;4.&#13;&#10;</text>
 			</clip>
@@ -144,6 +147,7 @@
 				<history>5787743</history>
 			</parameter>
 			<parameter name="%linkURL%">
+				<history>https://wiki.jenkins-ci.org/display/JENKINS/inheritance-plugin</history>
 				<history>http://www.acetext.com/</history>
 				<history>http://www.urbandictionary.com/define.php?term=iirc</history>
 				<history>https://wiki.jenkins-ci.org/display/JENKINS/Extended+Choice+Parameter+plugin</history>
