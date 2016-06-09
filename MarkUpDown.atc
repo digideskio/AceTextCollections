@@ -33,6 +33,9 @@
 			</clip>
 		</folder>
 		<folder label="Markdown.GitHub_flavored">
+			<clip kind="text" label="Embed Image" date="2016-05-28T21:12:02">
+				<text>![%imageText%](%imageUrl%)</text>
+			</clip>
 			<clip kind="text" label="h1" date="2015-02-23T10:47:44">
 				<text># </text>
 			</clip>
@@ -60,6 +63,10 @@
 			</clip>
 			<clip kind="text" label="Link-text" date="2014-03-25T09:36:35">
 				<text>[%text%](%linkURL%)</text>
+			</clip>
+			<clip kind="beforeafter" label="Link-selected text" date="2014-03-25T09:36:35">
+				<before>[</before>
+				<after>](%linkURL%)</after>
 			</clip>
 			<clip kind="text" label="Link-relative">
 				<text>[[%relative_path%/%resource_name%]]</text>
@@ -156,6 +163,15 @@
 			<parameter name="%headerList%">
 				<history>imageRowList</history>
 			</parameter>
+			<parameter name="%imageText%">
+				<history/>
+			</parameter>
+			<parameter name="%imageUrl%">
+				<history>https://wiki.jenkins-ci.org/download/attachments/74875855/Screen+Shot+2015-03-24+at+1.30.52+PM.png?version=1&amp;modificationDate=1427218270000</history>
+				<history>https://jenkins.io/images/post-images/blueocean/pipeline-run.png</history>
+				<history>https://wiki.jenkins-ci.org/download/attachments/69764097/screenshot2.png?version=1&amp;modificationDate=1400172472000</history>
+				<history>https://wiki.jenkins-ci.org/download/attachments/54723106/bpp1.png?version=2&amp;modificationDate=1340695983000</history>
+			</parameter>
 			<parameter name="%it%">
 				<history>indx</history>
 			</parameter>
@@ -175,11 +191,16 @@
 				<history>PP_DATASET_QC</history>
 			</parameter>
 			<parameter name="%linkURL%">
+				<history>https://jenkins.io/blog/2016/05/26/introducing-blue-ocean/</history>
+				<history>http://accelrys.com/products/collaborative-science/biovia-pipeline-pilot/</history>
+				<history>https://galaxyproject.org/</history>
+				<history>https://www.knime.org/</history>
+				<history>https://jenkins.io/solutions/pipeline/</history>
+				<history>https://wiki.jenkins-ci.org/display/JENKINS/Pipeline+Plugin</history>
+				<history>https://wiki.jenkins-ci.org/display/JENKINS/Job+DSL+Plugin</history>
+				<history>https://wiki.jenkins-ci.org/display/JENKINS/Delivery+Pipeline+Plugin</history>
+				<history>https://wiki.jenkins-ci.org/display/JENKINS/Build+Pipeline+Plugin</history>
 				<history>https://wiki.jenkins-ci.org/display/JENKINS/inheritance-plugin</history>
-				<history>http://www.biouno.org</history>
-				<history>http://www.acetext.com/</history>
-				<history>http://www.urbandictionary.com/define.php?term=iirc</history>
-				<history>https://wiki.jenkins-ci.org/display/JENKINS/Extended+Choice+Parameter+plugin</history>
 			</parameter>
 			<parameter name="%myapp%">
 				<history>test-app</history>
